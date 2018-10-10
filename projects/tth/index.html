@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+
+
+                        <div id="post-content">
+                          <!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="description" content="Feasibility of reconstructing $\tthtoWW$ for the purpose of measuring the Standard Model Higgs CP">
+
+<title>Feasibility of reconstructing $\tthtoWW$ for the purpose of measuring the Standard Model Higgs CP</title>
+
+<!-- Bootstrap style: bootswatch_cosmo -->
+<link href="https://netdna.bootstrapcdn.com/bootswatch/3.1.1/cosmo/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+
+<style type="text/css">
+/* Let inline verbatim have the same color as the surroundings */
+code { color: inherit; background-color: transparent; }
+/* Let pre tags for code blocks have the same color as the surroundings */
+pre { color: inherit; background-color: transparent; }
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootswatch_cosmo */
+  margin:-50px 0 0; /* negative fixed header height */
+}
+</style>
+
+
+</head>
+
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [('Motivation', 1, 'section:motivation', 'section:motivation'),
+              ('Nomenclature',
+               2,
+               'section:trigger:nomenclature',
+               'section:trigger:nomenclature'),
+              ('Method to measure the Higgs CP',
+               1,
+               'section:motivation:method',
+               'section:motivation:method'),
+              ('Monte Carlo Samples',
+               1,
+               'section:montecarlo',
+               'section:montecarlo'),
+              ('Signal',
+               2,
+               'section:montecarlo:signal',
+               'section:montecarlo:signal'),
+              ('ATLFAST fast simulation for ATLAS',
+               1,
+               'section:motivation:atlfast',
+               'section:motivation:atlfast'),
+              ('Electrons',
+               2,
+               'section:motivation:atlfast:electrons',
+               'section:motivation:atlfast:electrons'),
+              ('Muons',
+               2,
+               'section:motivation:atlfast:muons',
+               'section:motivation:atlfast:muons'),
+              ('Jets',
+               2,
+               'section:motivation:atlfast:jets',
+               'section:motivation:atlfast:jets'),
+              ('Missing momentum',
+               2,
+               'section:motivation:atlfast:ptimss',
+               'section:motivation:atlfast:ptimss'),
+              ('Event Pre - Selection',
+               1,
+               'section:selection',
+               'section:selection'),
+              ('Reconstruction of the $\\tthtoWW$ topology',
+               1,
+               'section:Reconstruction',
+               'section:Reconstruction'),
+              ('Reconstruction of the leptonically decaying W',
+               2,
+               'section:Reconstruction:LeptonicW',
+               'section:Reconstruction:LeptonicW'),
+              ("Reconstruction of the hadronically decaying W's",
+               2,
+               'section:Reconstruction:HadronicWs',
+               'section:Reconstruction:HadronicWs'),
+              ('Reconstruction Methods',
+               2,
+               'section:Reconstruction:Methods',
+               'section:Reconstruction:Methods'),
+              ('Reconstruction using a $\\chisq$',
+               3,
+               'section:Reconstruction:Methods:chisq',
+               'section:Reconstruction:Methods:chisq'),
+              ('Multivariate reconstruction method- boosted decision tree',
+               3,
+               'section:FitBasedReconstruction:BDT',
+               'section:FitBasedReconstruction:BDT'),
+              ('Results and conclusions',
+               1,
+               'section:Results',
+               'section:Results'),
+              ('Bibliography', 1, None, '___sec18')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<!-- newcommands_keep.tex -->
+$$
+\newcommand{\mypm}{\mathrm{\pm}}
+\newcommand{\H}{\mathrm H}
+\newcommand{\toptop}{\mathrm t \bar{\mathrm t}}
+\newcommand{\gamgam}{\gamma\gamma}
+\newcommand{\fb}{\mathrm{fb}^{-1}}
+\newcommand{\Gcs}{\mathrm{GeV/\it{c}}^2}
+\newcommand{\Gc}{\mathrm{GeV/\it{c}}}
+\newcommand{\GeV}{\mathrm{GeV}}
+\newcommand{\pt}{p_{\mathrm{T}}}
+\newcommand{\et}{E_{\mathrm{T}}}
+\newcommand{\tthtoWW}{\toptop (\mathrm{H} \rightarrow \mathrm{WW})}
+\newcommand{\tth}{\toptop \mathrm{H}}
+\newcommand{\nolj}{n_{\mathrm{ljets}}}
+\newcommand{\ncomb}{n_{\mathrm{comb}}}
+\newcommand{\chisq}{\chi^{2}}
+\newcommand{\chisquared}{\chi^{2}_{tth} = \frac{(m_{ij}-m_{W})^{2}}{\sigma^{2}_{W}} + \frac{(m_{kl}-m_{W})^{2}}{\sigma^{2}_{W}} + \frac{(m_{mp}-m_{W})^{2}}{\sigma^{2}_{W}} + \frac{(m_{index1-m_{t}})^{2}}{\sigma^{2}_{t}} + \frac{(m_{index2}-m_{t})^{2}}{\sigma^{2}_{t}}}
+\newcommand{\chisquaredwithhiggs}{\chi^{2}_{1} = \frac{(m_{ij}-m_{W})^{2}}{\sigma^{2}_{W}} + \frac{(m_{kl}-m_{W})^{2}}{\sigma^{2}_{W}} + \frac{(m_{mp}-m_{W})^{2}}{\sigma^{2}_{W}} + \frac{(m_{index1-m_{t}})^{2}}{\sigma^{2}_{t}} + \frac{(m_{index2}-m_{t})^{2}}{\sigma^{2}_{t}} + \frac{(m_{index3}-m_{h})^{2}}{\sigma^{2}_{h}}}
+$$
+
+
+
+
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="http://www.cedwards.info">Home</a>
+  </div>
+
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="#section:motivation" style="font-size: 80%;"><b>Motivation</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:trigger:nomenclature" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Nomenclature</a></li>
+     <!-- navigation toc: --> <li><a href="#section:motivation:method" style="font-size: 80%;"><b>Method to measure the Higgs CP</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:montecarlo" style="font-size: 80%;"><b>Monte Carlo Samples</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:montecarlo:signal" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Signal</a></li>
+     <!-- navigation toc: --> <li><a href="#section:motivation:atlfast" style="font-size: 80%;"><b>ATLFAST fast simulation for ATLAS</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:motivation:atlfast:electrons" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Electrons</a></li>
+     <!-- navigation toc: --> <li><a href="#section:motivation:atlfast:muons" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Muons</a></li>
+     <!-- navigation toc: --> <li><a href="#section:motivation:atlfast:jets" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Jets</a></li>
+     <!-- navigation toc: --> <li><a href="#section:motivation:atlfast:ptimss" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Missing momentum</a></li>
+     <!-- navigation toc: --> <li><a href="#section:selection" style="font-size: 80%;"><b>Event Pre - Selection</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:Reconstruction" style="font-size: 80%;"><b>Reconstruction of the \( \tthtoWW \) topology</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:Reconstruction:LeptonicW" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Reconstruction of the leptonically decaying W</a></li>
+     <!-- navigation toc: --> <li><a href="#section:Reconstruction:HadronicWs" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Reconstruction of the hadronically decaying W's</a></li>
+     <!-- navigation toc: --> <li><a href="#section:Reconstruction:Methods" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Reconstruction Methods</a></li>
+     <!-- navigation toc: --> <li><a href="#section:Reconstruction:Methods:chisq" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reconstruction using a \( \chisq \)</a></li>
+     <!-- navigation toc: --> <li><a href="#section:FitBasedReconstruction:BDT" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Multivariate reconstruction method- boosted decision tree</a></li>
+     <!-- navigation toc: --> <li><a href="#section:Results" style="font-size: 80%;"><b>Results and conclusions</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec18" style="font-size: 80%;"><b>Bibliography</b></a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<div class="jumbotron">
+<center><h1>Feasibility of reconstructing \( \tthtoWW \) for the purpose of measuring the Standard Model Higgs CP</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Clive Edwards -->
+
+<center>
+<b>Clive Edwards</b>  (<tt>mail at cedwards.info</tt>)
+</center>
+
+<p>
+<!-- institution(s) -->
+
+<br>
+
+<p>
+<b>Summary.</b> This work investigates the feasibility of reconstructing \( \tthtoWW \) for the purpose of measuring the Standard Model Higgs CP. The method used to measure the Higgs CP relies on using the top quark momenta and therefore requires that the \( \tth \) topology be fully reconstructed. To this end, a fit based method using \( \chi^{2} \) minimization is implemented and explored as a means by which the events can be reconstructed. This method is compared to a multivariate boosted decision tree implementation. The boosted decision tree implementation yields improved results compared to the fit based approach, particularly in events with a semi-leptonically decaying top. In such events, this approach is seen to yield improvements of the order of 10 % for certain aspects of the reconstructed topology and by as much as a few percent for the \( \tth \) topology as a whole.
+
+<p>
+Skills Used:
+
+<ul>
+<li> Algorithm Development and coding (C++).</li>
+<li> Machine Learning.</li>
+<li> Mathematics.</li>
+<li> Data Cleaning.</li>
+<li> Feature Selection.</li>
+<li> Optimization.</li>
+</ul>
+
+<p>
+
+<p>
+</div> <!-- end jumbotron -->
+
+<h1 id="section:motivation" class="anchor">Motivation</h1>
+
+<p>
+This report outlines the work that was done to investigate full event reconstruction of the Higgs boson in the associated production mode, \( \tth \), followed by the Higgs boson decay \( \tthtoWW \) for the purpose of measuring the Higgs CP. It is also thought that reconstruction will provide a valuable means by which backgrounds to this channel can be eliminated. Reconstruction in this context refers to using the detector objects, i.e. leptons, jets and missing energy to reconstruct W's, tops and Higgs particles.
+
+<p>
+A project with the same motivation as this study was performed by Scott McGarvie <a href="#McGarvie2006">[1]</a> in the \( \toptop(H \rightarrow \gamma\gamma) \) channel. That study concluded 100's \( \fb \) of data from the LHC would make the measurement of Higgs CP-parity possible. The higher branching ratio of \( \H \rightarrow \) WW (for a Higgs mass of 160 \( \Gcs \) the \( \H \rightarrow \gamgam \) branching ratio is 0.00056, compared to 0.9015 for \( \H \rightarrow \) WW <a href="#SignalxsNote">[2]</a>) could mean such a measurement may be performed in the \( \tthtoWW \) channel with significantly less data. However, backgrounds in this channel are more of a problem. The issue is made worse in the reconstuction phase, needed for the CP measurement, due to large combinatorics.
+
+<h2 id="section:trigger:nomenclature" class="anchor">Nomenclature</h2>
+The origin of the ATLAS co-ordinate system is defined to be the nominal interaction or collision point of the LHC's beams inside the ATLAS detector. The positive z axis is defined by the trajectory of the clockwise (viewed from above) rotating proton beam. The \( xy \) (\( r \)) plane is transverse to this with the \( x \) axis pointing toward the centre of the LHC ring and the positive \( y \) axis pointing upwards. In this plane transverse variables such as transverse momentum \( \pt = \sqrt{p_{x}^{2} + p_{y}^{2}} = p\sin(\theta) \) and transverse energy \( \et = \sqrt{E^{2} - p_{z}^{2}} \) are defined, where \( p_{x} \), \( p_{y} \), \( p_{z} \) are the \( x \), \( y \) and \( z \) components of the particle's momentum and \( E \) is the particle's energy. \( \theta \) is the polar angle measured from the z axis around the x axis and is often expressed in terms of pseudo-rapidity \( \eta = -\ln(\tan\frac{\theta}{2}) \), which equals the rapidity \( y = \frac{1}{2}\ln \frac{E-p_{z}}{E+p_{z}} \) in the limit of small masses. Differences in rapidity are Lorentz-invariant under boosts along the \( z \) direction. The azimuthal angle \( \phi \) = tan \( ^{-1} \) ( \( p_{y} \) / \( p_{x} \) ) is measured from the positive \( x \) axis clockwise around the z axis when facing the positive \( z \) direction. Typically distance in the \( \eta \) - \( \phi \) plane is expressed in terms of \( \Delta R = \sqrt{\Delta\eta^{2} + \Delta\phi^{2}} \).
+
+<h1 id="section:motivation:method" class="anchor">Method to measure the Higgs CP</h1>
+
+<p>
+The proposed method to measure the Higgs CP parity was first motivated by <a href="#Glashow:1961tr">[3]</a>. The authors showed that there exist variables which can be used to distinguish between CP-even and CP-odd Higgses. Some of the variables proposed are listed in Equations \eqref{eqn1}-\eqref{eqn3}.
+
+$$
+\begin{equation}
+a_{1}  =  \frac{(\vec{p}_{t} \times \hat{n}) \cdot (\vec{p}_{\bar{t}} \times \hat{n})}
+{|(\vec{p}_{t} \times \hat{n}) \cdot (\vec{p}_{\bar{t}} \times \hat{n})|}  \label{eqn1}
+\end{equation}
+$$
+
+
+$$
+\begin{equation}
+b_{1}  =  \frac{(\vec{p}_{t} \times \hat{n}) \cdot (\vec{p}_{\bar{t}} \times \hat{n})}
+{p^{T}_{t} p^{T}_{\bar{t}}} \label{eqn2}
+\end{equation}
+$$
+
+
+$$
+\begin{equation}
+a_{2}  =  \frac{p^{x}_{t} p^{x}_{\bar{t}}} {|p^{x}_{t} p^{x}_{\bar{t}}|} \label{eqn3}
+\end{equation}
+$$
+
+where \( \vec{p}_{t} \) and \( \vec{p}_{\bar{t}} \) are the \( t \) and \( \bar{t} \) three momenta, \( p^{T}_{t} \) and \( p^{T}_{\bar{t}} \) are their transverse momenta, \( p^{x}_{t} \) and \( p^{x}_{\bar{t}} \) are their \( x \) component momenta and \( \hat{n} \) is a unit vector in the direction of the beam. As can be seen from the variable definitions, the success of the method will depend on the accurate reconstruction of the top quark momenta. Given that the \( \tth \) signal has four W decays contributing to the final state makes this very challenging.
+
+<h1 id="section:montecarlo" class="anchor">Monte Carlo Samples</h1>
+
+<p>
+For this study, Monte Carlo samples were simulated with PYTHIA 6.4. Detector effects were simulated using ATLFAST fast detector simulation (ATLAS software version 11.0.5). Results using a Higgs mass of 160 \( \Gcs \) (40000 events) are discussed. No filters were applied for decays of tops or W's, but the Higgs was made to decay to WW. Considering this projects aim was to look into the feasibility of reconstructing the \( \tthtoWW \) topology, no consideration of backgrounds is made.
+
+<h2 id="section:montecarlo:signal" class="anchor">Signal</h2>
+
+<p>
+The \( \tthtoWW \) (signal) topology is shown in Figure <a href="#fig:./figures/signal_feyn">1</a>. Its characteristics include two b-quarks and four W's.
+
+<p>
+
+<p>
+<center> <!-- figure label: --> <div id="fig:./figures/signal_feyn"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 1:  Feynman diagram showing the \( \tthtoWW \) signal.  <!-- caption label: fig:./figures/signal_feyn --> </p></center>
+<p><img src="/img/figurestth/signal_feyn.png" align="bottom" width=500></p>
+</center>
+
+<p>
+The method used to measure the Higgs CP under investigation requires full reconstruction of the event. Specifically it uses the reconstructed top momenta. This means using the reconstructed detector objects (i.e. electrons, jets etc) the 4 W's as well as the two tops and Higgs would ideally need to be fully reconstructed. Two possible final states are interesting given this requirement.
+
+<ul>
+<li> States with more than two leptons have a branching fraction of only \( \approx \) 0.1x0.1x0.67x0.67=0.004489 and their nature make reconstruction very difficult/ impossible because of the multiple sources of missing energy from the different neutrinos in the final state.</li>
+<li> The two lepton final state has only two hadronically decaying W's in the final state. However, at the time this work was carried out even though methods existed to reconstruct events with more than one source of missing energy these methods were widely untested.</li>
+<li> The final state with no leptons doesn't allow for easy triggering and is too combinatorically challenging.</li>
+<li> The one lepton final state is considered here. It has the advantage of having only one source of missing energy making attributing missing energy to detector objects more error free. However, it does have three hadronically W's, each of which needs to be reconstructed and attributed to the tops and Higgs and therefore presents quite a combinatoric challenge. This aspect should however provide a means by which to discriminate backgrounds. The one lepton final state has a branching ratio of \( \approx \) 0.67x0.67x0.67x0.1=0.03.</li>
+</ul>
+
+<h1 id="section:motivation:atlfast" class="anchor">ATLFAST fast simulation for ATLAS</h1>
+
+<p>
+ATLFAST is a software package that provides the ATLAS collaboration a means by which to quickly simulate the detector response at the particle level, through the use of a parametized detector response. It is primarily used when analysis of large datasets is required or for feasibilty studies such as this.
+
+<p>
+The first step in ATLFAST is the deposition of electron, photon and hadron energies in the calorimeter cell map. The response of the calorimeter is assumed to be 1 and uniform with no smearing applied. The granularity of calorimeter cells is set as Eqn. \eqref{eqn_granularity_2}
+
+$$
+\begin{equation}
+\Delta \eta \times \Delta \phi  =  0.1 \times 0.1 \mathrm{ for } |\eta| < 3.2  \\
+\Delta \eta \times \Delta \phi  =  0.2 \times 0.2 \mathrm{ for } |\eta| < 5.0  \label{eqn_granularity_2}
+\end{equation}
+$$
+
+<p>
+The electromagnetic and hadronic calorimeters are not separate. No hits or tracks are simulated in the inner detectors or muon chambers. Interations of particles with the detector medium are approximated using resolution functions.
+
+<p>
+Reconstruction of physics objects is largely reliant on Monte Carlo truth. In particular there is no reconstruction layer based on the simulated detector, apart from a seeded cone algorithm for cluster reconstruction in the calorimeter. Instead, the process of identifying physics objects is reliant on the nature of the truth particles.
+The process starts with the energy deposits in the calorimeters. A cluster reconstruction algorithm is used (cone algorithm with \( \Delta \) R = 0.4) to identify clusters passing a 5 \( \GeV \) threshold. Each cluster identified can then be reclassified as one of the following depending on if certain criteria are satisfied.
+
+<h2 id="section:motivation:atlfast:electrons" class="anchor">Electrons</h2>
+For each truth electron a calorimeter cluster matching it in \( \eta \phi \) space is searched with an acceptance of \( \Delta \) R = 0.15. A cluster satisfying this criteria is defined as an isolated electron if the difference in the energy of a cone of \( \Delta \) R = 0.2 around the electron direction and smeared electron energy is below the 10 \( \GeV \) threshold. In addition, no clusters around a \( \Delta \) R = 0.4 cone of the electron direction should be present. The reconstructed electron energy is obtained by smearing the truth electrons energy with a resolution function. If this is larger than the threshold energy of the cluster and a true electron is within \( \Delta \) R < 2.5 an isolated electron is recorded. It's \( \eta \) and \( \phi \) are designated to be the same as for the truth electron to which it was matched.
+
+<h2 id="section:motivation:atlfast:muons" class="anchor">Muons</h2>
+For each truth muon with \( \pt \) > 0.5 \( \Gc \) the reconstructed momentum is found by applying a gaussian resolution function (depending on \( \pt \) , \( \eta \) and \( \phi \) ) to the truth momentum. After this process, reconstructed muons with \( \pt \) > 5 \( \Gc \) and \( |\eta| \) < 2.5 are kept. By passing similar criteria as for electrons, a muon may then be considered as isolated or non- isolated. Muons within a \( \Delta \) R = 0.4 cone of a reconstructed jet are added to the jet.
+
+<h2 id="section:motivation:atlfast:jets" class="anchor">Jets</h2>
+Clusters not associated to a true electron or photon are considered as jets if the transverse energy exceeds a threshold of 10 \( \GeV \). The jet energy from the cluster energy is smeared using a resolution function as shown in Eqn. \eqref{eqn_granularity_3}.
+
+$$
+\begin{equation}
+\frac{\sigma}{E}  =  \frac{50\%}{\sqrt{E}} \oplus 3\% \mathrm{ for } |\eta| \leq 3.2
+\frac{\sigma}{E}  =  \frac{100\%}{\sqrt{E}} \oplus 7\% \mathrm{ for } 3.2 < |\eta| < 4.9  \label{eqn_granularity_3}
+\end{equation}
+$$
+
+<p>
+The direction of a jet is assumed to be the direction of the cluster. A jet is called a bjet if at event generator level (after FSR) a b quark lies within \( \Delta \) R < 0.2 and has \( \pt \) > 5 \( \Gc \). A similar procedure is used for c jets.
+
+<h2 id="section:motivation:atlfast:ptimss" class="anchor">Missing momentum</h2>
+Missing transverse momentum is calculated using reconstructed objects and calorimeter cells not associated to clusters whose energies are smeared with a jet resolution function.
+
+<h1 id="section:selection" class="anchor">Event Pre - Selection</h1>
+
+<p>
+In this section we present the event reconstruction cuts put in place due to detector requirements, to maximise signal to noise ratio and those imposed due to the proposed method to measure the Higgs CP parity. These steps are performed before the reconstruction the event.
+
+<ul>
+<li> Cut0: Standard cuts on pseudo-rapidity (\( \eta \)) of jets and leptons, taking into account limits in detector spatial coverage are implemented, requiring (light) jets have \( |\eta| \) < 2.5, while b-tagged jets and leptons are restricted to \( |\eta| \) < 2.5.</li>
+<li> Cut1: Select events with only one lepton.</li>
+<li> Cut2: The next cut is on number of b tagged jets. Two methods have been developed to deal with events of two classes.</li>
+
+<ul>
+    <li> Events with two or more b tagged jets. The two highest \( \pt \) b tagged jets are used for the expected b tagged jets in the event and the other ones considered when recontructing the decaying hadronic W's.</li>
+    <li> Events with one b tagged jet (i.e. one mis-identified). In this case the mis-identified b tagged jet is considered to be the highest \( \pt \) non b-tagged jet.</li>
+</ul>
+
+<li> Cut3: Allowing for three hadronic W's decaying to two light jets each and two(one) b tagged jets, each event must have at least 6(7) light jets (each with \( \pt \) > 15 \( \Gc \)) to be reconstructed.</li>
+</ul>
+
+As the event is made more complicated it is expected that the performance of reconstruction will be deteriorated due to increased combinatorics. In this sense the above is the most simple to the most complicated scenario.
+
+<h1 id="section:Reconstruction" class="anchor">Reconstruction of the \( \tthtoWW \) topology</h1>
+
+<h2 id="section:Reconstruction:LeptonicW" class="anchor">Reconstruction of the leptonically decaying W</h2>
+The following is done after the lepton selection, before the selection of jets is made. In order to be able to fully reconstruct the event, the neutrino (resulting from the leptonically decaying W) momentum must be retrieved even though this is not measureable directly in the detector because neutrinos interact very weakly. However, because the initial state of two hard scattering partons has zero transverse momentum, the neutrino transverse momentum can be measured indirectly through the imbalance of \( \pt \) in the final state, i.e. measured missing transverse momentum. However \( p_{z\nu} \) is not known since the \( p_{z} \) of the initial partons is unknown. This can however be resolved with the following ideas:
+
+<ul>
+<li> The sum of the lepton and neutrino momentum is equal to the W momentum.</li>
+<li> If the mass of the neutrino-lepton system is constrained to the measured W mass, then a quadratic equation for \( p_{z\nu} \) results as shown in Eqn. \eqref{te}.</li>
+</ul>
+
+$$
+\begin{equation}
+p_{z\nu} = \frac{4p_{z\ell}\cdot\rho \pm \sqrt{(-4p_{z\ell}\rho)^2-4(4E_{\ell}^{2}-4p_{z\ell}^{2})(4E_{\ell}^2p_{T\nu}^{2}-
+\rho^{2})}}{2(4E_{\ell}^{2}-4p_{z\ell}^{2})} \label{te}
+\end{equation}
+$$
+
+where \( \rho = m_{W}^{2}-m_{\ell}^{2}+2\vec{p}_{T\ell}\cdot\vec{p}_{T\nu} \). The measurement of transverse missing momentum is limited by several factors (i.e. jet resolution) so this quadratic equation doesn't have a real solution for a non neligible proportion of events (29 % in sample used). In these events two approximations were considered:
+
+<ul>
+<li> Method 1: Set the term inside \( \sqrt{} \) to 0 and calculate \( p_{z\nu} \) accordingly.</li>
+<li> Method 2: Set \( p_{z\nu} \) to \( p_{z lepton} \) (collinear approxmiation).</li>
+</ul>
+
+A comparison of the different methods and the events with \( \Delta \geq \) 0 is shown in Figure <a href="#fig:./figures/combinedLepWOnem">2</a> and Figure <a href="#fig:./figures/combinedLepWTwom">3</a> in terms of different quantities. The \( \Delta \) = 0 approximation gives a better \( p_{z\nu} \) resolution and reconstructed W boson mass and is therefore the method taken forward. In the 71 % of events with a real solution to the quadratic equation, each possibility is considered and the solution yielding the best results in terms of the methods of reconstruction discussed subsequently is chosen.
+
+<center> <!-- figure label: --> <div id="fig:./figures/combinedLepWOnem"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 2:  a) \( \Delta \) R between truth and reconstructed leptonic W and b) mass of reconsructed lepton+neutrino system.  <!-- caption label: fig:./figures/combinedLepWOnem --> </p></center>
+<p><img src="/img/figurestth/combinedLepWOnem.png" align="bottom" width=900></p>
+</center>
+
+<center> <!-- figure label: --> <div id="fig:./figures/combinedLepWTwom"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 3:  Comparison of performance of \( p_{z\nu} \) resolution for events with (a) real solution of quadratic quation, no real solution to quadratic quation using approximation (b) \( \Delta \) = 0 and (c) \( p_{z\nu} \) = \( p_{z lepton} \) .  <!-- caption label: fig:./figures/combinedLepWTwom --> </p></center>
+<p><img src="/img/figurestth/combinedLepWTwom.png" align="bottom" width=900></p>
+</center>
+
+<h2 id="section:Reconstruction:HadronicWs" class="anchor">Reconstruction of the hadronically decaying W's</h2>
+
+<p>
+The events considered, determined from the need to accurately reconstruct top momenta, have large light jet multiplicities, with an average of about ten light jets for events with two b tagged jets as shown in Figure <a href="#fig:./figures/tth_ttbar_jetmultiplicities">4</a>.
+
+<center> <!-- figure label: --> <div id="fig:./figures/tth_ttbar_jetmultiplicities"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 4:  Jet multiplicities for \( \tthtoWW \) events with 1 leptonically decaying W  <!-- caption label: fig:./figures/tth_ttbar_jetmultiplicities --> </p></center>
+<p><img src="/img/figurestth/tth_ttbar_jetmultiplicities.png" align="bottom" width=600></p>
+</center>
+
+<p>
+Due to limited statistics and desire to test (optimize) the effect of consideration of different numbers of light jets, the event reconstruction technique needed be able to deal with all numbers of light jets, from the threshold required by the event pre-selection to the total number of light jets in the event. Essentially this means the method must be able to deal with the large combinatorics that come from consideration of all possible unique pairings of \( n \) light jets to three hadronic W's. Depending on \( n \), the number of ways of pairing the light jets to the three hadronic W's is shown in Eqn. \eqref{eqn_ncomb}
+
+$$
+\begin{equation}
+\ncomb = \frac{1}{6}\frac{n_{ljets}x(n_{ljets}-1)}{2}\frac{(n_{ljets}-2)x(n_{ljets}-3)}{2}\frac{(n_{ljets}-4)x(n_{ljets}-5)}{2}
+\label{eqn_ncomb}
+\end{equation}
+$$
+
+<p>
+(where \( \nolj \) = number of light jets per event). Two tests were performed to verify that the code is considering all correct combinations. First the total number of combinations found by the code produced was compared to that computed using Eqn. \eqref{eqn_ncomb}. Agreement was found when between 6 and 20 light jets were considered. Second, for a number of different scenarios (6,7,8 light jets), the combinations considered by the code were compared to those computed manually. Agreement was found in all cases.
+
+<h2 id="section:Reconstruction:Methods" class="anchor">Reconstruction Methods</h2>
+The reconstruction of the event was performed in two steps:
+
+<ul>
+<li> First the different combinations are built including association of light jets to W's to build up the three hadronic W's.</li>
+<li> Next the process of reconstructing the tops and Higgs is done by associating a W to a b tagged jet for each top and two W's for the Higgs.</li>
+</ul>
+
+Two methods are considered in order to perform this association/ combinatorial solving, a fit based method using a \( \chisq \) discriminant and a multivariate method based on boosted decision trees.
+
+<h3 id="section:Reconstruction:Methods:chisq" class="anchor">Reconstruction using a \( \chisq \)</h3>
+
+<p>
+This method compares each possible association using a \( \chisq \), using the known masses of the top quarks and W bosons to constrain the combinations. A five component \( \chisq \) as shown in Eqn. \eqref{eqn_chi2_1} was initially used, where three terms account for the hadronic W's and two terms are used for the two top quarks.
+
+$$
+\begin{equation}
+\chisquared \label{eqn_chi2_1}
+\end{equation}
+$$
+
+where \( i,j,k,l,m \) and \( p \) are light jet pairs from the three hadronic W's (i.e. each \( ij \) , \( kl \) , \( mp \) is one contribution to Eqn. \eqref{eqn_ncomb} ), \( \sigma_{W} \) and \( \sigma_{t} \) are the W and top mass resolutions, \( m_{W} \) and \( m_{t} \) are the input W and top masses and \( index1 \) and \( index2 \) are indices over all unique pairings of four reconstructed W's to two b jets to make two top quarks. All combinations are evaluated and the one giving the minimum value is chosen.
+
+<p>
+<div id="section:FitBasedReconstruction:chisq:higgsterm"></div>
+
+<p>
+To further contrain the combinations a Higgs boson term was added resulting in a six component function of the form shown in Eqn. \eqref{eqn_chi2_2}.
+
+$$
+\begin{equation}
+\chisquaredwithhiggs \label{eqn_chi2_2}
+\end{equation}
+$$
+
+<p>
+where index3 refers to the W's not used by the tops (i.e. given a specific \( index1 \) and \( index2 \)), \( m_{h} \) = 160 \( \Gcs \) and \( \sigma_{h} \) was set equal to \( \sigma_{t} \). The purpose of this implementation was to test whether the method is feasible at reconstructing the event (it essentially gives the best result that is possible by including all information).
+
+<p>
+For each distinct pairing of light jets to hadronic W's (i.e. a given \( ij \) , \( kl \) , \( mp \) set) and leptonic W solutions, there exist a number of ways in which the W's and b jets can be paired to make tops and Higgs candidates. Because every event considered has one leptonic W and three hadronic W's, the events can be divided into two classes, those with a semi-leptonic top or those where one of the Higgs W's decays leptonically.
+
+<p>
+For example, for events with a semi-leptonic top, 12 different \( \chisq \) must be considered (two b tagged jet events). For events where one of the Higgs W's decays leptonically, a further six different \( \chisq \) must be considered (if Higgs term in the \( \chisq \) is excluded. For such events, the leptonic W solution is not constrained and the one giving a resulting Higgs mass closer to the generated mass of 160 \( \Gcs \) is chosen).
+
+<p>
+<br />
+The resulting signal and combinatoric background output for combinations with the quantities with the two tops matching using the \( \chisq \) method with the Higgs term is shown in figure <a href="#fig:./figures/combinedchisqreconstructed">5</a>.
+
+<center> <!-- figure label: --> <div id="fig:./figures/combinedchisqreconstructed"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 5:  Reconstructed top and Higgs masses (including signal and combinatoric background as identified by the \( \chisq \) method) for semi-leptonic top events (top row) and semi-leptonic Higgs events (bottom row).  <!-- caption label: fig:./figures/combinedchisqreconstructed --> </p></center>
+<p><img src="/img/figurestth/combinedchisqreconstructed.png" align="bottom" width=800></p>
+</center>
+
+<h3 id="section:FitBasedReconstruction:BDT" class="anchor">Multivariate reconstruction method- boosted decision tree</h3>
+
+The boosted decision tree takes into account correlations between variables, useful in a complicated topology like the one considered. A boosted decision tree (BDT) is a machine learning algorithm based on recursive growth of a tree like diagram where at each node a decision is made. The node is defined as a signal leaf node or a background leaf node or additional cuts are required to allow a discrimination to be made. When training, signal and background are treated as totally separate and as such correlations in the same event are not taken into acocunt, i.e. for a given combination, the classifier is not aware of the properties of the other combinations. For the BDT the correct combination corresponds to a recontructed combination chosen using truth \( \Delta \) R matching. The variables used for the multiariate input discriminating variables are: <br />
+<br />
+Semi-leptonic top events:
+
+<ul>
+<li> Mass(jj): Invariant mass of the hadronic W decay from the top.</li>
+<li> \( \Delta \) R(jj): angle between the jets used to recontruct the hadronic W from the top.</li>
+<li> Mass(jjb): Invariant mass of the hadronic top decay products.</li>
+<li> \( \Delta \) R(jjb): \( \Delta \) R between the reconstructed hadronic W and the b-jets associated with the hadronic top.</li>
+<li> Mass(l \( \nu \) b): Invariant mass of the leptonic top decay products.</li>
+<li> \( \Delta \) R(l \( \nu \) b): \( \Delta \) R between the reconstructed leptonic W and the b-jets associated with the leptonic top.</li>
+<li> Mass(l \( \nu \) b \( _{\mathrm{hadronic}} \) ): Invariant mass of leptonic W and b-jets associated with the hadronic top.</li>
+<li> \( \Delta \) R(l \( \nu \) b \( _{\mathrm{hadronic}} \) ): \( \Delta \) R between the lepton and the bjets from the hadronic top.</li>
+<li> Mass(jjb \( _{\mathrm{leptonic}} \) ): Invariant mass of hadronic W and b-jets associated with the leptonic top.</li>
+<li> \( \Delta \) R(jjb \( _{\mathrm{leptonic}} \) ): \( \Delta \) R between the hadronic W and the bjets from the leptonic top.</li>
+</ul>
+
+For semi-leptonic Higgs events:
+
+<ul>
+<li> Mass(jj): Invariant mass of the hadronic W decay from the top.</li>
+<li> \( \Delta \) R(jj): angle between the jets used to recontruct the hadronic W from the top.</li>
+<li> Mass(jjb): Invariant mass of the hadronic top decay products.</li>
+<li> \( \Delta \) R(jjb): \( \Delta \) R between the reconstructed hadronic W and the b-jets associated with the hadronic top.</li>
+<li> Mass(l \( \nu \) b): Invariant mass of the leptonic top decay products.</li>
+<li> \( \Delta \) R(l \( \nu \) b): \( \Delta \) R between the reconstructed leptonic W and the b-jets associated with the leptonic top.</li>
+</ul>
+
+The signal and background templates used for training the decision tree are shown in Figures <a href="#fig:./figures/combinedSemilephiggstemplates">6</a> and <a href="#fig:./figures/combinedSemileptoptemplates">7</a>. 70 % of the available events were used for the training set.
+
+<center> <!-- figure label: --> <div id="fig:./figures/combinedSemilephiggstemplates"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 6:  Discriminating variables used as input for BDT for semi-leptonic top events, showing identified signal and combinatoric background.  <!-- caption label: fig:./figures/combinedSemilephiggstemplates --> </p></center>
+<p><img src="/img/figurestth/combinedSemilephiggstemplates.png" align="bottom" width=800></p>
+</center>
+
+<center> <!-- figure label: --> <div id="fig:./figures/combinedSemileptoptemplates"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 7:  Discriminating variables used as input for BDT for semi-leptonic Higgs events, showing identified signal and combinatoric background.  <!-- caption label: fig:./figures/combinedSemileptoptemplates --> </p></center>
+<p><img src="/img/figurestth/combinedSemileptoptemplates.png" align="bottom" width=800></p>
+</center>
+
+<p>
+The TMVA implementation of the BDT is used <a href="#TMVA">[4]</a>. Most variables are default athough a few are altered to avoid overtraining.
+The output of the BDT for signal and background is shown for semi-leptonic top events in Figure <a href="#fig:./figures/combinedclassifieroutputm">8</a>a) and for semi-leptonic Higgs events in Figure <a href="#fig:./figures/combinedclassifieroutputm">8</a>b)
+
+<center> <!-- figure label: --> <div id="fig:./figures/combinedclassifieroutputm"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 8:  BDT output for signal and combinatoric background a) for semi-leptonic top events and b) semi-leptonic Higgs events.  <!-- caption label: fig:./figures/combinedclassifieroutputm --> </p></center>
+<p><img src="/img/figurestth/combinedclassifieroutputm.png" align="bottom" width=800></p>
+</center>
+
+<p>
+The reconstructed masses for the tops and Higgs for semi-leptonic top and semi-leptonic Higgs events (including identified signal and combinatoric background) are shown in Figure <a href="#fig:./figures/combinedMLPreconstructed">9</a>.
+
+<center> <!-- figure label: --> <div id="fig:./figures/combinedMLPreconstructed"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 9:  Reconstructed top and Higgs masses (including signal and combinatoric background as identified by the BDT method) for semi-leptonic top events (top row) and semi-leptonic Higgs events (bottom row).  <!-- caption label: fig:./figures/combinedMLPreconstructed --> </p></center>
+<p><img src="/img/figurestth/combinedMLPreconstructed.png" align="bottom" width=800></p>
+</center>
+
+<h1 id="section:Results" class="anchor">Results and conclusions</h1>
+
+<p>
+A comparison of the methods and different classes of events is shown in the table below. It shows the percentage of events from the test set, of the class indicated, where the signal combination chosen by either method, matches the combination chosen by truth matching.
+
+<p>
+
+<div class="row">
+  <div class="col-xs-9">
+    <table class="table table-striped table-hover table-condensed">
+<thead>
+<tr><td align="center"><b>                   </b></td> <td align="center"><b>    Quantity    </b></td> <td align="center"><b>         Method        </b></td> <td align="center"><b>                    </b></td> </tr>
+</thead>
+<tbody>
+<tr><td align="center">                          </td> <td align="center">                       </td> <td align="center">   \( \chisq \) with higgs    </td> <td align="center">   BDT                     </td> </tr>
+<tr><td align="center">   semi leptonic top      </td> <td align="center">   hadronic top        </td> <td align="center">   19.6 \( \mypm \) 3.7       </td> <td align="center">   34.5 \( \mypm \) 5.3    </td> </tr>
+<tr><td align="center">   events                 </td> <td align="center">   leptonic top        </td> <td align="center">   27.5 \( \mypm \) 4.6       </td> <td align="center">   25.2 \( \mypm \) 4.3    </td> </tr>
+<tr><td align="center">                          </td> <td align="center">   Higgs               </td> <td align="center">   11.9 \( \mypm \) 2.8       </td> <td align="center">   22.1 \( \mypm \) 4.0    </td> </tr>
+<tr><td align="center">                          </td> <td align="center">   both tops           </td> <td align="center">   11.2 \( \mypm \) 2.7       </td> <td align="center">   12.4 \( \mypm \) 2.9    </td> </tr>
+<tr><td align="center">                          </td> <td align="center">   2 tops and Higgs    </td> <td align="center">   7.0 \( \mypm \) 2.1        </td> <td align="center">   8.9 \( \mypm \) 2.4     </td> </tr>
+<tr><td align="center">   semi leptonic Higgs    </td> <td align="center">   hadronic top 1      </td> <td align="center">   38.3 \( \mypm \) 6.8       </td> <td align="center">   44.6 \( \mypm \) 7.6    </td> </tr>
+<tr><td align="center">   events                 </td> <td align="center">   hadronic top 2      </td> <td align="center">   41.3 \( \mypm \) 7.2       </td> <td align="center">   45.4 \( \mypm \) 7.6    </td> </tr>
+<tr><td align="center">                          </td> <td align="center">   Higgs               </td> <td align="center">   20.2 \( \mypm \) 4.6       </td> <td align="center">   22.4 \( \mypm \) 4.9    </td> </tr>
+<tr><td align="center">                          </td> <td align="center">   both tops           </td> <td align="center">   26.0 \( \mypm \) 5.4       </td> <td align="center">   32.1 \( \mypm \) 6.1    </td> </tr>
+<tr><td align="center">                          </td> <td align="center">   2 tops and Higgs    </td> <td align="center">   14.5 \( \mypm \) 3.7       </td> <td align="center">   14.5 \( \mypm \) 3.8    </td> </tr>
+</tbody>
+    </table>
+  </div> <!-- col-xs-9 -->
+</div> <!-- cell row -->
+<p>
+Clearly the results are statistically limited. However, they do indicate that the BDT approach used yields an improvement in the reconstruction efficiency, particularly for certain classes of event.
+
+<h1 id="___sec18" class="anchor">Bibliography </h1>
+
+<p>
+<!-- begin bibliography -->
+
+<ol>
+ <li> <div id="McGarvie2006"></div> <b>S. McGarvie</b>. 
+    \( \toptop \) (H \( \rightarrow \) 2 \( \gamma \) ) Search and CP Measurement,
+    <em>(unpublished)</em>,
+    2006.</li>
+ <li> <div id="SignalxsNote"></div> <b>N. Andari et al.</b>. 
+    Higgs Production Cross Sections and Decay Branching Ratios,
+    <em>ATLPHYSINT2011049</em>,
+    2010.</li>
+ <li> <div id="Glashow:1961tr"></div> <b>S. L. Glashow</b>. 
+    Partial Symmetries of Weak Interactions,
+    <em>Comput. Phys.</em>,
+    22,
+    pp. 579-588,
+    <a href="http://dx.doi.org/10.1016/0029-5582(61)90469-2" target="_self">doi: 10.1016/0029-5582(61)90469-2</a>,
+    1961.</li>
+ <li> <div id="TMVA"></div> <b>A. Hoecker</b>. 
+    TMVA, Toolkit for Multivariate Data Analysis,
+    <em>ArXiv Physics e-prints</em>,
+    2007.</li>
+</ol>
+
+<!-- end bibliography -->
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>
+</pre></div>
+<p>
+
+<!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
+
+
+<center style="font-size:80%">
+<!-- copyright --> &copy; 2018, Clive Edwards
+</center>
+
+
+</body>
+</html>
+    
+
+
+                        </div>
+
+</html>

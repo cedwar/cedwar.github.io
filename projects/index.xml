@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects on C EDWARDS</title>
+    <link>https://cedwar.github.io/projects/</link>
+    <description>Recent content in Projects on C EDWARDS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://cedwar.github.io/projects/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Cleaning Airline Data with Python</title>
+      <link>https://cedwar.github.io/projects/airline/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cedwar.github.io/projects/airline/</guid>
+      <description>Cleaning Airline Data with Python -- /* Let inline verbatim have the same color as the surroundings */ code { color: inherit; background-color: transparent; } /* Let pre tags for code blocks have the same color as the surroundings */ pre { color: inherit; background-color: transparent; } /* Add scrollbar to dropdown menus in bootstrap navigation bar */ .dropdown-menu { height: auto; max-height: 400px; overflow-x: hidden; } /* Adds an invisible element before each target to offset for the navigation bar */ .</description>
+    </item>
+    
+    <item>
+      <title>Creating a static website using Hugo and hosting it using GitHub Pages</title>
+      <link>https://cedwar.github.io/projects/website/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cedwar.github.io/projects/website/</guid>
+      <description>Creating a static website using Hugo and hosting it using GitHub Pages -- /* Let inline verbatim have the same color as the surroundings */ code { color: inherit; background-color: transparent; } /* Let pre tags for code blocks have the same color as the surroundings */ pre { color: inherit; background-color: transparent; } /* Add scrollbar to dropdown menus in bootstrap navigation bar */ .dropdown-menu { height: auto; max-height: 400px; overflow-x: hidden; } /* Adds an invisible element before each target to offset for the navigation bar */ .</description>
+    </item>
+    
+    <item>
+      <title>Exploratory Data Analysis of Facebook Ad Data with Python</title>
+      <link>https://cedwar.github.io/projects/facebookeda/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cedwar.github.io/projects/facebookeda/</guid>
+      <description>Exploratory Data Analysis of Facebook Ad Data with Python -- /* Let inline verbatim have the same color as the surroundings */ code { color: inherit; background-color: transparent; } /* Let pre tags for code blocks have the same color as the surroundings */ pre { color: inherit; background-color: transparent; } /* Add scrollbar to dropdown menus in bootstrap navigation bar */ .dropdown-menu { height: auto; max-height: 400px; overflow-x: hidden; } /* Adds an invisible element before each target to offset for the navigation bar */ .</description>
+    </item>
+    
+    <item>
+      <title>Feasibility of reconstructing ttH (with H decaying to WW) for the purpose of measuring the Standard Model Higgs CP</title>
+      <link>https://cedwar.github.io/projects/tth/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cedwar.github.io/projects/tth/</guid>
+      <description>Feasibility of reconstructing $\tthtoWW$ for the purpose of measuring the Standard Model Higgs CP -- /* Let inline verbatim have the same color as the surroundings */ code { color: inherit; background-color: transparent; } /* Let pre tags for code blocks have the same color as the surroundings */ pre { color: inherit; background-color: transparent; } /* Add scrollbar to dropdown menus in bootstrap navigation bar */ .dropdown-menu { height: auto; max-height: 400px; overflow-x: hidden; } /* Adds an invisible element before each target to offset for the navigation bar */ .</description>
+    </item>
+    
+    <item>
+      <title>Live Travel and Weather Updates using APIs</title>
+      <link>https://cedwar.github.io/projects/weather/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cedwar.github.io/projects/weather/</guid>
+      <description>Live Travel and Weather Updates using APIs -- /* Let inline verbatim have the same color as the surroundings */ code { color: inherit; background-color: transparent; } /* Let pre tags for code blocks have the same color as the surroundings */ pre { color: inherit; background-color: transparent; } /* Add scrollbar to dropdown menus in bootstrap navigation bar */ .dropdown-menu { height: auto; max-height: 400px; overflow-x: hidden; } /* Adds an invisible element before each target to offset for the navigation bar */ .</description>
+    </item>
+    
+    <item>
+      <title>Making steps towards an efficient and effective marking system</title>
+      <link>https://cedwar.github.io/projects/marking/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cedwar.github.io/projects/marking/</guid>
+      <description>Making steps towards an efficient and effective marking system -- /* Let inline verbatim have the same color as the surroundings */ code { color: inherit; background-color: transparent; } /* Let pre tags for code blocks have the same color as the surroundings */ pre { color: inherit; background-color: transparent; } /* Add scrollbar to dropdown menus in bootstrap navigation bar */ .dropdown-menu { height: auto; max-height: 400px; overflow-x: hidden; } /* Adds an invisible element before each target to offset for the navigation bar */ .</description>
+    </item>
+    
+    <item>
+      <title>Optimization of the Level 2 electron-photon Trigger within ATLAS</title>
+      <link>https://cedwar.github.io/projects/trigger/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cedwar.github.io/projects/trigger/</guid>
+      <description>Optimization of the Level 2 electron-photon Trigger within ATLAS -- /* Let inline verbatim have the same color as the surroundings */ code { color: inherit; background-color: transparent; } /* Let pre tags for code blocks have the same color as the surroundings */ pre { color: inherit; background-color: transparent; } /* Add scrollbar to dropdown menus in bootstrap navigation bar */ .dropdown-menu { height: auto; max-height: 400px; overflow-x: hidden; } /* Adds an invisible element before each target to offset for the navigation bar */ .</description>
+    </item>
+    
+    <item>
+      <title>Searching for the Higgs Boson with the ATLAS detector at CERN</title>
+      <link>https://cedwar.github.io/projects/report_htollnunuuploaded/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cedwar.github.io/projects/report_htollnunuuploaded/</guid>
+      <description>Searching for the Higgs Boson with the ATLAS detector at CERN -- /* Let inline verbatim have the same color as the surroundings */ code { color: inherit; background-color: transparent; } /* Let pre tags for code blocks have the same color as the surroundings */ pre { color: inherit; background-color: transparent; } /* Add scrollbar to dropdown menus in bootstrap navigation bar */ .dropdown-menu { height: auto; max-height: 400px; overflow-x: hidden; } /* Adds an invisible element before each target to offset for the navigation bar */ .</description>
+    </item>
+    
+    <item>
+      <title>Using Docker and Kubernetes to produce a scalable fraud detection API</title>
+      <link>https://cedwar.github.io/projects/fraud/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cedwar.github.io/projects/fraud/</guid>
+      <description>Using Docker and Kubernetes to produce a scalable fraud detection API -- /* Let inline verbatim have the same color as the surroundings */ code { color: inherit; background-color: transparent; } /* Let pre tags for code blocks have the same color as the surroundings */ pre { color: inherit; background-color: transparent; } /* Add scrollbar to dropdown menus in bootstrap navigation bar */ .dropdown-menu { height: auto; max-height: 400px; overflow-x: hidden; } /* Adds an invisible element before each target to offset for the navigation bar */ .</description>
+    </item>
+    
+    <item>
+      <title>Visualizing Japan&#39;s Population Data using D3.js, Flask and MongoDB</title>
+      <link>https://cedwar.github.io/projects/japanvis/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cedwar.github.io/projects/japanvis/</guid>
+      <description>Visualizing Japan&#39;s Population Data using D3.js, Flask and MongoDB -- /* Let inline verbatim have the same color as the surroundings */ code { color: inherit; background-color: transparent; } /* Let pre tags for code blocks have the same color as the surroundings */ pre { color: inherit; background-color: transparent; } /* Add scrollbar to dropdown menus in bootstrap navigation bar */ .dropdown-menu { height: auto; max-height: 400px; overflow-x: hidden; } /* Adds an invisible element before each target to offset for the navigation bar */ .</description>
+    </item>
+    
+    <item>
+      <title>Web Scraping text data with Scrapy and Beautiful Soup</title>
+      <link>https://cedwar.github.io/projects/webscraping/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cedwar.github.io/projects/webscraping/</guid>
+      <description>Web Scraping text data with Scrapy and Beautiful Soup -- /* Let inline verbatim have the same color as the surroundings */ code { color: inherit; background-color: transparent; } /* Let pre tags for code blocks have the same color as the surroundings */ pre { color: inherit; background-color: transparent; } /* Add scrollbar to dropdown menus in bootstrap navigation bar */ .dropdown-menu { height: auto; max-height: 400px; overflow-x: hidden; } /* Adds an invisible element before each target to offset for the navigation bar */ .</description>
+    </item>
+    
+  </channel>
+</rss>

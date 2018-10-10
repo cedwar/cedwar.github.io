@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+
+
+                        <div id="post-content">
+                          <!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="description" content="Visualizing Japan's Population Data using D3.js, Flask and MongoDB">
+
+<title>Visualizing Japan's Population Data using D3.js, Flask and MongoDB</title>
+
+<!-- Bootstrap style: bootswatch_cosmo -->
+<link href="https://netdna.bootstrapcdn.com/bootswatch/3.1.1/cosmo/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+
+<style type="text/css">
+/* Let inline verbatim have the same color as the surroundings */
+code { color: inherit; background-color: transparent; }
+/* Let pre tags for code blocks have the same color as the surroundings */
+pre { color: inherit; background-color: transparent; }
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootswatch_cosmo */
+  margin:-50px 0 0; /* negative fixed header height */
+}
+/*----------------------------------------------------------------------------------------------------*/
+
+output {
+  display: block;
+  padding-top: 7px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  color: #555555;
+}
+
+div.output_prompt {
+  color: #D84315;
+}
+
+
+div.output_wrapper {
+  /* this position must be relative to enable descendents to be absolute within it */
+  position: relative;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  z-index: 1;
+}
+
+/* This class is the outer container of all output sections. */
+div.output_area {
+  padding: 0px;
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.output_area .MathJax_Display {
+  text-align: left !important;
+}
+div.output_area .rendered_html table {
+  margin-left: 0;
+  margin-right: 0;
+}
+div.output_area .rendered_html img {
+  margin-left: 0;
+  margin-right: 0;
+}
+div.output_area img,
+div.output_area svg {
+  max-width: 100%;
+  height: auto;
+}
+div.output_area img.unconfined,
+div.output_area svg.unconfined {
+  max-width: none;
+}
+
+
+.rendered_html {
+  color: #000;
+  /* any extras will just be numbers: */
+}
+.rendered_html em {
+  font-style: italic;
+}
+.rendered_html strong {
+  font-weight: bold;
+}
+.rendered_html u {
+  text-decoration: underline;
+}
+.rendered_html :link {
+  text-decoration: underline;
+}
+.rendered_html :visited {
+  text-decoration: underline;
+}
+.rendered_html h1 {
+  font-size: 185.7%;
+  margin: 1.08em 0 0 0;
+  font-weight: bold;
+  line-height: 1.0;
+}
+.rendered_html h2 {
+  font-size: 157.1%;
+  margin: 1.27em 0 0 0;
+  font-weight: bold;
+  line-height: 1.0;
+}
+.rendered_html h3 {
+  font-size: 128.6%;
+  margin: 1.55em 0 0 0;
+  font-weight: bold;
+  line-height: 1.0;
+}
+.rendered_html h4 {
+  font-size: 100%;
+  margin: 2em 0 0 0;
+  font-weight: bold;
+  line-height: 1.0;
+}
+.rendered_html h5 {
+  font-size: 100%;
+  margin: 2em 0 0 0;
+  font-weight: bold;
+  line-height: 1.0;
+  font-style: italic;
+}
+.rendered_html h6 {
+  font-size: 100%;
+  margin: 2em 0 0 0;
+  font-weight: bold;
+  line-height: 1.0;
+  font-style: italic;
+}
+.rendered_html h1:first-child {
+  margin-top: 0.538em;
+}
+.rendered_html h2:first-child {
+  margin-top: 0.636em;
+}
+.rendered_html h3:first-child {
+  margin-top: 0.777em;
+}
+.rendered_html h4:first-child {
+  margin-top: 1em;
+}
+.rendered_html h5:first-child {
+  margin-top: 1em;
+}
+.rendered_html h6:first-child {
+  margin-top: 1em;
+}
+.rendered_html ul {
+  list-style: disc;
+  margin: 0em 2em;
+  padding-left: 0px;
+}
+.rendered_html ul ul {
+  list-style: square;
+  margin: 0em 2em;
+}
+.rendered_html ul ul ul {
+  list-style: circle;
+  margin: 0em 2em;
+}
+.rendered_html ol {
+  list-style: decimal;
+  margin: 0em 2em;
+  padding-left: 0px;
+}
+.rendered_html ol ol {
+  list-style: upper-alpha;
+  margin: 0em 2em;
+}
+.rendered_html ol ol ol {
+  list-style: lower-alpha;
+  margin: 0em 2em;
+}
+.rendered_html ol ol ol ol {
+  list-style: lower-roman;
+  margin: 0em 2em;
+}
+.rendered_html ol ol ol ol ol {
+  list-style: decimal;
+  margin: 0em 2em;
+}
+.rendered_html * + ul {
+  margin-top: 1em;
+}
+.rendered_html * + ol {
+  margin-top: 1em;
+}
+.rendered_html hr {
+  color: black;
+  background-color: black;
+}
+.rendered_html pre {
+  margin: 1em 2em;
+}
+.rendered_html pre,
+.rendered_html code {
+  border: 0;
+  background-color: #fff;
+  color: #000;
+  font-size: 100%;
+  padding: 0px;
+}
+.rendered_html blockquote {
+  margin: 1em 2em;
+}
+.rendered_html table {
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+.rendered_html tr,
+.rendered_html th,
+.rendered_html td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  margin: 1em 2em;
+}
+.rendered_html td,
+.rendered_html th {
+  text-align: left;
+  vertical-align: middle;
+  padding: 4px;
+}
+.rendered_html th {
+  font-weight: bold;
+}
+.rendered_html * + table {
+  margin-top: 1em;
+}
+.rendered_html p {
+  text-align: left;
+}
+.rendered_html * + p {
+  margin-top: 1em;
+}
+.rendered_html img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.rendered_html * + img {
+  margin-top: 1em;
+}
+.rendered_html img,
+.rendered_html svg {
+  max-width: 100%;
+  height: auto;
+}
+.rendered_html img.unconfined,
+.rendered_html svg.unconfined {
+  max-width: none;
+}
+
+
+div.output_subarea {
+  overflow-x: auto;
+  padding: 0.4em;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+  max-width: calc(100% - 14ex);
+}
+div.output_scroll div.output_subarea {
+  overflow-x: visible;
+}
+
+/*----------------------------------------------------------------------------------------------------*/
+
+</style>
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+
+</head>
+
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [('Introduction',
+               1,
+               'section:introduction',
+               'section:introduction'),
+              ('Dataset', 1, 'section:dataset', 'section:dataset'),
+              ('Using MongoDB to store the data',
+               1,
+               'section:mongodb',
+               'section:mongodb'),
+              ('Setting up MongoDB',
+               2,
+               'section:mongodb:settingup',
+               'section:mongodb:settingup'),
+              ('Loading the database',
+               2,
+               'section:mongodb:loading',
+               'section:mongodb:loading'),
+              ('Using PyMongo to interact with the database from within Python',
+               2,
+               None,
+               '___sec5'),
+              ('Using Flask to run the webserver',
+               1,
+               'section:Flask',
+               'section:Flask'),
+              ('Creating a new visualization layout based on keen.io',
+               1,
+               'section:visualizationlayout',
+               'section:visualizationlayout'),
+              ('Creating the data visualizations with D3.js',
+               1,
+               'section:charts',
+               'section:charts'),
+              ('Bibliography', 1, None, '___sec9')]}
+end of tocinfo -->
+
+<body>
+
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="http://www.cedwards.info">Home</a>
+  </div>
+
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="#section:introduction" style="font-size: 80%;"><b>Introduction</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:dataset" style="font-size: 80%;"><b>Dataset</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:mongodb" style="font-size: 80%;"><b>Using MongoDB to store the data</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:mongodb:settingup" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Setting up MongoDB</a></li>
+     <!-- navigation toc: --> <li><a href="#section:mongodb:loading" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Loading the database</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Using PyMongo to interact with the database from within Python</a></li>
+     <!-- navigation toc: --> <li><a href="#section:Flask" style="font-size: 80%;"><b>Using Flask to run the webserver</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:visualizationlayout" style="font-size: 80%;"><b>Creating a new visualization layout based on keen.io</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:charts" style="font-size: 80%;"><b>Creating the data visualizations with D3.js</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec9" style="font-size: 80%;"><b>Bibliography</b></a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<div class="jumbotron">
+<center><h1>Visualizing Japan's Population Data using D3.js, Flask and MongoDB</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Clive Edwards -->
+
+<center>
+<b>Clive Edwards</b>  (<tt>mail at cedwards.info</tt>)
+</center>
+
+<p>
+<!-- institution(s) -->
+
+<br>
+
+<p>
+<b>Summary.</b> In this project an interactive data visualisation is created using a dataset containing Japan's population between 1871 and 2015. The data is broken down by geographic region in a number of ways, including by island, prefecture, region and capital.
+
+<p>
+Skills used:
+
+<ul>
+<li> <b>Programming</b> (Python: Flask for web server. Numpy and Pandas libraries for data manipulation. Javascript: D3.js, DC.js and crossfilter.js for visualisations. keen.io Javascript and css libraries for visualisation layout).</li>
+<li> <b>Databases</b> (MongoDB).</li>
+</ul>
+
+<p>
+
+
+<p>
+</div> <!-- end jumbotron -->
+
+<h1 id="section:introduction" class="anchor">Introduction</h1>
+
+<p>
+This project is based on that which Adil Moujahid created <a href="#DataVis">[1]</a>. However, it is modified in the following ways:
+
+<ul>
+<li> the dataset used is completely different.</li>
+<li> the layout used for the visualisation is changed.</li>
+<li> different graphs and interactive elements are used.</li>
+</ul>
+
+<h1 id="section:dataset" class="anchor">Dataset</h1>
+The dataset <a href="#japandata">[2]</a> used for this project details Japan's population between 1872 and 2015. It was chosen for two main reasons:
+
+<ul>
+<li> it contains geographic information.</li>
+<li> it contains time series data.</li>
+</ul>
+
+It was thought that these two elements would be interesting to try to visualize in an interactive way. In order to visualise the geographic information a geojson <a href="#geojson">[3]</a> of Japan was used. To visualise the time series data a slider was used to select specific years. The initial format of the data is shown below.
+
+<p>
+
+<p>
+<ol id="table1"></ol>
+<script>
+$( "#table1" ).load( "/img/figuresjapanvis/table1.html" );
+</script>
+
+<p>
+Some basic cleaning was done:
+
+<ul>
+<li> remove prefecture string '-ken' to enable the dataset to be used with the geojson.</li>
+<li> convert population to integer and fill missing values with 0.</li>
+<li> add population density variable.</li>
+</ul>
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>df[<span style="color: #BA2121">&#39;prefecture&#39;</span>] <span style="color: #666666">=</span> df[<span style="color: #BA2121">&#39;prefecture&#39;</span>]<span style="color: #666666">.</span>str<span style="color: #666666">.</span>replace(<span style="color: #BA2121">&quot;-ken&quot;</span>, <span style="color: #BA2121">&#39;&#39;</span>)
+df<span style="color: #666666">.</span>population <span style="color: #666666">=</span> df<span style="color: #666666">.</span>population<span style="color: #666666">.</span>fillna(<span style="color: #666666">0</span>)<span style="color: #666666">.</span>astype(<span style="color: #008000">int</span>)  
+df[<span style="color: #BA2121">&#39;pop_density&#39;</span>] <span style="color: #666666">=</span> df[<span style="color: #BA2121">&#39;population&#39;</span>]<span style="color: #666666">/</span>df[<span style="color: #BA2121">&#39;estimated_area&#39;</span>]
+df[<span style="color: #BA2121">&#39;pop_density&#39;</span>] <span style="color: #666666">=</span> df[<span style="color: #BA2121">&#39;pop_density&#39;</span>]<span style="color: #666666">.</span>round(<span style="color: #666666">1</span>)
+</pre></div>
+<p>
+
+<h1 id="section:mongodb" class="anchor">Using MongoDB to store the data</h1>
+
+<p>
+MongoDB <a href="#mongodb">[4]</a> was used to store the data in a non-relational database. Non-relational databases have the following advantages:
+
+<ul>
+<li> they don't require the data schema to be declared in advance (i.e. they are schema-less). This means they offer flexibility by being able to store data in different formats.</li>
+<li> they scale very well.</li>
+</ul>
+
+<h2 id="section:mongodb:settingup" class="anchor">Setting up MongoDB</h2>
+
+<p>
+After installation, on linux the mongodb service (mongod) is started with
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>sudo service mongod start
+</pre></div>
+<p>
+To check that the mongod process has started successfully the contents of the log file at /var/log/mongodb/mongod.log can be checked; in particular the line '[initandlisten] waiting for connections on port 27017'. The status of the service can be checked/ modified subsequently with the following:
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>sudo service mongod stop
+
+sudo service mongod restart
+
+service mongod status
+</pre></div>
+
+<h2 id="section:mongodb:loading" class="anchor">Loading the database</h2>
+
+<p>
+MongoDB supports importing databases in both csv and json format. To load the database from the csv
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>mongoimport <span style="color: #666666">--</span>db DATABASE_NAME <span style="color: #666666">--</span>collection COLLECTION_NAME <span style="color: #666666">--</span><span style="color: #008000">type</span> csv <span style="color: #666666">--</span><span style="color: #008000">file</span> <span style="color: #BA2121">&#39;PATH_TO_CSV/FILENAME.csv&#39;</span> <span style="color: #666666">--</span>headerline
+</pre></div>
+<p>
+In order to make sure the database is loaded correctly use:
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>Mongo
+
+show dbs
+
+use DATABASE_NAME
+
+show collections
+
+db<span style="color: #666666">.</span>getCollection(<span style="color: #BA2121">&quot;COLLECTION_NAME&quot;</span>)<span style="color: #666666">.</span>findOne()
+
+db<span style="color: #666666">.</span>getCollection(<span style="color: #BA2121">&quot;COLLECTION_NAME&quot;</span>)<span style="color: #666666">.</span>findOne({}, {VARIABLE_1:<span style="color: #666666">1</span>, VARIABLE_2:<span style="color: #666666">1</span>, VARIABLE_3:<span style="color: #666666">1</span>, VARIABLE_4:<span style="color: #666666">1</span>, _id:<span style="color: #666666">0</span>})
+</pre></div>
+<p>
+where VARIABLE_1 etc are the variables defined in the data. The above can also be used to make queries to the database from the command line.
+
+<h2 id="___sec5" class="anchor">Using PyMongo to interact with the database from within Python </h2>
+<div id="section:mongodb:pymongo"></div>
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">pymongo</span> <span style="color: #008000; font-weight: bold">import</span> MongoClient
+
+<span style="color: #408080; font-style: italic">#Specify string names inside &#39;&#39; for following variables </span>
+MONGODB_HOST <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;localhost&#39;</span>
+DBS_NAME <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;DATABASE_NAME&#39;</span>
+COLLECTION_NAME <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;COLLECTION_NAME&#39;</span> 
+<span style="color: #408080; font-style: italic">#Specify numerical variable (default used)</span>
+MONGODB_PORT <span style="color: #666666">=</span> <span style="color: #666666">27017</span>
+
+<span style="color: #408080; font-style: italic">#Specify variables in csv of interest</span>
+FIELDS <span style="color: #666666">=</span> {<span style="color: #BA2121">&#39;prefecture&#39;</span>: <span style="color: #008000">True</span>, <span style="color: #BA2121">&#39;year&#39;</span>: <span style="color: #008000">True</span>, <span style="color: #BA2121">&#39;population&#39;</span>: <span style="color: #008000">True</span>, <span style="color: #BA2121">&#39;capital&#39;</span>: <span style="color: #008000">True</span>, <span style="color: #BA2121">&#39;region&#39;</span>: <span style="color: #008000">True</span>,<span style="color: #BA2121">&#39;estimated_area&#39;</span>: <span style="color: #008000">True</span>,<span style="color: #BA2121">&#39;island&#39;</span>: <span style="color: #008000">True</span>,<span style="color: #BA2121">&#39;pop_density&#39;</span>: <span style="color: #008000">True</span>, <span style="color: #BA2121">&#39;_id&#39;</span>: <span style="color: #008000">False</span>}
+</pre></div>
+
+<h1 id="section:Flask" class="anchor">Using Flask to run the webserver</h1>
+
+<p>
+Flask <a href="#Flask">[5]</a> is used to create a webserver that retrieves the data from the database as it is requested by the rendered html page containing the visualisation. In particular the Python flask application looks for an index.html file inside the templates directory, and serves this at the specified port of <a href="http://localhost" target="_self"><tt>http://localhost</tt></a>:5000/.
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">flask</span> <span style="color: #008000; font-weight: bold">import</span> Flask
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">flask</span> <span style="color: #008000; font-weight: bold">import</span> render_template
+
+app <span style="color: #666666">=</span> Flask(<span style="color: #19177C">__name__</span>)
+
+<span style="color: #AA22FF">@app.route</span>(<span style="color: #BA2121">&quot;/&quot;</span>)
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">index</span>():
+    <span style="color: #008000; font-weight: bold">return</span> render_template(<span style="color: #BA2121">&quot;index.html&quot;</span>)
+
+<span style="color: #008000; font-weight: bold">if</span> <span style="color: #19177C">__name__</span> <span style="color: #666666">==</span> <span style="color: #BA2121">&quot;__main__&quot;</span>:
+    app<span style="color: #666666">.</span>run(host<span style="color: #666666">=</span><span style="color: #BA2121">&#39;0.0.0.0&#39;</span>,port<span style="color: #666666">=5000</span>,debug<span style="color: #666666">=</span><span style="color: #008000">True</span>)
+</pre></div>
+<p>
+In order to check that the database is accessible, the following can used:
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #AA22FF">@app.route</span>(<span style="color: #BA2121">&quot;visualisation/testing&quot;</span>)
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">visualisation_testing</span>():
+    connection <span style="color: #666666">=</span> MongoClient(MONGODB_HOST, MONGODB_PORT)
+    collection <span style="color: #666666">=</span> connection[DBS_NAME][COLLECTION_NAME]
+    input_variables <span style="color: #666666">=</span> collection<span style="color: #666666">.</span>find(projection<span style="color: #666666">=</span>FIELDS)
+    
+    json_variables <span style="color: #666666">=</span> []
+    <span style="color: #008000; font-weight: bold">for</span> v <span style="color: #AA22FF; font-weight: bold">in</span> input_variables:
+        json_variables<span style="color: #666666">.</span>append(v)
+    json_variables <span style="color: #666666">=</span> json<span style="color: #666666">.</span>dumps(json_variables, default<span style="color: #666666">=</span>json_util<span style="color: #666666">.</span>default)
+    connection<span style="color: #666666">.</span>close()
+    <span style="color: #008000; font-weight: bold">return</span> json_variables
+</pre></div>
+<p>
+which utilizes the information supplied previously to output the specified variables defined by FIELDS to <a href="http://localhost" target="_self"><tt>http://localhost</tt></a>:5000/visualisation/testing.
+
+<h1 id="section:visualizationlayout" class="anchor">Creating a new visualization layout based on keen.io</h1>
+
+<p>
+Keen.io <a href="#keen">[6]</a> produces templates for visualisations. The template used by <a href="#DataVis">[1]</a> was modified to create a new layout. This was done by modifying the index.html file which Flask serves. Each element of the visualisation has an entry like the following:
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #666666">&lt;</span>!<span style="color: #666666">--</span> population vs population density<span style="color: #666666">--&gt;</span> 
+          <span style="color: #666666">&lt;</span>div class<span style="color: #666666">=</span><span style="color: #BA2121">&quot;col-sm-12&quot;</span><span style="color: #666666">&gt;</span>
+            <span style="color: #666666">&lt;</span>div class<span style="color: #666666">=</span><span style="color: #BA2121">&quot;chart-wrapper&quot;</span><span style="color: #666666">&gt;</span>
+              <span style="color: #666666">&lt;</span>div class<span style="color: #666666">=</span><span style="color: #BA2121">&quot;chart-title&quot;</span><span style="color: #666666">&gt;</span>
+                Population vs population density <span style="color: #008000; font-weight: bold">as</span> function of capital
+              <span style="color: #666666">&lt;/</span>div<span style="color: #666666">&gt;</span>
+              <span style="color: #666666">&lt;</span>div class<span style="color: #666666">=</span><span style="color: #BA2121">&quot;chart-stage&quot;</span><span style="color: #666666">&gt;</span>
+                <span style="color: #666666">&lt;</span>div <span style="color: #008000">id</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;bubble-chart&quot;</span><span style="color: #666666">&gt;&lt;/</span>div<span style="color: #666666">&gt;</span>
+              <span style="color: #666666">&lt;/</span>div<span style="color: #666666">&gt;</span>
+            <span style="color: #666666">&lt;/</span>div<span style="color: #666666">&gt;</span>
+          <span style="color: #666666">&lt;/</span>div<span style="color: #666666">&gt;</span>
+          <span style="color: #666666">&lt;</span>!<span style="color: #666666">--</span> population vs population density <span style="color: #666666">--&gt;</span>
+</pre></div>
+<p>
+The individual elements are arranged into rows using a div tag of class 'row' and into columns depending on how many graphs/info elements are put on the same row. This way a grid of elements split into rows and columns can be created.
+
+<h1 id="section:charts" class="anchor">Creating the data visualizations with D3.js</h1>
+
+<p>
+The index.html file contains links to the css style file, Bootstrap Keen.io dependancy and also to
+the javascript libraries used for charting namely
+
+<ul>
+<li> D3.js <a href="#D3">[7]</a>,</li>
+<li> dc.js <a href="#dc">[8]</a>,</li>
+<li> crossfilter.js <a href="#crossfilter">[9]</a> and</li>
+<li> queue.js <a href="#queue">[10]</a>.</li>
+</ul>
+
+The graphs and information elements themselves are designed within the graphs.js file (also linked in the index.html file) and called individually from the index.html file by div id tags. For example, the bubble chart is referenced with
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #666666">&lt;</span>div <span style="color: #008000">id</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;bubble-chart&quot;</span><span style="color: #666666">&gt;&lt;/</span>div<span style="color: #666666">&gt;</span>
+</pre></div>
+<p>
+In the graph.js file it is constructed using
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>var populationBubbleChart <span style="color: #666666">=</span> dc<span style="color: #666666">.</span>bubbleChart(<span style="color: #BA2121">&#39;#bubble-chart&#39;</span>);
+</pre></div>
+<p>
+The graphs.js file first uses the queue.js libraries .defer method to read both the dataset and geojson files simultaneously. The .await function is used to delay starting the construction of the charts (defined within the function makeGraphs) until all the data has been read. The makeGraphs function takes the input data sources as input. It performs the following steps:
+
+<ul>
+<li> defines a crossfilter instance.</li>
+<li> creates the crossfilter dimensions based on the input variables.</li>
+<li> creates the crossfilter groups based on the dimensions. For the bubble chart a running tally is maintained so that the chart is updated as filters are applied/removed.</li>
+<li> defines the charts.</li>
+
+<ul>
+    <li> population vs year chart zoomable with smaller version underneath</li>
+    <li> bubble chart showing population density vs population by capital</li>
+    <li> population by region</li>
+    <li> population by island</li>
+    <li> Japan map divided into prefectures, showing population of those selected</li>
+    <li> number showing total area selected</li>
+    <li> number showing total population selected</li>
+</ul>
+
+<li> builds the charts by passing the required parameters.</li>
+<li> displays charts using the dc renderAll() function.</li>
+</ul>
+
+The visualisation is shown in Figure <a href="#fig:./figures/screen">1</a>
+
+<center> <!-- figure label: --> <div id="fig:./figures/screen"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 1:  gif animation of visualisation.  <!-- caption label: fig:./figures/screen --> </p></center>
+<p><img src="/img/figuresjapanvis/screen.gif" align="bottom" width=1200></p>
+</center>
+
+<h1 id="___sec9" class="anchor">Bibliography </h1>
+
+<p>
+<!-- begin bibliography -->
+
+<ol>
+ <li> <div id="DataVis"></div> <b>A. Moujahid</b>. 
+    Interactive Data Visualization with D3.js, DC.js, Python, and MongoDB.,
+    <em>http://adilmoujahid.com</em>,
+    2015.</li>
+ <li> <div id="japandata"></div> <b>J. Derenski</b>. 
+    Japan Population Data: Japan's Population Over Time, and Space.,
+    <em>Japan</em>,
+    2018.</li>
+ <li> <div id="geojson"></div> <b>M. Wichary</b>. 
+    Japan geojson.,
+    <em>Japan</em>,
+    2013.</li>
+ <li> <div id="mongodb"></div> <b>M. Inc</b>. 
+    MongoDB for GIANT Ideas.,
+    <em>MongoDB</em>,
+    2009.</li>
+ <li> <div id="Flask"></div> <b>A. Ronacher</b>. 
+    Flask: web development, one drop at a time.,
+    <em>A Python Microframework.</em>,
+    2010.</li>
+ <li> <div id="keen"></div> <b>A. Kasprowicz</b>. 
+    Keen: Analytics for Developers.,
+    <em>keen.io</em>,
+    2015.</li>
+ <li> <div id="D3"></div> <b>M. Bostock</b>. 
+    D3 for Data-Driven Documents.,
+    <em>IEEE Trans. Visualization &amp; Comp. Graphics (Proc. InfoVis)</em>,
+    2011.</li>
+ <li> <div id="dc"></div> <b>dc</b>. 
+    dc.js - Dimensional Charting Javascript Library.,
+    <em>dc</em>,
+    2009.</li>
+ <li> <div id="crossfilter"></div> <b>M. Bostock</b>. 
+    Crossfilter: Fast Multidimensional Filtering for Coordinated Views.,
+    <em>crossfilter</em>,
+    2011.</li>
+<li> <div id="queue"></div> <b>M. Bostock</b>. 
+    d3-queue - Evaluate asynchronous tasks with configurable concurrency.,
+    <em>dc</em>,
+    2011.</li>
+</ol>
+
+<!-- end bibliography -->
+
+<!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
+
+
+<center style="font-size:80%">
+<!-- copyright --> &copy; 2018, Clive Edwards
+</center>
+
+
+</body>
+</html>
+    
+
+
+                        </div>
+
+</html>

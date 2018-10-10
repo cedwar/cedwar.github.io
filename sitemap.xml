@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://cedwar.github.io/about/</loc>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/algorithm-development/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/atlas-athena/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/bash/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/beautiful-soup/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/c&#43;&#43;/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/projects/airline/</loc>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/contact/</loc>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/projects/website/</loc>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/crossfilter.js/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/d3.js/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/dash/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/categories/data-cleaning/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/dc.js/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/docker/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/doconce/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/categories/documentation/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/categories/eda/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/categories/end-to-end-analysis/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/projects/facebookeda/</loc>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/projects/tth/</loc>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/feature-engineering/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/flask/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/git/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/heroku/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/hugo/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/keen.io/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/kubernetes/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/latex/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/linux/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/projects/weather/</loc>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/categories/machine-learning/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/projects/marking/</loc>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/markdown/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/matplotlib/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/mongodb/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/monte-carlo/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/nginx/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/node.js/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/numpy/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/optimization/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/projects/trigger/</loc>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/pandas/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/plotly/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/categories/problem-solving/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/projects/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/python/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/qsub/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/react.js/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/requests/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/scrapy/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/seaborn/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/projects/report_htollnunuuploaded/</loc>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/sklearn/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/spring/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/tmva/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/projects/fraud/</loc>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/vba/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/categories/visualization/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/projects/japanvis/</loc>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/projects/webscraping/</loc>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/windows/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://cedwar.github.io/tags/wlcg-big-data/</loc>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

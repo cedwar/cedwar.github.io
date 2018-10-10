@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+
+
+                        <div id="post-content">
+                          <!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="description" content="Optimization of the Level 2 electron-photon Trigger within ATLAS">
+
+<title>Optimization of the Level 2 electron-photon Trigger within ATLAS</title>
+
+<!-- Bootstrap style: bootswatch_cosmo -->
+<link href="https://netdna.bootstrapcdn.com/bootswatch/3.1.1/cosmo/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+
+<style type="text/css">
+/* Let inline verbatim have the same color as the surroundings */
+code { color: inherit; background-color: transparent; }
+/* Let pre tags for code blocks have the same color as the surroundings */
+pre { color: inherit; background-color: transparent; }
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootswatch_cosmo */
+  margin:-50px 0 0; /* negative fixed header height */
+}
+</style>
+
+
+</head>
+
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [('The ATLAS Detector Trigger and Data Aquisition System',
+               1,
+               'section:trigger',
+               'section:trigger'),
+              ('Level 1 Trigger',
+               2,
+               'section:ATLAS:trigger:LevelOne',
+               'section:ATLAS:trigger:LevelOne'),
+              ('Level 2 Trigger',
+               2,
+               'section:ATLAS:trigger:LevelTwo',
+               'section:ATLAS:trigger:LevelTwo'),
+              ('Event Filter',
+               2,
+               'section:ATLAS:trigger:EventFilter',
+               'section:ATLAS:trigger:EventFilter'),
+              ('Nomenclature',
+               2,
+               'section:trigger:nomenclature',
+               'section:trigger:nomenclature'),
+              ('Electron and Photon Trigger Algorithms',
+               1,
+               'section:algorithms',
+               'section:algorithms'),
+              ('The electromagnetic calorimeter',
+               2,
+               'section:algorithms:ecal',
+               'section:algorithms:ecal'),
+              ('Level 1',
+               2,
+               'section:algorithms:levelone',
+               'section:algorithms:levelone'),
+              ('Level 2',
+               2,
+               'section:algorithms:leveltwo',
+               'section:algorithms:leveltwo'),
+              ('Event Filter',
+               2,
+               'section:algorithms:ef',
+               'section:algorithms:ef'),
+              ('Selection Algorithms',
+               2,
+               'section:algorithms:algo',
+               'section:algorithms:algo'),
+              ('Dataset', 1, 'section:data', 'section:data'),
+              ('Monte Carlo', 1, 'section:montecarlo', 'section:montecarlo'),
+              ('Data Cleaning and Feature Selection',
+               1,
+               'section:selection',
+               'section:selection'),
+              ('Discriminating Variables',
+               1,
+               'section:DiscriminatingVariables',
+               'section:DiscriminatingVariables'),
+              ('Log-Likelihood Ratio Discriminant',
+               1,
+               'section:likelihoodratiomethod',
+               'section:likelihoodratiomethod'),
+              ('Comparison of performance with cut based method',
+               1,
+               'section:comparisonwithcutsmethod',
+               'section:comparisonwithcutsmethod'),
+              ('Conclusions',
+               1,
+               'section:conclusions',
+               'section:conclusions'),
+              ('Bibliography', 1, None, '___sec18')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<!-- newcommands_keep.tex -->
+$$
+\newcommand{\mypm}{\mathrm{\pm}}
+\newcommand{\nb}{\mathrm{nb}^{-1}}
+\newcommand{\pb}{\mathrm{pb}^{-1}}
+\newcommand{\Gcs}{\mathrm{GeV/\it{c}}^2}
+\newcommand{\Gc}{\mathrm{GeV/\it{c}}}
+\newcommand{\GeV}{\mathrm{GeV}}
+\newcommand{\Lum}{\mathrm{cm^{-2}s^{-1}}}
+\newcommand{\pt}{p_{\mathrm{T}}}
+\newcommand{\et}{E_{\mathrm{T}}}
+\newcommand{\etmiss}{E_\mathrm{T}^\mathrm{miss}}
+\newcommand{\ztoee}{\mathrm{Z} \rightarrow ee}
+$$
+
+
+
+
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="http://www.cedwards.info">Home</a>
+  </div>
+
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="#section:trigger" style="font-size: 80%;"><b>The ATLAS Detector Trigger and Data Aquisition System</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:ATLAS:trigger:LevelOne" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Level 1 Trigger</a></li>
+     <!-- navigation toc: --> <li><a href="#section:ATLAS:trigger:LevelTwo" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Level 2 Trigger</a></li>
+     <!-- navigation toc: --> <li><a href="#section:ATLAS:trigger:EventFilter" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Event Filter</a></li>
+     <!-- navigation toc: --> <li><a href="#section:trigger:nomenclature" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Nomenclature</a></li>
+     <!-- navigation toc: --> <li><a href="#section:algorithms" style="font-size: 80%;"><b>Electron and Photon Trigger Algorithms</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:algorithms:ecal" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The electromagnetic calorimeter</a></li>
+     <!-- navigation toc: --> <li><a href="#section:algorithms:levelone" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Level 1</a></li>
+     <!-- navigation toc: --> <li><a href="#section:algorithms:leveltwo" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Level 2</a></li>
+     <!-- navigation toc: --> <li><a href="#section:algorithms:ef" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Event Filter</a></li>
+     <!-- navigation toc: --> <li><a href="#section:algorithms:algo" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Selection Algorithms</a></li>
+     <!-- navigation toc: --> <li><a href="#section:data" style="font-size: 80%;"><b>Dataset</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:montecarlo" style="font-size: 80%;"><b>Monte Carlo</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:selection" style="font-size: 80%;"><b>Data Cleaning and Feature Selection</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:DiscriminatingVariables" style="font-size: 80%;"><b>Discriminating Variables</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:likelihoodratiomethod" style="font-size: 80%;"><b>Log-Likelihood Ratio Discriminant</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:comparisonwithcutsmethod" style="font-size: 80%;"><b>Comparison of performance with cut based method</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:conclusions" style="font-size: 80%;"><b>Conclusions</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec18" style="font-size: 80%;"><b>Bibliography</b></a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<div class="jumbotron">
+<center><h1>Optimization of the Level 2 electron-photon Trigger within ATLAS</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Clive Edwards -->
+
+<center>
+<b>Clive Edwards</b>  (<tt>mail at cedwards.info</tt>)
+</center>
+
+<p>
+<!-- institution(s) -->
+
+<br>
+
+<p>
+<b>Summary.</b> This report outlines preliminary studies performed into the optimization of the ATLAS Level 2 electron-photon ( \( e \gamma \) ) trigger with respect to the 2010 data run <button type="button" class="btn btn-primary btn-xs" rel="tooltip" data-placement="top" title="This work has not been through the approval process within ATLAS and therefore it's results are not offical."><a href="#def_footnote_1" id="link_footnote_1" style="color: white">1</a></button>. Electrons from \( \ztoee \) are a major source of high \( \pt \) electrons, an understanding of which is vital for many physics analyses. This optimization focuses on electrons from \( \ztoee \). The optimization procedure identifies signal (actual electrons) and background (mis-identified electrons) Level 2 trigger electrons using geometrical matching. Reducing the number of these background trigger electrons has obvious benefits with respect to data storage. A number of possible variables useful in discriminating this signal from background are identified.  A log-likelihood ratio discriminant method is developed based on these variables and tested using Monte Carlo. The performance is cross checked using 2010 data. The log-likelihood discriminant method is compared with a cuts based method, based on individual variables and is shown to give improved results.
+
+<p>
+
+<p>
+</div> <!-- end jumbotron -->
+
+<h1 id="section:trigger" class="anchor">The ATLAS Detector Trigger and Data Aquisition System</h1>
+
+<p>
+At design luminosity the expected interaction rate of LHC collisions, taking into account the multiple interactions for each of the nominal 40 million bunch crossings occuring per second, is of the order of 1 GHz. The ATLAS Trigger system <a href="#ExpectedPerformance2009">[1]</a> is designed to reduce the nominal 40 MHz bunch crossing rate within ATLAS to the hundreds of Hz that can physically be written to disk. In doing so, it must identify rare interesting physics events with high efficiency. For this purpose the trigger system is divided into three levels Level 1 (L1), Level 2 (L2) and the Event Filter (EF), each designed to reduce the trigger rate to a new lower frequency threshold. At each successive level, more and more complicated and robust procedures are used in the selection due to the higher latency with which the algorithms can be run. Interesting physics events are generally referred as those with leptons, photons, jets and/or missing energy in the final state. Lists of such final states are organised into trigger menus which are tables of triggers used to select the corrresponding final states at each level. The trigger is divided into slices depending on the final state a set of triggers is supposed to identify, i.e. the \( e \gamma \) slice contains final states with electrons and photons.
+
+<h2 id="section:ATLAS:trigger:LevelOne" class="anchor">Level 1 Trigger</h2>
+Level 1 <a href="#L1TriggerDesignRepCollaboration1998">[2]</a> is hardware-based and uses information from the calorimetry and the muon spectrometer. It is designed to reduce the 40 MHz bunch-crossing rate to 75 kHz. The system has a latency of 2.5 \( \mu \) s so pipeline memories are used to ensure a decision for each bunch crossing (occuring every 25 ns) is made within this time. One of the tasks of Level 1 is to identify high \( \pt \) electrons/photons, muons, jets and \( \tau \) leptons. It also selects events with large \( \etmiss \) and/or total energy.
+
+<p>
+Level 1 uses reduced granularity information from the RPCs and TGCs for measuring high \( \pt \) muons. A set of predefined thresholds are applied which must be passed for a muon to be identified and triggered on. The low \( \pt \) thresholds require a \( \pt \) of between 6-9 \( \Gc \) whereas the high \( \pt \) thresholds require a \( \pt \) in the range 9-35 \( \Gc \). The thresholds must be passed in coincidence in 2(3) stations of chambers for the low(high) \( \pt \) thresholds, in order to reduce backgrounds from cosmic rays.
+
+<p>
+All the calorimeter sub-systems are used to identify electromagnetic clusters associated to electrons, photons, jets and \( \tau \) leptons, as well as events with large \( \etmiss \) or large total transverse energy. This identification procedure is performed by level 1 algorithms which use information from calorimeter trigger towers. Calorimeter trigger towers are formed from summing the energy in all cells within 0.1 \( \times \) 0.1 ( \( \eta\times\phi \) ) radial towers through all calorimeter sampling layers. To be identified, an object must pass a predefined \( \pt \) threshold. The readout of the data from the calorimeter and the muon spectrometer is performed by Read Out Drivers (ROD's).
+
+<p>
+The Central Trigger Processor (CTP) uses information from the calorimeter and muon triggers to establish, based on comparison with sets of predefined selections, whether each event should be considered further. If this criteria is met, the kinematic information of each identified object is passed to the read out buffers in the form of Regions of Interest (RoIs), where they are held until requested to be used by the Level 2 Trigger.
+
+<h2 id="section:ATLAS:trigger:LevelTwo" class="anchor">Level 2 Trigger</h2>
+The Level 2 trigger is software-based and is designed to reduce the triggering rate to 3.5 kHz. The typical process time is \( \approx \) 10 ms. It uses full detector granularity and is seeded by level 1 RoIs, retrieved from the readout-buffers. At this stage information from the inner detector may also be used to further help in the identification of particles. By this procedure each RoI is subjected to a set of selection requirements called a hypothesis. RoIs not passing this are discarded.
+
+<h2 id="section:ATLAS:trigger:EventFilter" class="anchor">Event Filter</h2>
+The Event Filter is designed to select events which will be written to disk, and as such it reduces the trigger rate to give a maximum value of 200 Hz. It is controlled using offline algorithms/techniques and is able to employ the full detector granularity using fully reconstructed events. The event building process is performed by the Event Builder (EB) using the information from level 2 and the Read Out Buffer input cards (ROBins, which contain the data held in the pipeline memories after the level 1 selection was passed). Once the event is built, it is passed to the Event Filter where more sophisticated selections are applied to refine the Level 2 trigger objects. Events passing the event filter selections are directed into streams according to which trigger has been passed. Events passing more than one trigger that are associated with different streams will be written out to both.
+
+<h2 id="section:trigger:nomenclature" class="anchor">Nomenclature</h2>
+The origin of the ATLAS co-ordinate system is defined to be the nominal interaction or collision point of the LHC's beams inside the ATLAS detector. The positive z axis is defined by the trajectory of the clockwise (viewed from above) rotating proton beam. The \( xy \) (\( r \)) plane is transverse to this with the \( x \) axis pointing toward the centre of the LHC ring and the positive \( y \) axis pointing upwards. In this plane transverse variables such as transverse momentum \( \pt = \sqrt{p_{x}^{2} + p_{y}^{2}} = p\sin(\theta) \) and transverse energy \( \et = \sqrt{E^{2} - p_{z}^{2}} \) are defined, where \( p_{x} \), \( p_{y} \), \( p_{z} \) are the \( x \), \( y \) and \( z \) components of the particle's momentum and \( E \) is the particle's energy. \( \theta \) is the polar angle measured from the z axis around the x axis and is often expressed in terms of pseudo-rapidity \( \eta = -\ln(\tan\frac{\theta}{2}) \), which equals the rapidity \( y = \frac{1}{2}\ln \frac{E-p_{z}}{E+p_{z}} \) in the limit of small masses. Differences in rapidity are Lorentz-invariant under boosts along the \( z \) direction. The azimuthal angle \( \phi \) = tan \( ^{-1} \) ( \( p_{y} \) / \( p_{x} \) ) is measured from the positive \( x \) axis clockwise around the z axis when facing the positive \( z \) direction. Typically distance in the \( \eta-\phi \) plane is expressed in terms of \( \Delta R = \sqrt{\Delta\eta^{2} + \Delta\phi^{2}} \).
+
+<h1 id="section:algorithms" class="anchor">Electron and Photon Trigger Algorithms</h1>
+
+<h2 id="section:algorithms:ecal" class="anchor">The electromagnetic calorimeter</h2>
+
+<p>
+The electromagtic calorimeter is divided into 23 layers in lateral \( \eta \phi \) and longitudinal directions of the shower. At high energy most of the energy is collected in the 2nd layer, which has lateral granularity of 0.025x0.025. The 1st layer has a higher resolution in the \( \eta \) direction than \( \phi \), which allows signal from prompt photons to be separated from two nearby photons originating from \( \pi^{0} \) decays. The 3rd layer is used to correct highly energetic showers initiated by \( e \gamma \). A low resolution presampler calorimeter layer is located in front of three layers and is used to correct for energy loss in upstream material.
+
+<h2 id="section:algorithms:levelone" class="anchor">Level 1</h2>
+
+<p>
+The \( e \gamma \) trigger is collectively the trigger used to identify energetic electrons and photons. Electrons are identified by an energy deposit in the electromagtic calorimeter which is associated with a track in the inner detector.
+
+<p>
+At L1, electromagetic clusters are triggered using calorimeter information from trigger towers (TT's), defined as \( \eta \) x \( \phi \) regions of the ATLAS detector of size 0.1 x 0.1. The energy in each TT is calculated by summing the cells in the electromagnetic and hadronic calorimeters, where all layers are considered except the fourth layer of the hadronic endcap and the barrel-endcap gap scintillators. Electromagnetic clusters are formed by identifying local maxima, using a sliding window algorithm based on a 4 x 4 group of TT for \( |\eta| \) < 2.5. A trigger is satisfied if the energy within the central 2 x 2 TT contains one pair of TT that lie next to one another with a combined energy greater than the threshold of the given trigger.
+
+<h2 id="section:algorithms:leveltwo" class="anchor">Level 2</h2>
+
+<p>
+At L2, for electrons, information of the inner detector is used. Seeded by L1 cluster position, L2 implements a calorimeter reconstruction algorithm and a inner detector track reconstruction algorithm for electrons. A 0.4 x 0.4 region around the L1 seed position is used, reducing traffic and increasing the processing speed of L2. At L2 cluster size is fixed to a group of calorimeter cells in the 2nd layer, 3x7 for whole \( \eta \) range.
+
+<h2 id="section:algorithms:ef" class="anchor">Event Filter</h2>
+
+<p>
+At EF, cluster reconstruction is done with a sliding window algorithm acting on towers containing energy summed in depth. After this seed finding step, fixed window clusters are built starting from the second layer using the same cluster size as in offline ( 3x7 for \( \eta \) < 1.5 and 5x5 for other). Energy weighted \( \eta \) and \( \phi \) positions are calculated in the 2nd layer of calorimeter and cluster building is then extended to other layers. Track reconstruction is done as in offline using a combination of tracking starting from hits in the silcion and TRT detectors.
+
+<h2 id="section:algorithms:algo" class="anchor">Selection Algorithms</h2>
+
+<p>
+Selection algorithms are applied to reconstructed clusters and tracks at L2 and EF to identify good \( e \gamma \) candidates and reject fakes predominantly from jets. Selections are based on shower shapes, tracking information and cluster-track matching quantities.
+
+<p>
+L1 cuts are based on four variables to get maximum signal selection and background rejection. The \( \et \) of an electromagnetic cluster is identified as the maximum \( \et \) present in a 2x1 or 1x2 tower region within the central 2x2 electromagnetic calorimeter window. This is used to make a cluster \( \et \) threshold cut and primarily used to reject QCD. Other cuts test for isolation of the electromagnetic cluster. Isolated electrons leave a narrow energy deposit in electromagnetic calorimeter only. More background can be rejected by getting rid of clusters with broad electromagnetic clusters or those depositing energy in the hadronic calorimeter. Isolation is measured by the energy in a ring of 12 electromagnetic trigger towers surrounding the 2x2 central cluster. Energy leakage into the hadronic calorimter is measured by the energy in the four hadronic trigger towers behind the electromagnetic central cluster and in the hadronic trigger towers.
+
+<p>
+L2 is guided by RoIs found at L1, i.e. is seeded by them. It refines the L1 decision, implementing calorimeter only or combined calorimeter and inner detector hypotheses. There are systematic differences between L2 and offline algorithms, due to differences in latency. L2 cluster reconstruction begins using the most energetic cell in the 2nd layer within the central region 0.2x0.2, whereas offline uses a sliding window to find the cluster seed. Calorimeter cell energies can be corrected offline for transient hardware issues but cannot be corrected in real time triggering, which also applies to L2 and EF. For track reconstruction at L2, fast pattern recognition is used by first determining the z position of the interaction point along the beam axis and then performing combinatorial tracking only inside groups of space points that point back to the determined position. At L2 cluster size is fixed to a group of calorimeter cells from the 2nd layer with three cells along \( \eta \) and seven cells along \( \phi \). Offline algorithms define the electrons cluster as 3x7 for \( \eta \) < 1.5 and 5x5 for \( \eta \) < 2.5. They also have different cluster sizes for unconverted and converted photons. The L2 calorimeter hypothesis applies cuts based on electromagnetic \( \et \) and \( \et \) in the first layer of the hadronic calorimeter, shower shape in the \( \eta \) plane in the 2nd sampling of the electromagnetic calorimeter and the ratio of energy maxima found within the shower in strips of the first sampling electromagnetic calorimeter. Due to energy dependance of cross sections, jet backgrounds are mainly rejected by the \( \et \) cut. Electromagnetic showers are more contained in \( \eta \) and deposit most energy in electromagnetic calorimeter, so cuts on \( \eta \) shape and hadronic leakage give further jet electron discrimination. The ratio of the difference between the 1st and 2nd energy maxima in the electromagnetic calorimeter, will take values close to unity for isolated electrons but not for diffuse hadronic showers (i.e. \( \pi \) decays). This is becase multiple particles in hadronic showers can create many local maxima that may carry a significant fraction of the shower energy. L2 requires a track identified in inner detectors be matched in \( \Delta\eta \) x \( \Delta\phi \) to calorimeter cluster. EF uses offline algorithms as much as possible and more precise calibration and allignment constants. Electron reconstruction takes place within RoIs seeded by L2.
+
+<p>
+Looser time contraints allow more sophisticated algorithms to be applied in the EF. As at L2, selection is based on calorimeter, inner detector track and track-cluster matching information. Offline and EF electrons hypothesis cuts are reffered to as isEM. At offline, selection algorithms are applied to reconstructed clusters and tracks found at L2 and EF in order to identify good \( e \gamma \) candidates and reject fakes from jets. Selections based on cluster shower shapes, tracking information and cluster track matching quantities are used. Three reference sets of selections (loose, medium and tight) are defined with increasing rejection power for electrons.
+
+<h1 id="section:data" class="anchor">Dataset</h1>
+
+<p>
+In early 2010 the LHC luminosity was 10 \( ^{27} \Lum \) and only L1 triggers were being used. The HLT was being operated in pass through to allow for validation. By Oct 2010 LHC luminosity was 2 x 10 \( ^{32} \Lum \) and HLT rejection was being applied. The \( e \gamma \) triggers of the HLT were commissioned using events triggered by the L1 calorimeter and min-bias triggers and the L1 triggers validated using randomly generated triggers. Each was also validated using good offline \( e \gamma \) candidates as references. Early data was dominated by photons from \( \pi \) decays (electrons from photon conversions and hadrons faking electrons and photons). After 400 \( \nb \) of data was collected, events with electrons from W and jpsi and later \( \ztoee \) were included. Since august 2010, all e \( \gamma \) trigger levels were in use, including active HLT selections and with increasing luminosity, tighter selections were applied.
+
+<p>
+Relevant detector components for e \( \gamma \) selection were required to be fully operational. Criteria was used to select genuine pp collisions and reject possible background from beam gas and beam wall events and events where cosmic muons depositied energy in calorimeters. Approximately 45 \( \pb \) of proton-proton collision data was collected under stable beam conditions during the Autumn 2010 reprocessing (7 TeV (152166-167844) and 900 GeV (141748-154471) runs). In period I this number was 18.3 \( \pb \) without the trigger applied. Data from Period I was used and was selected using the \( e \gamma \) stream using the EGamma good run list (data10_7TeV.periodAllYear_DetStatus-v21-pro05_CoolRunQuery-00-04-00_Eg_standard.xml) <a href="#TriggerGRL">[3]</a>.
+
+<h1 id="section:montecarlo" class="anchor">Monte Carlo</h1>
+The \( \ztoee \) Monte Carlo used was produced with Pythia <a href="#RefPythia">[4]</a>. The generated events were processed by the full ATLAS simulation and reconstruction software (Athena release 16.6.7). Samples were simulated with detector geometry release GEO-16-00-00.
+
+<h1 id="section:selection" class="anchor">Data Cleaning and Feature Selection</h1>
+
+<p>
+This analysis looked at the EF_10_15_medium trigger which was seeded at L1 by EM10 and used as a high \( \pt \) physics trigger in 2010 data taking. Collision candidates were required to have atleast one primary vertex with atleast three tracks. Events containing very localized high-energy calorimeter deposits not originating from the proton-proton collision, e.g. from cosmic-ray muons undergoing a hard bremsstrahlung, were removed. In addition, any event is rejected if the candidate electromagnetic cluster is located in any problematic region of the electromagnetic calorimeter (owing to hardware problems, the signal could not be read out from \( \approx \) 2 \( \% \) of the electromagnetic calorimeter cells).
+
+<p>
+Offline electrons are selected if they are within the fiducial region, \( |\eta| \) <2.47, excluding the transition between the barrel and endcap of the calorimeter (1.37 < \( |\eta| \) < 1.52). Offline electrons were required to have passed the RobustMedium requirement <a href="#TriggerisEM">[5]</a>. Corrections to electron energy scale and resolution recommended by the \( e \gamma \) working group <a href="#TriggerEnergyScaleResol">[6]</a> were implemented.
+
+<p>
+The cluster \( \eta \) - \( \phi \) position of the L2 trigger objects (L2 trigger electrons, subsequently referred to as trig-electrons) is associated with the offline position of the electron or photon cluster. The distance in \( \eta \) - \( \phi \) space needs to be less than 0.15 for the event to be considered further, i.e. \( \Delta R = \sqrt{\Delta\eta^{2} + \Delta\phi^{2}} \) < 0.15.
+
+<p>
+The remaining selection cuts are as follows and were used to form the signal and background trig-electron samples for Monte Carlo and data respectively.
+
+<ul>
+<li> trig-electron within \( \eta \) < 3.2 and \( \pt \) > 1 \( \GeV \).</li>
+<li> \( \geq \) 1 L1 RoI.</li>
+<li> offline electron 1.37 \( \leq \eta \leq \) 1.52 and \( |\eta| < \) 2.47, passing trigger.</li>
+<li> trig-electron passing trigger.</li>
+<li> 2 offline electrons within 20 \( \Gcs \) of Z mass.</li>
+<li> Find best matched trig-electron: The cluster \( \eta \) - \( \phi \) position of the trigger objects is associated with the offline position of the electron or photon using \( \Delta R = \sqrt{\Delta\eta^{2} + \Delta\phi^{2}} \) matching. For signal trig-electrons, the distance in \( \eta \) - \( \phi \) space needs to be less than 0.04.</li>
+<li> make sure each offline electron is matched to a unique trig-electron, if not skip event.</li>
+<li> for each event call background trig-electrons all the remaining trig-electrons other than the signal trig-electron.</li>
+</ul>
+
+<h1 id="section:DiscriminatingVariables" class="anchor">Discriminating Variables</h1>
+
+<p>
+The following L2 e \( \gamma \) trigger discriminating variables were identified:
+
+<ul>
+<li> weta2: is defined as the corrected shower width in \( \eta \) in the 2nd sampling of the electromagnetic calorimeter. It is calculated by summing the weighted energy in the cells of 3 x 5 clusters. The value of the shower width for signal electrons is smaller than for the background electrons. This is behaviour expected for electrons orginating from a jet.</li>
+<li> fracs1: is the fraction of energy outside the core in the 1st electromagnetic calorimeter sampling corresponding to the fraction of energy in 7 strips minus the energy deposited in 3 strips divided by the energy in 7 strips. It is typically higher for jets than electrons.</li>
+<li> \( \chi^{2} \): is the L2 track quality</li>
+<li> \( \Delta\eta \): is that between the L2 track and cluster. A well reconstructed electron is expected to have a low value.</li>
+<li> \( \frac{\et}{\pt} \): is the L2 cluster transverse energy divided by L2 track transverse momentum. Would expect this to be larger for hadrons than leptons.</li>
+</ul>
+
+<h1 id="section:likelihoodratiomethod" class="anchor">Log-Likelihood Ratio Discriminant</h1>
+
+<p>
+A Log-Likelihood Ratio (LLR) is used to separate signal from background. The distributions of the identified discriminating variables for signal and background are normalised to unity separately to obtain probability distribution functions (PDF). Using these the joint likelihoods \( L_{s} = \prod_{i} P^{i}_{s}(x_{j}) \) and \( L_{b} = \prod_{i} P^{i}_{b}(x_{j}) \) are constructed where \( P^{i}_{s}(x_{j}) \) and \( P^{i}_{b}(x_{j}) \) are the probabilities of the ith discriminating variable to have a value \( x_{j} \) in signal and background events respectively. The LLR is then defined as in Eqn. \eqref{eqn_LikelihoodRatio}
+
+$$
+\begin{equation}
+LLR = log(\frac{L_{s}}{L_{b}}) \label{eqn_LikelihoodRatio}
+\end{equation}
+$$
+
+70 \( \% \) of the data in the \( \ztoee \) sample and in the real data sample were used for establishing the LLR cut. The likelihood ratios for these \( \ztoee \) and data samples for signal and background trig-electrons are shown in Figure <a href="#fig:./figures/combined_likelihoodmk">1</a> respectively.
+
+<center> <!-- figure label: --> <div id="fig:./figures/combined_likelihoodmk"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 1:  LLRs for signal (black) and background (red -dotted) for a) \( \ztoee \) Monte Carlo and b) data.  <!-- caption label: fig:./figures/combined_likelihoodmk --> </p></center>
+<p><img src="/img/figurestrigger/combined_likelihoodmk.png" align="bottom" width=900></p>
+</center>
+
+<p>
+The discrimination of the likelihood is improved by using un-correlated variables. The table below shows the correlation between variables used as input to the LLR, for \( \ztoee \) and data, signal and background.
+
+<p>
+
+<div class="row">
+  <div class="col-xs-12">
+    <table class="table table-striped table-hover table-condensed">
+<thead>
+<tr><td align="center"><b>                </b></td> <td align="center"><b>     </b></td> <td align="center"><b>      </b></td> <td align="center"><b>    Signal    </b></td> <td align="center"><b>                </b></td> <td align="center"><b>             </b></td> <td align="center"><b>     </b></td> <td align="center"><b>      </b></td> <td align="center"><b>  Background  </b></td> <td align="center"><b>                </b></td> <td align="center"><b>             </b></td> </tr>
+</thead>
+<tbody>
+<tr><td align="center">                       </td> <td align="center">            </td> <td align="center">             </td> <td align="center">                     </td> <td align="center">                       </td> <td align="center">   \( \ztoee \)     </td> <td align="center">            </td> <td align="center">             </td> <td align="center">                     </td> <td align="center">                       </td> <td align="center">                    </td> </tr>
+<tr><td align="center">                       </td> <td align="center">   weta2    </td> <td align="center">   fracs1    </td> <td align="center">   \( \chi^{2} \)    </td> <td align="center">   \( \Delta\eta \)    </td> <td align="center">   \( \et/\pt \)    </td> <td align="center">   weta2    </td> <td align="center">   fracs1    </td> <td align="center">   \( \chi^{2} \)    </td> <td align="center">   \( \Delta\eta \)    </td> <td align="center">   \( \et/\pt \)    </td> </tr>
+<tr><td align="center">   weta2               </td> <td align="center">   1        </td> <td align="center">   0.11      </td> <td align="center">   0.09              </td> <td align="center">   -0.19               </td> <td align="center">   0.14             </td> <td align="center">   1        </td> <td align="center">   0.1       </td> <td align="center">   0.03              </td> <td align="center">   -0.05               </td> <td align="center">   -0.16            </td> </tr>
+<tr><td align="center">   fracs1              </td> <td align="center">   0.11     </td> <td align="center">   1         </td> <td align="center">   0                 </td> <td align="center">   0                   </td> <td align="center">   -0.05            </td> <td align="center">   0.1      </td> <td align="center">   1         </td> <td align="center">   -0.03             </td> <td align="center">   0.05                </td> <td align="center">   -0.13            </td> </tr>
+<tr><td align="center">   \( \chi^{2} \)      </td> <td align="center">   0.09     </td> <td align="center">   0         </td> <td align="center">   1                 </td> <td align="center">   0.05                </td> <td align="center">   0.13             </td> <td align="center">   0.03     </td> <td align="center">   -0.03     </td> <td align="center">   1                 </td> <td align="center">   -0.1                </td> <td align="center">   -0.06            </td> </tr>
+<tr><td align="center">   \( \Delta\eta \)    </td> <td align="center">   -0.19    </td> <td align="center">   0         </td> <td align="center">   0.05              </td> <td align="center">   1                   </td> <td align="center">   0.03             </td> <td align="center">   -0.05    </td> <td align="center">   0.05      </td> <td align="center">   -0.1              </td> <td align="center">   1                   </td> <td align="center">   0.2              </td> </tr>
+<tr><td align="center">   \( \et/\pt \)       </td> <td align="center">   0.14     </td> <td align="center">   -0.05     </td> <td align="center">   0.13              </td> <td align="center">   0.03                </td> <td align="center">   1                </td> <td align="center">   -0.16    </td> <td align="center">   -0.13     </td> <td align="center">   -0.06             </td> <td align="center">   0.2                 </td> <td align="center">   1                </td> </tr>
+<tr><td align="center">                       </td> <td align="center">            </td> <td align="center">             </td> <td align="center">                     </td> <td align="center">                       </td> <td align="center">   Data             </td> <td align="center">            </td> <td align="center">             </td> <td align="center">                     </td> <td align="center">                       </td> <td align="center">                    </td> </tr>
+<tr><td align="center">   weta2               </td> <td align="center">   1        </td> <td align="center">   0.18      </td> <td align="center">   0.08              </td> <td align="center">   -0.03               </td> <td align="center">   0.14             </td> <td align="center">   1        </td> <td align="center">   0.22      </td> <td align="center">   0.02              </td> <td align="center">   -0.08               </td> <td align="center">   -0.12            </td> </tr>
+<tr><td align="center">   fracs1              </td> <td align="center">   0.18     </td> <td align="center">   1         </td> <td align="center">   0.01              </td> <td align="center">   -0.11               </td> <td align="center">   -0.02            </td> <td align="center">   0.22     </td> <td align="center">   1         </td> <td align="center">   0.03              </td> <td align="center">   0.03                </td> <td align="center">   -0.14            </td> </tr>
+<tr><td align="center">   \( \chi^{2} \)      </td> <td align="center">   0.08     </td> <td align="center">   0.01      </td> <td align="center">   1                 </td> <td align="center">   0.06                </td> <td align="center">   0.11             </td> <td align="center">   0.02     </td> <td align="center">   0.03      </td> <td align="center">   1                 </td> <td align="center">   -0.11               </td> <td align="center">   -0.07            </td> </tr>
+<tr><td align="center">   \( \Delta\eta \)    </td> <td align="center">   -0.03    </td> <td align="center">   -0.11     </td> <td align="center">   0.06              </td> <td align="center">   1                   </td> <td align="center">   0.08             </td> <td align="center">   -0.08    </td> <td align="center">   0.03      </td> <td align="center">   -0.11             </td> <td align="center">   1                   </td> <td align="center">   0.11             </td> </tr>
+<tr><td align="center">   \( \et/\pt \)       </td> <td align="center">   0.14     </td> <td align="center">   -0.02     </td> <td align="center">   0.11              </td> <td align="center">   0.08                </td> <td align="center">   1                </td> <td align="center">   -0.12    </td> <td align="center">   -0.14     </td> <td align="center">   -0.07             </td> <td align="center">   0.11                </td> <td align="center">   1                </td> </tr>
+</tbody>
+    </table>
+  </div> <!-- col-xs-12 -->
+</div> <!-- cell row -->
+<p>
+Generally the PDF's will be dependent on the \( \eta \) and \( \pt \) of the object (in this case trig-electrons). Therefore ideally the PDF's should be obtained for each bin for each of the disriminating variables discussed. Due to a lack of statistics no attempt was made to perform the optimzation binned in \( \pt \) and \( \eta \) , although this is expected to be beneficial since the shower shape variables are generally \( \eta \) dependent. The variation of signal efficiency measured with respect to offline electrons is shown in Figure <a href="#fig:./figures/combined_LvsEfficRejmk">2</a> as a function of cut on the LLR for \( \ztoee \) and data.
+
+<center> <!-- figure label: --> <div id="fig:./figures/combined_LvsEfficRejmk"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 2:  Plots showing a) efficiency of electron reconstruction relative to offline and b) percentage reduction in signal and background trig-electrons achieved for a given LLR cut for \( \ztoee \) Monte Carlo and data.  <!-- caption label: fig:./figures/combined_LvsEfficRejmk --> </p></center>
+<p><img src="/img/figurestrigger/combined_LvsEfficRejmk.png" align="bottom" width=900></p>
+</center>
+
+<p>
+The results for 3 representative LLR cuts, -12, -4 and 4, are shown in table below in terms of efficiency with respect to offline and percentage reduction in the number of signal and background trig-electrons. In order to maintain 100 \( \% \) recontruction efficiency with respect to offline, a LLR cut of -12 enables the background trig-electrons to be reduced by 9 \( \% \) in the \( \ztoee \) sample and by 7 \( \% \) in the data. Far greater reductions in background trig-electrons of over 50 \( \% \) for both \( \ztoee \) and data can be achieved at the cost of around a 0.3 \( \% \) reduction in the number of signal trig-electrons, giving an efficiency with resepct to offline of over 99.7 \( \% \).
+
+<p>
+
+<div class="row">
+  <div class="col-xs-10">
+    <table class="table table-striped table-hover table-condensed">
+<thead>
+<tr><td align="center"><b>L Cut</b></td> <td align="center"><b>   Sample   </b></td> <td align="center"><b>Efficiency (wrt offline)</b></td> <td align="center">\( \% \) fewer signal </td> <td align="center">\( \% \) fewer background</td> </tr>
+</thead>
+<tbody>
+<tr><td align="center">   -12      </td> <td align="center">   \( \ztoee \)    </td> <td align="center">   100 \( \mypm \) 0.4         </td> <td align="center">   0 \( \mypm \) 0.1         </td> <td align="center">   -9.1 \( \mypm \) 0.1         </td> </tr>
+<tr><td align="center">            </td> <td align="center">   Data            </td> <td align="center">   100 \( \mypm \) 0.3         </td> <td align="center">   0 \( \mypm \) 0.1         </td> <td align="center">   -7.3 \( \mypm \) 0.1         </td> </tr>
+<tr><td align="center">   -4       </td> <td align="center">   \( \ztoee \)    </td> <td align="center">   99.8 \( \mypm \) 0.4        </td> <td align="center">   -0.24 \( \mypm \) 0.02    </td> <td align="center">   -54.5 \( \mypm \) 0.3        </td> </tr>
+<tr><td align="center">            </td> <td align="center">   Data            </td> <td align="center">   99.7 \( \mypm \) 0.3        </td> <td align="center">   -0.32 \( \mypm \) 0.01    </td> <td align="center">   -62.0 \( \mypm \) 0.2        </td> </tr>
+<tr><td align="center">   4        </td> <td align="center">   \( \ztoee \)    </td> <td align="center">   43.7 \( \pm \) 0.3          </td> <td align="center">   -56.4 \( \mypm \) 0.3     </td> <td align="center">   -99.0 \( \mypm \) 0.4        </td> </tr>
+<tr><td align="center">            </td> <td align="center">   Data            </td> <td align="center">   10.9 \( \mypm \) 0.1        </td> <td align="center">   -89.2 \( \mypm \) 0.3     </td> <td align="center">   -99.3 \( \mypm \) 0.3        </td> </tr>
+</tbody>
+    </table>
+  </div> <!-- col-xs-10 -->
+</div> <!-- cell row -->
+<p>
+Applying the -12 or -4 LLR cut is shown to have negligible impact to the reconstruction efficiency with respect to offline as a function of \( \pt \), which is shown in Figures <a href="#fig:./figures/combined_EfficvsEtEtam">3</a>a) and <a href="#fig:./figures/combined_EfficvsEtEtam">3</a>b) for \( \ztoee \) and data respectively. The same plots as a function of \( \eta \) are shown in Figures <a href="#fig:./figures/combined_EfficvsEtEtam">3</a>c) and <a href="#fig:./figures/combined_EfficvsEtEtam">3</a>d) for \( \ztoee \) and data respectively.
+
+<center> <!-- figure label: --> <div id="fig:./figures/combined_EfficvsEtEtam"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 3:  Efficiency of reconstruction with respect to offline electrons (for a),c) \( \ztoee \) and b),d) data) as a function of a,b) electron \( \et \) and c,d) \( \eta \) for no LLR cut and LLR cuts of -12, -4 and 4.  <!-- caption label: fig:./figures/combined_EfficvsEtEtam --> </p></center>
+<p><img src="/img/figurestrigger/combined_EfficvsEtEtam.png" align="bottom" width=900></p>
+</center>
+
+<h1 id="section:comparisonwithcutsmethod" class="anchor">Comparison of performance with cut based method</h1>
+
+<p>
+In the following the performance of the LLR method is compared to a cut based method, in which the cuts on the discriminating variables outlined in the section <a href="#section:DiscriminatingVariables">Discriminating Variables</a> are optimized by means of the TMVA Genetic algorithm <a href="#TMVA">[7]</a>. The samples of the datasets not used for establishing the LLR cut are used.
+
+<p>
+A comparison of the two methods is shown in Figures <a href="#fig:./figures/combined_comparisonm">4</a> for \( \ztoee \) and data respectively. Signal efficiency is defined as the ratio of the surviving number of signal trig-electrons divided by the original number and the background rejection is 1 minus the background efficiency which is defined in the same way as the signal efficiency.
+
+<center> <!-- figure label: --> <div id="fig:./figures/combined_comparisonm"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 4:  Signal trig-electron efficiency vs background trig-electron rejection for the LLR and cuts methods for a) \( \ztoee \) Monte Carlo and b) data.  <!-- caption label: fig:./figures/combined_comparisonm --> </p></center>
+<p><img src="/img/figurestrigger/combined_comparisonm.png" align="bottom" width=900></p>
+</center>
+
+<h1 id="section:conclusions" class="anchor">Conclusions</h1>
+
+<p>
+The methods appear to be fairly consistent over the range of the signal efficiencies explored. However, requiring all signal trig-electrons survive the selection, the performance of the LLR method is more performant than the cut based method, as shown in the table below. Requiring all trig-electrons survive, the LLR based method is able to reject 8 \( \% \) of background trig-electrons in the \( \ztoee \) Monte Carlo whereas this number is around \( \frac{1}{2} \% \) for the cut based method. In the data a similar trend is observed, with the LLR method reducing the number of background trig-electrons by 6 \( \% \) and the cut based method by less than \( \frac{1}{2} \% \).
+
+<p>
+
+<div class="row">
+  <div class="col-xs-5">
+    <table class="table table-striped table-hover table-condensed">
+<thead>
+<tr><td align="center"><b>  Method  </b></td> <td align="center"><b>   Sample   </b></td> <td align="center">\( \% \) fewer background</td> </tr>
+</thead>
+<tbody>
+<tr><td align="center">   Likelihood    </td> <td align="center">   \( \ztoee \)    </td> <td align="center">   -8.4 \( \mypm \) 0.2         </td> </tr>
+<tr><td align="center">                 </td> <td align="center">   Data            </td> <td align="center">   -6.2 \( \mypm \) 0.1         </td> </tr>
+<tr><td align="center">   Cuts          </td> <td align="center">   \( \ztoee \)    </td> <td align="center">   -0.56 \( \mypm \) 0.04       </td> </tr>
+<tr><td align="center">                 </td> <td align="center">   Data            </td> <td align="center">   -0.47 \( \mypm \) 0.03       </td> </tr>
+</tbody>
+    </table>
+  </div> <!-- col-xs-5 -->
+</div> <!-- cell row -->
+<p id="def_footnote_1"><a href="#link_footnote_1"><b>1:</b></a> This work has not been through the approval process within ATLAS and therefore it's results are not offical.</p>
+
+<h1 id="___sec18" class="anchor">Bibliography </h1>
+
+<p>
+<!-- begin bibliography -->
+
+<ol>
+ <li> <div id="ExpectedPerformance2009"></div> <b>G. Aad et al.</b>. 
+    Expected Performance of the ATLAS Experiment - Detector, Trigger and Physics,
+    <em>arXiv</em>,
+    2009.</li>
+ <li> <div id="L1TriggerDesignRepCollaboration1998"></div> <b>T. ATLAS</b>. 
+    ATLAS First-Level Trigger Technical Design Report,
+    <em>CERN/LHCC/97-17</em>,
+    1998.</li>
+ <li> <div id="TriggerGRL"></div> Egamma Good Runs List. 
+    <a href="http://atlasdqm.web.cern.ch/atlasdqm/grlgen/CombinedPerf/Egamma/Eg\_standard\_v5/" target="_self"><tt>http://atlasdqm.web.cern.ch/atlasdqm/grlgen/CombinedPerf/Egamma/Eg\_standard\_v5/</tt></a>.</li>
+ <li> <div id="RefPythia"></div> <b>T. Sjostrand, S. Mrenna and P. Z. Skands</b>. 
+    PYTHIA 6.4 Physics and Manual,
+    <em>JHEP</em>,
+    05,
+    pp. 026,
+    <a href="http://dx.doi.org/10.1088/1126-6708/2006/05/026" target="_self">doi: 10.1088/1126-6708/2006/05/026</a>,
+    2006.</li>
+ <li> <div id="TriggerisEM"></div> Electron Identification Recommendations. 
+    <a href="https://twiki.cern.ch/twiki/bin/viewauth/AtlasProtected/IsEMIdentification#1\_4\_2010\_analyses\_with\_release\_1" target="_self"><tt>https://twiki.cern.ch/twiki/bin/viewauth/AtlasProtected/IsEMIdentification#1\_4\_2010\_analyses\_with\_release\_1</tt></a>.</li>
+ <li> <div id="TriggerEnergyScaleResol"></div> Electron Energy Scale and Resolution Recommendations. 
+    <a href="https://twiki.cern.ch/twiki/bin/viewauth/AtlasProtected/EnergyScaleResolutionRecommendations#2010\_data\_Release\_16" target="_self"><tt>https://twiki.cern.ch/twiki/bin/viewauth/AtlasProtected/EnergyScaleResolutionRecommendations#2010\_data\_Release\_16</tt></a>.</li>
+ <li> <div id="TMVA"></div> <b>A. Hoecker</b>. 
+    TMVA, Toolkit for Multivariate Data Analysis,
+    <em>ArXiv Physics e-prints</em>,
+    2007.</li>
+</ol>
+
+<!-- end bibliography -->
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>
+</pre></div>
+<p>
+
+<!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
+
+
+<center style="font-size:80%">
+<!-- copyright --> &copy; 2018, Clive Edwards
+</center>
+
+
+</body>
+</html>
+    
+
+
+                        </div>
+
+</html>

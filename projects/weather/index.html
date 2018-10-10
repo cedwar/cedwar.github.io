@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+
+                        <div id="post-content">
+                          <!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="description" content="Live Travel and Weather Updates using APIs">
+
+<title>Live Travel and Weather Updates using APIs</title>
+
+<!-- Bootstrap style: bootswatch_cosmo -->
+<link href="https://netdna.bootstrapcdn.com/bootswatch/3.1.1/cosmo/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+
+<style type="text/css">
+/* Let inline verbatim have the same color as the surroundings */
+code { color: inherit; background-color: transparent; }
+/* Let pre tags for code blocks have the same color as the surroundings */
+pre { color: inherit; background-color: transparent; }
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootswatch_cosmo */
+  margin:-50px 0 0; /* negative fixed header height */
+}
+</style>
+
+
+</head>
+
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [('Introduction',
+               1,
+               'section:introduction',
+               'section:introduction'),
+              ('User requirements for the data',
+               2,
+               'section:introduction:userrequirements',
+               'section:introduction:userrequirements'),
+              ("Identifying and Extracting relevant information from the APIs",
+               1,
+               'section:GettingInformation',
+               'section:GettingInformation'),
+              ('Weather Information',
+               2,
+               'section:GettingInformation:weather',
+               'section:GettingInformation:weather'),
+              ('Transport Information',
+               2,
+               'section:GettingInformation:transport',
+               'section:GettingInformation:transport'),
+              ('Presenting the information in a Dashboard with Plotly Dash',
+               1,
+               'section:Dash',
+               'section:Dash'),
+              ('Deploying with Heroku',
+               1,
+               'section:Heroku',
+               'section:Heroku'),
+              ('Bibliography', 1, None, '___sec7')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<!-- newcommands_keep.tex -->
+$$
+\newcommand{\mycopyright}{\mathrm{\textcopyright}}
+$$
+
+
+
+
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="http://www.cedwards.info">Home</a>
+  </div>
+
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="#section:introduction" style="font-size: 80%;"><b>Introduction</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:introduction:userrequirements" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;User requirements for the data</a></li>
+     <!-- navigation toc: --> <li><a href="#section:GettingInformation" style="font-size: 80%;"><b>Identifying and Extracting relevant information from the APIs</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:GettingInformation:weather" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Weather Information</a></li>
+     <!-- navigation toc: --> <li><a href="#section:GettingInformation:transport" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Transport Information</a></li>
+     <!-- navigation toc: --> <li><a href="#section:Dash" style="font-size: 80%;"><b>Presenting the information in a Dashboard with Plotly Dash</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:Heroku" style="font-size: 80%;"><b>Deploying with Heroku</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec7" style="font-size: 80%;"><b>Bibliography</b></a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<div class="jumbotron">
+<center><h1>Live Travel and Weather Updates using APIs</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Clive Edwards -->
+
+<center>
+<b>Clive Edwards</b>  (<tt>mail at cedwards.info</tt>)
+</center>
+
+<p>
+<!-- institution(s) -->
+
+<br>
+
+<p>
+<b>Summary.</b> Having up to date and specific weather and travel information in a single point of reference for the daily commute can be a very useful time saver and convenience. This project uses real time and forcasted data from the Transport for London Unified API and the MET Office weather API Datapoint to develop a plotly Dash dashboard. The dashboard provides up to date travel information for several designated routes as well as real time and forcasted weather information for the local area. The dashboard is deployed online using Heroku.
+
+<p>
+Skills Used:
+
+<ul>
+<li> <b>Programming</b> (Python: Ploty Dash).</li>
+<li> <b>Deployment</b> (Heroku).</li>
+</ul>
+
+<p>
+
+</div> <!-- end jumbotron -->
+
+<h1 id="section:introduction" class="anchor">Introduction</h1>
+
+<p>
+The steps followed in order to create a weather and travel app that would be useful for the end user were:
+
+<ol>
+<li> Define what information would be most useful to the user.</li>
+<li> Identify from searching the available API data, which parts of that data most closely matched the requirements from 1.</li>
+<li> Work out how to retrieve the information required from the relevant APIs.</li>
+<li> Design a ploty Dash dashboard to display the information retrieved in a clear/ appealing way.</li>
+<li> Deploy the app using Heroku.</li>
+</ol>
+
+<h2 id="section:introduction:userrequirements" class="anchor">User requirements for the data</h2>
+The anticipated end user for this app works outside for a significant proportion of their typical day. They also use public transport to get to and from their place of work, which requires some time being spent walking between transport terminals. These requirements meant that it is important that the weather information not only provides real time data, but short period forcasted data up to a few days but certainly over the current working day. The end user has several different options in terms of getting to their place of work. Information from each of these needs to be incorporated into the dashboard, most ideally approximate next arrival times, statuses of each route and reasons for any delays.
+
+<h1 id="section:GettingInformation" class="anchor">Identifying and Extracting relevant information from the APIs</h1>
+
+<h2 id="section:GettingInformation:weather" class="anchor">Weather Information</h2>
+The MET Offices Datapoint service <a href="#METOfficeAPI">[1]</a> provides a wealth of real time and forcasted weather related information, available free of charge to those who sign up for a user account. Using the description of data available from their website the three hourly site specific forcast data was deemed most useful to the end user. Querying the following url with the requests package in Python  <br />
+<br />
+http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/sitelist?res=3hourly&key=API_Key <br />
+<br />
+allowed the location ID, a number for the site of interest to be found. The three-hourly forcast for the site of interest was then found by querying <br />
+<br />
+http://datapoint.metoffice.gov.uk/public/data/val/wxfcs/all/json/SITE_ID?res=3hourly&key=API_KEY <br />
+<br />
+which returns a json file which was decoded into a dictionary. The json_normalize package was then used for flattening the json into a pandas dataframe, in particular on the following part of the dictionary
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>json_normalize(json_data[<span style="color: #BA2121">&#39;SiteRep&#39;</span>][<span style="color: #BA2121">&#39;DV&#39;</span>][<span style="color: #BA2121">&#39;Location&#39;</span>][<span style="color: #BA2121">&#39;Period&#39;</span>][<span style="color: #666666">0</span>][<span style="color: #BA2121">&#39;Rep&#39;</span>])
+</pre></div>
+<p>
+This yielded the weather forcast for the first period in the data retrieved, the appearance of which is shown in Figure <a href="#fig:./figures/df_initial">1</a>.
+
+<center> <!-- figure label: --> <div id="fig:./figures/df_initial"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 1:  Format of data displayed for first period.  <!-- caption label: fig:./figures/df_initial --> </p></center>
+<p><img src="/img/figuresweather/df_initial.png" align="bottom" width=400></p>
+</center>
+
+<p>
+The columns show the forcast data in terms of different variables with the rows representing different times in the current three hour period. In order to decode the column variables used, the contents of
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>json_normalize(json_data[<span style="color: #BA2121">&#39;SiteRep&#39;</span>][<span style="color: #BA2121">&#39;Wx&#39;</span>][<span style="color: #BA2121">&#39;Param&#39;</span>])
+</pre></div>
+<p>
+was used which is shown in Figure <a href="#fig:./figures/df_codes">2</a>.
+
+<center> <!-- figure label: --> <div id="fig:./figures/df_codes"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 2:  Column names and their meanings.  <!-- caption label: fig:./figures/df_codes --> </p></center>
+<p><img src="/img/figuresweather/df_codes.png" align="bottom" width=400></p>
+</center>
+
+<p>
+The units were added to the variable description and then the column names from the dataframe shown previously renamed accordingly with
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #666666">.</span>rename(columns<span style="color: #666666">=</span>weatherheader<span style="color: #666666">.</span>set_index(<span style="color: #BA2121">&#39;name&#39;</span>)[<span style="color: #BA2121">&#39;$&#39;</span>], inplace<span style="color: #666666">=</span><span style="color: #008000">True</span>)
+</pre></div>
+<p>
+Weather codes stored as a dict allowed codes in the 'Weather Type' variable in the dataframe to be translated to meaningful string representations.
+
+<h2 id="section:GettingInformation:transport" class="anchor">Transport Information</h2>
+
+<p>
+Transport for London's Unified API <a href="#TFLAPI">[2]</a> was used to retrieve transport data. From the list of available requests on their website, the 'Gets the list of arrival predictions for the given stop point id' query seemed the most useful for the end user. However, this required the 'naptan ID' codes for each stop point of interest as input. These were found using the following steps:
+
+<ol>
+<li> Googling the bus stop to find the 5 digit bus stop id.</li>
+<li> Using the query 'Search StopPoints by their common name, or their 5-digit Countdown Bus Stop Code' to get the stopping ID.</li>
+<li> Using the query 'Gets a list of StopPoints corresponding to the given list of stop ids' to get stop point naptan IDs.</li>
+</ol>
+
+This is probably a far more convoluted method than is needed, but is the only way the correct naptan IDs could be found reliably. In this way the end result was a series of urls of the form <br />
+<br />
+https://api.tfl.gov.uk/StopPoint/StationNaptanCode/Arrivals?mode=bus&line=BUSNUMBERapp_id=USERID&app_key=USERAPPKEY <br />
+<br />
+
+<p>
+which allow data in the json format to be accessed. A similar procedure was followed to retrieve the relevant tube data.
+<br />
+The data from these requests was investigated in more detail to find out its structure and identify how to extract the elements of interest. The json output was decoded into a dictionary and then turned into a dataframe with json_normalise. The result was a dataframe with variables listed in columns and rows representing the different bus numbers and their relative direction (inbound or outbound with respect to central london). In order to identify the buses and directions of travel of interest, the dataframe was filtered based on lineID (bus number) and destination (indicating direction of travel). A loop through the remaining data points allowed each of the subsequent arrival times to be found. For the tube data, a general status of the line of interest was identified using
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>json_result[<span style="color: #666666">0</span>][<span style="color: #BA2121">&#39;lineStatuses&#39;</span>][<span style="color: #666666">0</span>][<span style="color: #BA2121">&#39;statusSeverityDescription&#39;</span>] <span style="color: #408080; font-style: italic"># status as string description</span>
+json_result[<span style="color: #666666">0</span>][<span style="color: #BA2121">&#39;lineStatuses&#39;</span>][<span style="color: #666666">0</span>][<span style="color: #BA2121">&#39;reason&#39;</span>] <span style="color: #408080; font-style: italic">#reason</span>
+</pre></div>
+
+<h1 id="section:Dash" class="anchor">Presenting the information in a Dashboard with Plotly Dash</h1>
+
+<p>
+Plotly Dash <a href="#PlotlyDash">[3]</a> seemed an attractive proposition to use to create the dashboard for this project. It's key advantage is that all the dashboard can be written in Python. Having retrieved the data and extracted the relevant information, the main task was to define the layout in app.layout. Much of the data is currently presented in text form as this seemed most sensible in order to get things up and running and considering for the end user interactivity is unlikely to be important. However, some of Dash's interactive capabilities were investigated by presenting the numeric weather information in a line graph with the variable of interest selectable from a drop down menu and shown on the y axis with time/ subsequent forcast periods on the x axis. A slider was added to enable the user to move through subsequent three hour forcast windows. The current format of the dashboard is shown in Figure <a href="#fig:./figures/dashboard">3</a>. The dashboard was set up to refresh the information displayed on page reload.
+
+<center> <!-- figure label: --> <div id="fig:./figures/dashboard"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 3:  Dashboard layout.  <!-- caption label: fig:./figures/dashboard --> </p></center>
+<p><img src="/img/figuresweather/dashboard.png" align="bottom" width=1000></p>
+</center>
+
+<h1 id="section:Heroku" class="anchor">Deploying with Heroku</h1>
+
+<p>
+Heroku <a href="#Heroku">[4]</a> was used deploy the app on the web. This required a free Heroku account and Python 3.6, pipenv and Postgres be installed locally. The Heroku command line interface was installed on linux using
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>sudo snap install heroku <span style="color: #666666">--</span>classic
+</pre></div>
+<p>
+Then using
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>heroku login
+</pre></div>
+<p>
+requests the login details. The app was deployed to Heroku using
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>heroku create
+git push heroku master
+</pre></div>
+<p>
+Different numbers of instances of the app can then be run using
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>heroku ps:scale web<span style="color: #666666">=</span>number_of_instances
+</pre></div>
+<p>
+Heroku recognises it is dealing with a Python app by the existence of a requirements.txt file. Requirements for the app are dealt with using pipenv. For debugging and development a local version of the app can be run using
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>heroku local web
+</pre></div>
+<p>
+which uses the local Procfile to find what to run. The app is available at <a href="http://localhost" target="_self"><tt>http://localhost</tt></a>:5000. To push changes to Heroku the following is used
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>git add <span style="color: #666666">.</span>
+git commit <span style="color: #666666">-</span>m <span style="color: #BA2121">&quot;Demo&quot;</span>
+git push heroku master
+</pre></div>
+
+<h1 id="___sec7" class="anchor">Bibliography </h1>
+
+<p>
+<!-- begin bibliography -->
+
+<ol>
+ <li> <div id="METOfficeAPI"></div> <b>M. Office</b>. 
+    MET Office Datapoint (Contains public sector information licensed under the Open Government Licence),
+    <em>MET Office</em>,
+    2018.</li>
+ <li> <div id="TFLAPI"></div> <b>TfL</b>. 
+    Transport for London Unified API Powered by TfL Open Data (Contains OS data &copy; Crown copyright and database rights 2016),
+    <em>Tfl</em>,
+    2018.</li>
+ <li> <div id="PlotlyDash"></div> <b>P. Technologies</b>. 
+    Collaborative data science,
+    <em>Plotly Technologies Inc.</em>,
+    2015.</li>
+ <li> <div id="Heroku"></div> <b>Heroku</b>. 
+    Cloud Application Platform,
+    <em>Heroku Inc.</em>,
+    2007.</li>
+</ol>
+
+<!-- end bibliography -->
+
+<p>
+
+<!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
+
+
+<center style="font-size:80%">
+<!-- copyright --> &copy; 2018, Clive Edwards
+</center>
+
+
+</body>
+</html>
+    
+
+
+                        </div>
+
+</html>

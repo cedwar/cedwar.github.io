@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Machine Learning on C EDWARDS</title>
+    <link>https://cedwar.github.io/categories/machine-learning/</link>
+    <description>Recent content in Machine Learning on C EDWARDS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://cedwar.github.io/categories/machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Using Docker and Kubernetes to produce a scalable fraud detection API</title>
+      <link>https://cedwar.github.io/projects/fraud/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://cedwar.github.io/projects/fraud/</guid>
+      <description>Using Docker and Kubernetes to produce a scalable fraud detection API -- /* Let inline verbatim have the same color as the surroundings */ code { color: inherit; background-color: transparent; } /* Let pre tags for code blocks have the same color as the surroundings */ pre { color: inherit; background-color: transparent; } /* Add scrollbar to dropdown menus in bootstrap navigation bar */ .dropdown-menu { height: auto; max-height: 400px; overflow-x: hidden; } /* Adds an invisible element before each target to offset for the navigation bar */ .</description>
+    </item>
+    
+  </channel>
+</rss>

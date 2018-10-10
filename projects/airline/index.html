@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+
+
+                        <div id="post-content">
+                          <!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="description" content="Cleaning Airline Data with Python">
+
+<title>Cleaning Airline Data with Python</title>
+
+<!-- Bootstrap style: bootswatch_cosmo -->
+<link href="https://netdna.bootstrapcdn.com/bootswatch/3.1.1/cosmo/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+
+<style type="text/css">
+/* Let inline verbatim have the same color as the surroundings */
+code { color: inherit; background-color: transparent; }
+/* Let pre tags for code blocks have the same color as the surroundings */
+pre { color: inherit; background-color: transparent; }
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootswatch_cosmo */
+  margin:-50px 0 0; /* negative fixed header height */
+}
+/*----------------------------------------------------------------------------------------------------*/
+
+output {
+  display: block;
+  padding-top: 7px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  color: #555555;
+}
+
+div.output_prompt {
+  color: #D84315;
+}
+
+
+div.output_wrapper {
+  /* this position must be relative to enable descendents to be absolute within it */
+  position: relative;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  z-index: 1;
+}
+
+/* This class is the outer container of all output sections. */
+div.output_area {
+  padding: 0px;
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.output_area .MathJax_Display {
+  text-align: left !important;
+}
+div.output_area .rendered_html table {
+  margin-left: 0;
+  margin-right: 0;
+}
+div.output_area .rendered_html img {
+  margin-left: 0;
+  margin-right: 0;
+}
+div.output_area img,
+div.output_area svg {
+  max-width: 100%;
+  height: auto;
+}
+div.output_area img.unconfined,
+div.output_area svg.unconfined {
+  max-width: none;
+}
+
+
+.rendered_html {
+  color: #000;
+  /* any extras will just be numbers: */
+}
+.rendered_html em {
+  font-style: italic;
+}
+.rendered_html strong {
+  font-weight: bold;
+}
+.rendered_html u {
+  text-decoration: underline;
+}
+.rendered_html :link {
+  text-decoration: underline;
+}
+.rendered_html :visited {
+  text-decoration: underline;
+}
+.rendered_html h1 {
+  font-size: 185.7%;
+  margin: 1.08em 0 0 0;
+  font-weight: bold;
+  line-height: 1.0;
+}
+.rendered_html h2 {
+  font-size: 157.1%;
+  margin: 1.27em 0 0 0;
+  font-weight: bold;
+  line-height: 1.0;
+}
+.rendered_html h3 {
+  font-size: 128.6%;
+  margin: 1.55em 0 0 0;
+  font-weight: bold;
+  line-height: 1.0;
+}
+.rendered_html h4 {
+  font-size: 100%;
+  margin: 2em 0 0 0;
+  font-weight: bold;
+  line-height: 1.0;
+}
+.rendered_html h5 {
+  font-size: 100%;
+  margin: 2em 0 0 0;
+  font-weight: bold;
+  line-height: 1.0;
+  font-style: italic;
+}
+.rendered_html h6 {
+  font-size: 100%;
+  margin: 2em 0 0 0;
+  font-weight: bold;
+  line-height: 1.0;
+  font-style: italic;
+}
+.rendered_html h1:first-child {
+  margin-top: 0.538em;
+}
+.rendered_html h2:first-child {
+  margin-top: 0.636em;
+}
+.rendered_html h3:first-child {
+  margin-top: 0.777em;
+}
+.rendered_html h4:first-child {
+  margin-top: 1em;
+}
+.rendered_html h5:first-child {
+  margin-top: 1em;
+}
+.rendered_html h6:first-child {
+  margin-top: 1em;
+}
+.rendered_html ul {
+  list-style: disc;
+  margin: 0em 2em;
+  padding-left: 0px;
+}
+.rendered_html ul ul {
+  list-style: square;
+  margin: 0em 2em;
+}
+.rendered_html ul ul ul {
+  list-style: circle;
+  margin: 0em 2em;
+}
+.rendered_html ol {
+  list-style: decimal;
+  margin: 0em 2em;
+  padding-left: 0px;
+}
+.rendered_html ol ol {
+  list-style: upper-alpha;
+  margin: 0em 2em;
+}
+.rendered_html ol ol ol {
+  list-style: lower-alpha;
+  margin: 0em 2em;
+}
+.rendered_html ol ol ol ol {
+  list-style: lower-roman;
+  margin: 0em 2em;
+}
+.rendered_html ol ol ol ol ol {
+  list-style: decimal;
+  margin: 0em 2em;
+}
+.rendered_html * + ul {
+  margin-top: 1em;
+}
+.rendered_html * + ol {
+  margin-top: 1em;
+}
+.rendered_html hr {
+  color: black;
+  background-color: black;
+}
+.rendered_html pre {
+  margin: 1em 2em;
+}
+.rendered_html pre,
+.rendered_html code {
+  border: 0;
+  background-color: #fff;
+  color: #000;
+  font-size: 100%;
+  padding: 0px;
+}
+.rendered_html blockquote {
+  margin: 1em 2em;
+}
+.rendered_html table {
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+.rendered_html tr,
+.rendered_html th,
+.rendered_html td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  margin: 1em 2em;
+}
+.rendered_html td,
+.rendered_html th {
+  text-align: left;
+  vertical-align: middle;
+  padding: 4px;
+}
+.rendered_html th {
+  font-weight: bold;
+}
+.rendered_html * + table {
+  margin-top: 1em;
+}
+.rendered_html p {
+  text-align: left;
+}
+.rendered_html * + p {
+  margin-top: 1em;
+}
+.rendered_html img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.rendered_html * + img {
+  margin-top: 1em;
+}
+.rendered_html img,
+.rendered_html svg {
+  max-width: 100%;
+  height: auto;
+}
+.rendered_html img.unconfined,
+.rendered_html svg.unconfined {
+  max-width: none;
+}
+
+
+div.output_subarea {
+  overflow-x: auto;
+  padding: 0.4em;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+  max-width: calc(100% - 14ex);
+}
+div.output_scroll div.output_subarea {
+  overflow-x: visible;
+}
+
+/*----------------------------------------------------------------------------------------------------*/
+
+</style>
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+</head>
+
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [('Dataset Synopsis', 1, 'section:Synopsis', 'section:Synopsis'),
+              ('Missing Data', 1, 'section:missing', 'section:missing'),
+              ('Dealing with preliminary issues', 1, None, '___sec2'),
+              ('Changing columns to time format',
+               2,
+               'section:preliminary:timeformat',
+               'section:preliminary:timeformat'),
+              ('Distance column',
+               2,
+               'section:preliminary:distance',
+               'section:preliminary:distance'),
+              ('Changing the diverted/cancelled columns',
+               2,
+               'section:preliminary:divertedcancelled',
+               'section:preliminary:divertedcancelled'),
+              ('Flight Date column',
+               2,
+               'section:preliminary:date',
+               'section:preliminary:date'),
+              ('Dealing with missing data',
+               1,
+               'section:dealingwithmissingdata',
+               'section:dealingwithmissingdata'),
+              ('Cleaning ORIGINSTATENAME',
+               2,
+               'section:dealingwithmissingdata:ORIGINSTATENAME',
+               'section:dealingwithmissingdata:ORIGINSTATENAME'),
+              ('Cleaning ORIGINSTATE',
+               2,
+               'section:dealingwithmissingdata:ORIGINSTAT',
+               'section:dealingwithmissingdata:ORIGINSTAT'),
+              ('Cleaning DESTSTATENAME',
+               2,
+               'section:dealingwithmissingdata:DESTSTATENAME',
+               'section:dealingwithmissingdata:DESTSTATENAME'),
+              ('Cleaning DESTSTATE', 2, None, '___sec11'),
+              ('Missing Data Re-check', 1, None, '___sec12'),
+              ('Bibliography', 1, None, '___sec13')]}
+end of tocinfo -->
+
+<body>
+
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="http://www.cedwards.info">Home</a>
+  </div>
+
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="#section:Synopsis" style="font-size: 80%;"><b>Dataset Synopsis</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:missing" style="font-size: 80%;"><b>Missing Data</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec2" style="font-size: 80%;"><b>Dealing with preliminary issues</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:preliminary:timeformat" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Changing columns to time format</a></li>
+     <!-- navigation toc: --> <li><a href="#section:preliminary:distance" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Distance column</a></li>
+     <!-- navigation toc: --> <li><a href="#section:preliminary:divertedcancelled" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Changing the diverted/cancelled columns</a></li>
+     <!-- navigation toc: --> <li><a href="#section:preliminary:date" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Flight Date column</a></li>
+     <!-- navigation toc: --> <li><a href="#section:dealingwithmissingdata" style="font-size: 80%;"><b>Dealing with missing data</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:dealingwithmissingdata:ORIGINSTATENAME" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Cleaning ORIGINSTATENAME</a></li>
+     <!-- navigation toc: --> <li><a href="#section:dealingwithmissingdata:ORIGINSTAT" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Cleaning ORIGINSTATE</a></li>
+     <!-- navigation toc: --> <li><a href="#section:dealingwithmissingdata:DESTSTATENAME" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Cleaning DESTSTATENAME</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec11" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Cleaning DESTSTATE</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec12" style="font-size: 80%;"><b>Missing Data Re-check</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec13" style="font-size: 80%;"><b>Bibliography</b></a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<div class="jumbotron">
+<center><h1>Cleaning Airline Data with Python</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Clive Edwards -->
+
+<center>
+<b>Clive Edwards</b>  (<tt>mail at cedwards.info</tt>)
+</center>
+
+<p>
+<!-- institution(s) -->
+
+<br>
+
+<p>
+<b>Summary.</b> In this project a messy dataset about airline flights is cleaned to enable it to be used for further analysis. For this purpose, the project uses Python pandas library.
+
+<p>
+Skills used:
+
+<ul>
+<li> <b>Programming</b> (Python: pandas and NumPy libraries).</li>
+</ul>
+
+<p>
+</div> <!-- end jumbotron -->
+
+<h1 id="section:Synopsis" class="anchor">Dataset Synopsis</h1>
+
+<p>
+The data analysed is from Kaggle <a href="#flightdata">[1]</a>. Loading the data with pandas <a href="#pandas">[2]</a> we can see the format of the data is individual flights shown in rows and 31 variables about the flights displayed in columns.
+
+<p>
+
+<p>
+<ol id="table1"></ol>
+<script>
+$( "#table1" ).load( "/img/figuresairline/table1.html" );
+</script>
+
+<p>
+There are a total of 1191805 entries. There are quite a number of things to notice straight away:
+<ul>
+<li> FLIGHTDATE is an integer variable of form YYYYMMDD.</li>
+<li> AIRLINECODE is a two letter code.</li>
+<li> AIRLINENAME is a string description followed by : and the airline code.</li>
+<li> TAILNUM has a @ in some rows.</li>
+<li> ORIGAIRPORTNAME has format ORIGINCITYNAMEORIGINSTATE:airport name.</li>
+<li> ARRTIME column is type float, representing time in format 1600.0 representing HHMM.0.</li>
+<li> CRSARRTIME column is type int, representing time in 24 hour format (i.e.1600 for HH:MM).</li>
+<li> CRSDEPTIME, DEPTIME, WHEELSOFF, WHEELSON, CRSARRTIME, and ARRTIME columns are all in numerical format.</li>
+<li> CANCELLED/DIVERTED columns contain a mixture of False, F, 0 / True, T, 0 entries.</li>
+<li> DISTANCE column is string object and appended by 'miles'.</li>
+</ul>
+
+<h1 id="section:missing" class="anchor">Missing Data</h1>
+In the following the percentage of missing data is calculated.
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic"># Get an idea of how much missing data there is</span>
+columns <span style="color: #666666">=</span> data<span style="color: #666666">.</span>columns
+percentage_missing <span style="color: #666666">=</span> data<span style="color: #666666">.</span>isnull()<span style="color: #666666">.</span>sum() <span style="color: #666666">*</span> <span style="color: #666666">100</span> <span style="color: #666666">/</span> <span style="color: #008000">len</span>(data)
+table_percentage_missing <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>DataFrame({<span style="color: #BA2121">&#39;column_name&#39;</span>: columns,
+                                 <span style="color: #BA2121">&#39;percentage_missing&#39;</span>: percentage_missing})
+table_percentage_missing
+CreateTableHTML(<span style="color: #BA2121">&#39;./figures/&#39;</span>,table_percentage_missing,<span style="color: #BA2121">&#39;table2&#39;</span>)
+</pre></div>
+<p>
+<ol id="table2"></ol>
+<script>
+$( "#table2" ).load( "/img/figuresairline/table2.html" );
+</script>
+
+<p>
+We can see there is quite alot of missing data in a range of different columns. Some of this may be able to be filled in after further investigation. However, we will start by sorting out a few of the issues already identified.
+
+<h1 id="___sec2" class="anchor">Dealing with preliminary issues </h1>
+<div id="section:preliminary"></div>
+
+<h2 id="section:preliminary:timeformat" class="anchor">Changing columns to time format</h2>
+CRSDEPTIME, DEPTIME, WHEELSOFF, WHEELSON, CRSARRTIME, and ARRTIME need to be changed to format datetime objects.
+
+<p>
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">getTime</span>(t):
+    <span style="color: #008000; font-weight: bold">if</span> <span style="color: #008000">len</span>(t) <span style="color: #666666">==</span> <span style="color: #666666">4</span>:
+        
+        <span style="color: #008000; font-weight: bold">if</span> t <span style="color: #666666">==</span> <span style="color: #BA2121">&quot;2400&quot;</span>:
+            t <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;0000&quot;</span>
+            
+        t <span style="color: #666666">=</span> t <span style="color: #666666">+</span> <span style="color: #BA2121">&#39;00&#39;</span> 
+        <span style="color: #008000; font-weight: bold">return</span> t[:<span style="color: #666666">2</span>] <span style="color: #666666">+</span> <span style="color: #BA2121">&#39;:&#39;</span> <span style="color: #666666">+</span> t[<span style="color: #666666">2</span>:<span style="color: #666666">4</span>] <span style="color: #666666">+</span> <span style="color: #BA2121">&#39;:&#39;</span> <span style="color: #666666">+</span> t[<span style="color: #666666">4</span>:]
+    <span style="color: #008000; font-weight: bold">elif</span> <span style="color: #008000">len</span>(t) <span style="color: #666666">==</span> <span style="color: #666666">3</span>:
+    
+        t <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;0&#39;</span> <span style="color: #666666">+</span> t <span style="color: #666666">+</span> <span style="color: #BA2121">&#39;00&#39;</span>
+        <span style="color: #008000; font-weight: bold">return</span> t[:<span style="color: #666666">2</span>] <span style="color: #666666">+</span> <span style="color: #BA2121">&#39;:&#39;</span> <span style="color: #666666">+</span> t[<span style="color: #666666">2</span>:<span style="color: #666666">4</span>] <span style="color: #666666">+</span> <span style="color: #BA2121">&#39;:&#39;</span> <span style="color: #666666">+</span> t[<span style="color: #666666">4</span>:]
+</pre></div>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>data[<span style="color: #BA2121">&#39;CRSARRTIME&#39;</span>] <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;CRSARRTIME&#39;</span>]<span style="color: #666666">.</span>apply(<span style="color: #008000; font-weight: bold">lambda</span> x: <span style="color: #008000">str</span>(x) <span style="color: #008000; font-weight: bold">if</span> <span style="color: #AA22FF; font-weight: bold">not</span> pd<span style="color: #666666">.</span>isnull(x) <span style="color: #008000; font-weight: bold">else</span> x)
+data[<span style="color: #BA2121">&#39;CRSARRTIME&#39;</span>] <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;CRSARRTIME&#39;</span>]<span style="color: #666666">.</span>map(getTime, na_action<span style="color: #666666">=</span><span style="color: #BA2121">&#39;ignore&#39;</span>)
+data[<span style="color: #BA2121">&#39;CRSARRTIME&#39;</span>] <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>to_datetime((data[<span style="color: #BA2121">&#39;FLIGHTDATE&#39;</span>]<span style="color: #666666">.</span>astype(<span style="color: #008000">str</span>)<span style="color: #666666">+</span>data[<span style="color: #BA2121">&#39;CRSARRTIME&#39;</span>])<span style="color: #666666">.</span>apply(<span style="color: #008000">str</span>), format<span style="color: #666666">=</span><span style="color: #BA2121">&#39;%Y%m</span><span style="color: #BB6688; font-weight: bold">%d</span><span style="color: #BA2121">%H:%M:%S&#39;</span>)
+data[<span style="color: #BA2121">&#39;CRSARRTIME&#39;</span>]<span style="color: #666666">.</span>head()
+</pre></div>
+<p>
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>data[<span style="color: #BA2121">&#39;ARRTIME&#39;</span>] <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;ARRTIME&#39;</span>]<span style="color: #666666">.</span>apply(<span style="color: #008000; font-weight: bold">lambda</span> x: <span style="color: #008000">str</span>(x) <span style="color: #008000; font-weight: bold">if</span> <span style="color: #AA22FF; font-weight: bold">not</span> pd<span style="color: #666666">.</span>isnull(x) <span style="color: #008000; font-weight: bold">else</span> x)
+data[<span style="color: #BA2121">&#39;ARRTIME&#39;</span>] <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;ARRTIME&#39;</span>]<span style="color: #666666">.</span>str<span style="color: #666666">.</span>replace(<span style="color: #BA2121">&#39;\.0&#39;</span>,<span style="color: #BA2121">&#39;&#39;</span>)
+data[<span style="color: #BA2121">&#39;ARRTIME&#39;</span>] <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;ARRTIME&#39;</span>]<span style="color: #666666">.</span>map(getTime, na_action<span style="color: #666666">=</span><span style="color: #BA2121">&#39;ignore&#39;</span>)
+data[<span style="color: #BA2121">&#39;ARRTIME&#39;</span>] <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>to_datetime((data[<span style="color: #BA2121">&#39;FLIGHTDATE&#39;</span>]<span style="color: #666666">.</span>astype(<span style="color: #008000">str</span>)<span style="color: #666666">+</span>data[<span style="color: #BA2121">&#39;ARRTIME&#39;</span>])<span style="color: #666666">.</span>apply(<span style="color: #008000">str</span>), format<span style="color: #666666">=</span><span style="color: #BA2121">&#39;%Y%m</span><span style="color: #BB6688; font-weight: bold">%d</span><span style="color: #BA2121">%H:%M:%S&#39;</span>)
+data[<span style="color: #BA2121">&#39;ARRTIME&#39;</span>]<span style="color: #666666">.</span>head()
+</pre></div>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>data[<span style="color: #BA2121">&#39;DEPTIME&#39;</span>] <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;DEPTIME&#39;</span>]<span style="color: #666666">.</span>apply(<span style="color: #008000; font-weight: bold">lambda</span> x: <span style="color: #008000">str</span>(x) <span style="color: #008000; font-weight: bold">if</span> <span style="color: #AA22FF; font-weight: bold">not</span> pd<span style="color: #666666">.</span>isnull(x) <span style="color: #008000; font-weight: bold">else</span> x)
+data[<span style="color: #BA2121">&#39;DEPTIME&#39;</span>] <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;DEPTIME&#39;</span>]<span style="color: #666666">.</span>str<span style="color: #666666">.</span>replace(<span style="color: #BA2121">&#39;\.0&#39;</span>,<span style="color: #BA2121">&#39;&#39;</span>)
+data[<span style="color: #BA2121">&#39;DEPTIME&#39;</span>] <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;DEPTIME&#39;</span>]<span style="color: #666666">.</span>map(getTime, na_action<span style="color: #666666">=</span><span style="color: #BA2121">&#39;ignore&#39;</span>)
+data[<span style="color: #BA2121">&#39;DEPTIME&#39;</span>] <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>to_datetime((data[<span style="color: #BA2121">&#39;FLIGHTDATE&#39;</span>]<span style="color: #666666">.</span>astype(<span style="color: #008000">str</span>)<span style="color: #666666">+</span>data[<span style="color: #BA2121">&#39;DEPTIME&#39;</span>])<span style="color: #666666">.</span>apply(<span style="color: #008000">str</span>), format<span style="color: #666666">=</span><span style="color: #BA2121">&#39;%Y%m</span><span style="color: #BB6688; font-weight: bold">%d</span><span style="color: #BA2121">%H:%M:%S&#39;</span>)
+</pre></div>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>data[<span style="color: #BA2121">&#39;CRSDEPTIME&#39;</span>] <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;CRSDEPTIME&#39;</span>]<span style="color: #666666">.</span>apply(<span style="color: #008000; font-weight: bold">lambda</span> x: <span style="color: #008000">str</span>(x) <span style="color: #008000; font-weight: bold">if</span> <span style="color: #AA22FF; font-weight: bold">not</span> pd<span style="color: #666666">.</span>isnull(x) <span style="color: #008000; font-weight: bold">else</span> x)
+data[<span style="color: #BA2121">&#39;CRSDEPTIME&#39;</span>] <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;CRSDEPTIME&#39;</span>]<span style="color: #666666">.</span>map(getTime, na_action<span style="color: #666666">=</span><span style="color: #BA2121">&#39;ignore&#39;</span>)
+data[<span style="color: #BA2121">&#39;CRSDEPTIME&#39;</span>] <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>to_datetime((data[<span style="color: #BA2121">&#39;FLIGHTDATE&#39;</span>]<span style="color: #666666">.</span>astype(<span style="color: #008000">str</span>)<span style="color: #666666">+</span>data[<span style="color: #BA2121">&#39;CRSDEPTIME&#39;</span>])<span style="color: #666666">.</span>apply(<span style="color: #008000">str</span>), format<span style="color: #666666">=</span><span style="color: #BA2121">&#39;%Y%m</span><span style="color: #BB6688; font-weight: bold">%d</span><span style="color: #BA2121">%H:%M:%S&#39;</span>)
+</pre></div>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>data[<span style="color: #BA2121">&#39;WHEELSOFF&#39;</span>] <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;WHEELSOFF&#39;</span>]<span style="color: #666666">.</span>apply(<span style="color: #008000; font-weight: bold">lambda</span> x: <span style="color: #008000">str</span>(x) <span style="color: #008000; font-weight: bold">if</span> <span style="color: #AA22FF; font-weight: bold">not</span> pd<span style="color: #666666">.</span>isnull(x) <span style="color: #008000; font-weight: bold">else</span> x)
+data[<span style="color: #BA2121">&#39;WHEELSOFF&#39;</span>] <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;WHEELSOFF&#39;</span>]<span style="color: #666666">.</span>str<span style="color: #666666">.</span>replace(<span style="color: #BA2121">&#39;\.0&#39;</span>,<span style="color: #BA2121">&#39;&#39;</span>)
+data[<span style="color: #BA2121">&#39;WHEELSOFF&#39;</span>] <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;WHEELSOFF&#39;</span>]<span style="color: #666666">.</span>map(getTime, na_action<span style="color: #666666">=</span><span style="color: #BA2121">&#39;ignore&#39;</span>)
+data[<span style="color: #BA2121">&#39;WHEELSOFF&#39;</span>] <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>to_datetime((data[<span style="color: #BA2121">&#39;FLIGHTDATE&#39;</span>]<span style="color: #666666">.</span>astype(<span style="color: #008000">str</span>)<span style="color: #666666">+</span>data[<span style="color: #BA2121">&#39;WHEELSOFF&#39;</span>])<span style="color: #666666">.</span>apply(<span style="color: #008000">str</span>), format<span style="color: #666666">=</span><span style="color: #BA2121">&#39;%Y%m</span><span style="color: #BB6688; font-weight: bold">%d</span><span style="color: #BA2121">%H:%M:%S&#39;</span>)
+</pre></div>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>data[<span style="color: #BA2121">&#39;WHEELSON&#39;</span>] <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;WHEELSON&#39;</span>]<span style="color: #666666">.</span>apply(<span style="color: #008000; font-weight: bold">lambda</span> x: <span style="color: #008000">str</span>(x) <span style="color: #008000; font-weight: bold">if</span> <span style="color: #AA22FF; font-weight: bold">not</span> pd<span style="color: #666666">.</span>isnull(x) <span style="color: #008000; font-weight: bold">else</span> x)
+data[<span style="color: #BA2121">&#39;WHEELSON&#39;</span>] <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;WHEELSON&#39;</span>]<span style="color: #666666">.</span>str<span style="color: #666666">.</span>replace(<span style="color: #BA2121">&#39;\.0&#39;</span>,<span style="color: #BA2121">&#39;&#39;</span>)
+data[<span style="color: #BA2121">&#39;WHEELSON&#39;</span>] <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;WHEELSON&#39;</span>]<span style="color: #666666">.</span>map(getTime, na_action<span style="color: #666666">=</span><span style="color: #BA2121">&#39;ignore&#39;</span>)
+data[<span style="color: #BA2121">&#39;WHEELSON&#39;</span>] <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>to_datetime((data[<span style="color: #BA2121">&#39;FLIGHTDATE&#39;</span>]<span style="color: #666666">.</span>astype(<span style="color: #008000">str</span>)<span style="color: #666666">+</span>data[<span style="color: #BA2121">&#39;WHEELSON&#39;</span>])<span style="color: #666666">.</span>apply(<span style="color: #008000">str</span>), format<span style="color: #666666">=</span><span style="color: #BA2121">&#39;%Y%m</span><span style="color: #BB6688; font-weight: bold">%d</span><span style="color: #BA2121">%H:%M:%S&#39;</span>)
+</pre></div>
+<p>
+
+<h2 id="section:preliminary:distance" class="anchor">Distance column</h2>
+There are two issues here. First we need to remove the 'miles' string and then we need to convert variable to float.
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>data[<span style="color: #BA2121">&#39;DISTANCE&#39;</span>] <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;DISTANCE&#39;</span>]<span style="color: #666666">.</span>str<span style="color: #666666">.</span>replace(<span style="color: #BA2121">&#39;miles&#39;</span>,<span style="color: #BA2121">&#39;&#39;</span>)
+data[<span style="color: #BA2121">&#39;DISTANCE&#39;</span>] <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>to_numeric(data[<span style="color: #BA2121">&#39;DISTANCE&#39;</span>], errors<span style="color: #666666">=</span><span style="color: #BA2121">&#39;coerce&#39;</span>)
+</pre></div>
+
+<h2 id="section:preliminary:divertedcancelled" class="anchor">Changing the diverted/cancelled columns</h2>
+Here we want to change the options to either True or False.
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>data[<span style="color: #BA2121">&#39;DIVERTED&#39;</span>] <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;DIVERTED&#39;</span>]<span style="color: #666666">.</span>str<span style="color: #666666">.</span>replace(<span style="color: #BA2121">&#39;False&#39;</span>,<span style="color: #BA2121">&#39;0&#39;</span>)
+data[<span style="color: #BA2121">&#39;DIVERTED&#39;</span>] <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;DIVERTED&#39;</span>]<span style="color: #666666">.</span>str<span style="color: #666666">.</span>replace(<span style="color: #BA2121">&#39;F&#39;</span>,<span style="color: #BA2121">&#39;0&#39;</span>)
+data[<span style="color: #BA2121">&#39;DIVERTED&#39;</span>] <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;DIVERTED&#39;</span>]<span style="color: #666666">.</span>str<span style="color: #666666">.</span>replace(<span style="color: #BA2121">&#39;True&#39;</span>,<span style="color: #BA2121">&#39;T&#39;</span>)
+data[<span style="color: #BA2121">&#39;DIVERTED&#39;</span>] <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;DIVERTED&#39;</span>]<span style="color: #666666">.</span>str<span style="color: #666666">.</span>replace(<span style="color: #BA2121">&#39;T&#39;</span>,<span style="color: #BA2121">&#39;0&#39;</span>)
+
+data[<span style="color: #BA2121">&#39;CANCELLED&#39;</span>] <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;CANCELLED&#39;</span>]<span style="color: #666666">.</span>str<span style="color: #666666">.</span>replace(<span style="color: #BA2121">&#39;False&#39;</span>,<span style="color: #BA2121">&#39;0&#39;</span>)
+data[<span style="color: #BA2121">&#39;CANCELLED&#39;</span>] <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;CANCELLED&#39;</span>]<span style="color: #666666">.</span>str<span style="color: #666666">.</span>replace(<span style="color: #BA2121">&#39;F&#39;</span>,<span style="color: #BA2121">&#39;0&#39;</span>)
+data[<span style="color: #BA2121">&#39;CANCELLED&#39;</span>] <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;CANCELLED&#39;</span>]<span style="color: #666666">.</span>str<span style="color: #666666">.</span>replace(<span style="color: #BA2121">&#39;True&#39;</span>,<span style="color: #BA2121">&#39;T&#39;</span>)
+data[<span style="color: #BA2121">&#39;CANCELLED&#39;</span>] <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;CANCELLED&#39;</span>]<span style="color: #666666">.</span>str<span style="color: #666666">.</span>replace(<span style="color: #BA2121">&#39;T&#39;</span>,<span style="color: #BA2121">&#39;0&#39;</span>)
+</pre></div>
+
+<h2 id="section:preliminary:date" class="anchor">Flight Date column</h2>
+Here we need to change the column to type datatime object. After these changes the dataframe now looks like the following.
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>data[<span style="color: #BA2121">&#39;FLIGHTDATE&#39;</span>] <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>to_datetime(data[<span style="color: #BA2121">&#39;FLIGHTDATE&#39;</span>], format<span style="color: #666666">=</span><span style="color: #BA2121">&#39;%Y%m</span><span style="color: #BB6688; font-weight: bold">%d</span><span style="color: #BA2121">&#39;</span>)
+df3 <span style="color: #666666">=</span> data<span style="color: #666666">.</span>head()
+CreateTableHTML(<span style="color: #BA2121">&#39;./figures/&#39;</span>,df3,<span style="color: #BA2121">&#39;table3&#39;</span>)
+</pre></div>
+<p>
+<ol id="table3"></ol>
+<script>
+$( "#table3" ).load( "/img/figuresairline/table3.html" );
+</script>
+
+<p>
+To begin with it looked like this.
+
+<p>
+
+<p>
+<ol id="table4"></ol>
+<script>
+$( "#table4" ).load( "/img/figuresairline/table4.html" );
+</script>
+
+<h1 id="section:dealingwithmissingdata" class="anchor">Dealing with missing data</h1>
+
+<p>
+The most straightforward options for dealing with missing data in this instance are to either:
+
+<ul>
+<li> Remove rows with missing values (removing 3 % of the data).</li>
+<li> Estimate the numerical missing data using mean, median, mode.</li>
+<li> Complete missing values using duplicated data present in other columns.</li>
+<li> Categorical data can be completed by comparing values in other columns.</li>
+</ul>
+
+<h2 id="section:dealingwithmissingdata:ORIGINSTATENAME" class="anchor">Cleaning ORIGINSTATENAME</h2>
+
+<p>
+The third option is definitely useful in this instance. For example, we can see below there are lots of instances in which ORIGINSTATENAME is not defined.
+
+<p>
+
+<p>
+<ol id="table5"></ol>
+<script>
+$( "#table5" ).load( "/img/figuresairline/table5.html" );
+</script>
+
+<p>
+However, the ORIGINSTATENAME variable will be defined by the ORIGINAIRPORTCODE, since each airport is in only one state. To find the relevant ORIGINAIRPORTCODE we can find the unique combinations of ORIGINSTATENAME and ORIGINAIRPORTCODE for entries when the latter is known. Then we can use a dictionary to manually set the state for the ORIGINAIRPORTCODE's returned and use this to fill the na values for the missing ORIGINSTATENAME values.
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>mydf_originstatename <span style="color: #666666">=</span> data<span style="color: #666666">.</span>groupby([<span style="color: #BA2121">&quot;ORIGINAIRPORTCODE&quot;</span>, <span style="color: #BA2121">&quot;ORIGINSTATENAME&quot;</span>,<span style="color: #BA2121">&quot;ORIGINSTATE&quot;</span>])<span style="color: #666666">.</span>size()<span style="color: #666666">.</span>reset_index()<span style="color: #666666">.</span>rename(columns<span style="color: #666666">=</span>{<span style="color: #666666">0</span>:<span style="color: #BA2121">&#39;count&#39;</span>})
+</pre></div>
+<p>
+
+<p>
+<ol id="table6"></ol>
+<script>
+$( "#table6" ).load( "/img/figuresairline/table6.html" );
+</script>
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>mydf_nonull_originstatename <span style="color: #666666">=</span> data<span style="color: #666666">.</span>loc[data[<span style="color: #BA2121">&#39;ORIGINSTATENAME&#39;</span>]<span style="color: #666666">.</span>isnull(), <span style="color: #BA2121">&#39;ORIGINAIRPORTCODE&#39;</span>]
+mydf_nonull_originstatename<span style="color: #666666">.</span>unique()
+</pre></div>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>OriginStateNameDict <span style="color: #666666">=</span> {
+<span style="color: #BA2121">&#39;LAW&#39;</span> : <span style="color: #BA2121">&#39;Oklahoma&#39;</span>, 
+<span style="color: #BA2121">&#39;MHK&#39;</span> : <span style="color: #BA2121">&#39;Kansas&#39;</span>,
+<span style="color: #BA2121">&#39;HYS&#39;</span> : <span style="color: #BA2121">&#39;Kansas&#39;</span>,
+<span style="color: #BA2121">&#39;OKC&#39;</span> : <span style="color: #BA2121">&#39;Oklahoma&#39;</span>,
+<span style="color: #BA2121">&#39;FOE&#39;</span> : <span style="color: #BA2121">&#39;Kansas&#39;</span>,
+<span style="color: #BA2121">&#39;TUL&#39;</span> : <span style="color: #BA2121">&#39;Oklahoma&#39;</span>,
+<span style="color: #BA2121">&#39;ICT&#39;</span> : <span style="color: #BA2121">&#39;Kansas&#39;</span>,
+<span style="color: #BA2121">&#39;GCK&#39;</span> : <span style="color: #BA2121">&#39;Kansas&#39;</span>
+}
+</pre></div>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>data[<span style="color: #BA2121">&#39;ORIGINSTATENAME&#39;</span>] <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;ORIGINSTATENAME&#39;</span>]<span style="color: #666666">.</span>fillna(data[<span style="color: #BA2121">&#39;ORIGINAIRPORTCODE&#39;</span>]<span style="color: #666666">.</span>map(OriginStateNameDict))
+</pre></div>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">#check all missing values filled</span>
+df7 <span style="color: #666666">=</span> data[data[<span style="color: #BA2121">&#39;ORIGINSTATENAME&#39;</span>]<span style="color: #666666">.</span>isnull()]
+CreateTableHTML(<span style="color: #BA2121">&#39;./figures/&#39;</span>,df7,<span style="color: #BA2121">&#39;table7&#39;</span>)
+</pre></div>
+<p>
+<ol id="table7"></ol>
+<script>
+$( "#table7" ).load( "/img/figuresairline/table7.html" );
+</script>
+
+<h2 id="section:dealingwithmissingdata:ORIGINSTAT" class="anchor">Cleaning ORIGINSTATE</h2>
+
+<p>
+The same procedure can be used for ORIGINSTATE, apart from a dictionary with the state code is needed.
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>df8 <span style="color: #666666">=</span> data[data[<span style="color: #BA2121">&#39;ORIGINSTATE&#39;</span>]<span style="color: #666666">.</span>isnull()]<span style="color: #666666">.</span>head()
+CreateTableHTML(<span style="color: #BA2121">&#39;./figures/&#39;</span>,df8,<span style="color: #BA2121">&#39;table8&#39;</span>)
+</pre></div>
+<p>
+<ol id="table8"></ol>
+<script>
+$( "#table8" ).load( "/img/figuresairline/table8.html" );
+</script>
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic"># Clean origin state</span>
+mydf_nonull_originstate <span style="color: #666666">=</span> data<span style="color: #666666">.</span>loc[data[<span style="color: #BA2121">&#39;ORIGINSTATE&#39;</span>]<span style="color: #666666">.</span>isnull(), <span style="color: #BA2121">&#39;ORIGINAIRPORTCODE&#39;</span>]
+mydf_nonull_originstate<span style="color: #666666">.</span>unique()
+</pre></div>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>OriginStateDict <span style="color: #666666">=</span> {
+<span style="color: #BA2121">&#39;LAW&#39;</span> : <span style="color: #BA2121">&#39;OK&#39;</span>, 
+<span style="color: #BA2121">&#39;MHK&#39;</span> : <span style="color: #BA2121">&#39;KS&#39;</span>,
+<span style="color: #BA2121">&#39;HYS&#39;</span> : <span style="color: #BA2121">&#39;KS&#39;</span>,
+<span style="color: #BA2121">&#39;OKC&#39;</span> : <span style="color: #BA2121">&#39;OK&#39;</span>,
+<span style="color: #BA2121">&#39;FOE&#39;</span> : <span style="color: #BA2121">&#39;KS&#39;</span>,
+<span style="color: #BA2121">&#39;TUL&#39;</span> : <span style="color: #BA2121">&#39;OK&#39;</span>,
+<span style="color: #BA2121">&#39;ICT&#39;</span> : <span style="color: #BA2121">&#39;KS&#39;</span>,
+<span style="color: #BA2121">&#39;GCK&#39;</span> : <span style="color: #BA2121">&#39;KS&#39;</span>
+}
+</pre></div>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>data[<span style="color: #BA2121">&#39;ORIGINSTATE&#39;</span>] <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;ORIGINSTATE&#39;</span>]<span style="color: #666666">.</span>fillna(data[<span style="color: #BA2121">&#39;ORIGINAIRPORTCODE&#39;</span>]<span style="color: #666666">.</span>map(OriginStateDict))
+</pre></div>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">#check</span>
+df9 <span style="color: #666666">=</span> data[data[<span style="color: #BA2121">&#39;ORIGINSTATE&#39;</span>]<span style="color: #666666">.</span>isnull()]
+CreateTableHTML(<span style="color: #BA2121">&#39;./figures/&#39;</span>,df9,<span style="color: #BA2121">&#39;table9&#39;</span>)
+</pre></div>
+<p>
+<ol id="table9"></ol>
+<script>
+$( "#table9" ).load( "/img/figuresairline/table9.html" );
+</script>
+
+<h2 id="section:dealingwithmissingdata:DESTSTATENAME" class="anchor">Cleaning DESTSTATENAME</h2>
+
+<p>
+A similar procedure can be applied to fill missing values for the DESTSTATENAME column. However this time because we are dealing with the destination, DESTAIRPORTCODE has to be used to find the destination states.
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic"># Clean DestStateName</span>
+mydf_deststatename <span style="color: #666666">=</span> data<span style="color: #666666">.</span>groupby([<span style="color: #BA2121">&quot;DESTAIRPORTCODE&quot;</span>, <span style="color: #BA2121">&quot;DESTSTATENAME&quot;</span>,<span style="color: #BA2121">&quot;DESTSTATE&quot;</span>])<span style="color: #666666">.</span>size()<span style="color: #666666">.</span>reset_index()<span style="color: #666666">.</span>rename(columns<span style="color: #666666">=</span>{<span style="color: #666666">0</span>:<span style="color: #BA2121">&#39;count&#39;</span>})
+</pre></div>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>df10 <span style="color: #666666">=</span> mydf_deststatename<span style="color: #666666">.</span>head()
+CreateTableHTML(<span style="color: #BA2121">&#39;./figures/&#39;</span>,df10,<span style="color: #BA2121">&#39;table10&#39;</span>)
+</pre></div>
+<p>
+<ol id="table10"></ol>
+<script>
+$( "#table10" ).load( "/img/figuresairline/table10.html" );
+</script>
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>mydf_nonull_deststatename <span style="color: #666666">=</span> data<span style="color: #666666">.</span>loc[data[<span style="color: #BA2121">&#39;DESTSTATENAME&#39;</span>]<span style="color: #666666">.</span>isnull(), <span style="color: #BA2121">&#39;DESTAIRPORTCODE&#39;</span>]
+mydf_nonull_deststatename<span style="color: #666666">.</span>unique()
+</pre></div>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>DestStateNameDict_deststatename_orig <span style="color: #666666">=</span> {
+<span style="color: #BA2121">&#39;ATL&#39;</span> : <span style="color: #BA2121">&quot;Georgia&quot;</span>,
+<span style="color: #BA2121">&quot;ORD&quot;</span> : <span style="color: #BA2121">&quot;Illinois&quot;</span>,
+<span style="color: #BA2121">&#39;BWI&#39;</span> : <span style="color: #BA2121">&quot;Maryland&quot;</span>,
+<span style="color: #BA2121">&#39;DFW&#39;</span> : <span style="color: #BA2121">&quot;Texas&quot;</span>,
+<span style="color: #BA2121">&quot;LAS&quot;</span> : <span style="color: #BA2121">&quot;Nevada&quot;</span>,
+<span style="color: #BA2121">&#39;LIT&#39;</span> : <span style="color: #BA2121">&quot;Arkansas&quot;</span>,
+<span style="color: #BA2121">&#39;LAX&#39;</span> : <span style="color: #BA2121">&quot;California&quot;</span>,
+<span style="color: #BA2121">&#39;MCI&#39;</span> : <span style="color: #BA2121">&quot;Missouri&quot;</span>,
+<span style="color: #BA2121">&#39;IAH&#39;</span> : <span style="color: #BA2121">&quot;Texas&quot;</span>,
+<span style="color: #BA2121">&#39;HOU&#39;</span> : <span style="color: #BA2121">&quot;Texas&quot;</span>,
+<span style="color: #BA2121">&#39;MEM&#39;</span> : <span style="color: #BA2121">&quot;Tennessee&quot;</span>,
+<span style="color: #BA2121">&#39;EWR&#39;</span> : <span style="color: #BA2121">&quot;New Jersey&quot;</span>,
+<span style="color: #BA2121">&#39;OKC&#39;</span> : <span style="color: #BA2121">&quot;Oklahoma&quot;</span>,
+<span style="color: #BA2121">&#39;MCO&#39;</span> : <span style="color: #BA2121">&quot;Florida&quot;</span>,
+<span style="color: #BA2121">&#39;BNA&#39;</span> : <span style="color: #BA2121">&quot;Tennessee&quot;</span>,
+<span style="color: #BA2121">&#39;MSP&#39;</span> : <span style="color: #BA2121">&quot;Minnesota&quot;</span>,
+<span style="color: #BA2121">&#39;PHX&#39;</span> : <span style="color: #BA2121">&quot;Arizona&quot;</span>,
+<span style="color: #BA2121">&#39;MIA&#39;</span> : <span style="color: #BA2121">&quot;Florida&quot;</span>,
+<span style="color: #BA2121">&#39;PIT&#39;</span> : <span style="color: #BA2121">&quot;Pennsylvania&quot;</span>,
+<span style="color: #BA2121">&#39;SLC&#39;</span> : <span style="color: #BA2121">&quot;Utah&quot;</span>,
+<span style="color: #BA2121">&#39;SFO&#39;</span> : <span style="color: #BA2121">&quot;California&quot;</span>,
+<span style="color: #BA2121">&#39;STL&#39;</span> : <span style="color: #BA2121">&quot;Missouri&quot;</span>,
+<span style="color: #BA2121">&#39;SEA&#39;</span> : <span style="color: #BA2121">&quot;Washington&quot;</span>,
+<span style="color: #BA2121">&#39;TUL&#39;</span> : <span style="color: #BA2121">&quot;Oklahoma&quot;</span>,
+<span style="color: #BA2121">&#39;IAD&#39;</span> : <span style="color: #BA2121">&quot;Virginia&quot;</span>,
+<span style="color: #BA2121">&#39;ICT&#39;</span> : <span style="color: #BA2121">&quot;Kansas&quot;</span>,
+<span style="color: #BA2121">&#39;DAL&#39;</span> : <span style="color: #BA2121">&quot;Texas&quot;</span>,
+<span style="color: #BA2121">&#39;DTW&#39;</span> : <span style="color: #BA2121">&quot;Michigan&quot;</span>,
+<span style="color: #BA2121">&#39;MDW&#39;</span> : <span style="color: #BA2121">&quot;Illinois&quot;</span>,
+<span style="color: #BA2121">&#39;CVG&#39;</span> : <span style="color: #BA2121">&quot;Kentucky&quot;</span>,
+<span style="color: #BA2121">&#39;CLE&#39;</span> : <span style="color: #BA2121">&quot;Ohio&quot;</span>,
+<span style="color: #BA2121">&#39;DEN&#39;</span> : <span style="color: #BA2121">&quot;Colorado&quot;</span>
+}
+
+DestStateNameDict <span style="color: #666666">=</span> {
+<span style="color: #BA2121">&#39;OKC&#39;</span> : <span style="color: #BA2121">&quot;Oklahoma&quot;</span>,
+<span style="color: #BA2121">&#39;TUL&#39;</span> : <span style="color: #BA2121">&quot;Oklahoma&quot;</span>,
+<span style="color: #BA2121">&#39;ICT&#39;</span> : <span style="color: #BA2121">&quot;Kansas&quot;</span>,
+<span style="color: #BA2121">&#39;LAW&#39;</span> : <span style="color: #BA2121">&quot;Oklahoma&quot;</span>,    
+<span style="color: #BA2121">&#39;MHK&#39;</span> : <span style="color: #BA2121">&quot;Kansas&quot;</span>,  
+<span style="color: #BA2121">&#39;FOE&#39;</span> : <span style="color: #BA2121">&quot;Kansas&quot;</span>,  
+<span style="color: #BA2121">&#39;GCK&#39;</span> : <span style="color: #BA2121">&quot;Kansas&quot;</span>,      
+<span style="color: #BA2121">&#39;HYS&#39;</span> : <span style="color: #BA2121">&quot;Kansas&quot;</span>
+}
+</pre></div>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>df11 <span style="color: #666666">=</span> data[data[<span style="color: #BA2121">&#39;DESTSTATENAME&#39;</span>]<span style="color: #666666">.</span>isnull()]<span style="color: #666666">.</span>head()
+CreateTableHTML(<span style="color: #BA2121">&#39;./figures/&#39;</span>,df11,<span style="color: #BA2121">&#39;table11&#39;</span>)
+</pre></div>
+<p>
+<ol id="table11"></ol>
+<script>
+$( "#table11" ).load( "/img/figuresairline/table11.html" );
+</script>
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>data[<span style="color: #BA2121">&#39;DESTSTATENAME&#39;</span>] <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;DESTSTATENAME&#39;</span>]<span style="color: #666666">.</span>fillna(data[<span style="color: #BA2121">&#39;DESTAIRPORTCODE&#39;</span>]<span style="color: #666666">.</span>map(DestStateNameDict))
+</pre></div>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>df12 <span style="color: #666666">=</span> data[data[<span style="color: #BA2121">&#39;DESTSTATENAME&#39;</span>]<span style="color: #666666">.</span>isnull()]
+CreateTableHTML(<span style="color: #BA2121">&#39;./figures/&#39;</span>,df12,<span style="color: #BA2121">&#39;table12&#39;</span>)
+</pre></div>
+<p>
+<ol id="table12"></ol>
+<script>
+$( "#table12" ).load( "/img/figuresairline/table12.html" );
+</script>
+
+<h2 id="___sec11" class="anchor">Cleaning DESTSTATE </h2>
+<div id="section:dealingwithmissingdata:DESTSTATE"></div>
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic"># Clean DEST STATE</span>
+
+mydf_nonull_deststate <span style="color: #666666">=</span> data<span style="color: #666666">.</span>loc[data[<span style="color: #BA2121">&#39;DESTSTATE&#39;</span>]<span style="color: #666666">.</span>isnull(), <span style="color: #BA2121">&#39;DESTAIRPORTCODE&#39;</span>]
+mydf_nonull_deststate<span style="color: #666666">.</span>unique()
+</pre></div>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>DestStateNameDict_deststate_orig <span style="color: #666666">=</span> {
+<span style="color: #BA2121">&#39;ATL&#39;</span> : <span style="color: #BA2121">&quot;GA&quot;</span>,
+<span style="color: #BA2121">&quot;ORD&quot;</span> : <span style="color: #BA2121">&quot;IL&quot;</span>,
+<span style="color: #BA2121">&#39;BWI&#39;</span> : <span style="color: #BA2121">&quot;MD&quot;</span>,
+<span style="color: #BA2121">&#39;DFW&#39;</span> : <span style="color: #BA2121">&quot;TX&quot;</span>,
+<span style="color: #BA2121">&quot;LAS&quot;</span> : <span style="color: #BA2121">&quot;NV&quot;</span>,
+<span style="color: #BA2121">&#39;LIT&#39;</span> : <span style="color: #BA2121">&quot;AR&quot;</span>,
+<span style="color: #BA2121">&#39;LAX&#39;</span> : <span style="color: #BA2121">&quot;CA&quot;</span>,
+<span style="color: #BA2121">&#39;MCI&#39;</span> : <span style="color: #BA2121">&quot;MO&quot;</span>,
+<span style="color: #BA2121">&#39;IAH&#39;</span> : <span style="color: #BA2121">&quot;TX&quot;</span>,
+<span style="color: #BA2121">&#39;HOU&#39;</span> : <span style="color: #BA2121">&quot;TX&quot;</span>,
+<span style="color: #BA2121">&#39;MEM&#39;</span> : <span style="color: #BA2121">&quot;TN&quot;</span>,
+<span style="color: #BA2121">&#39;EWR&#39;</span> : <span style="color: #BA2121">&quot;NJ&quot;</span>,
+<span style="color: #BA2121">&#39;OKC&#39;</span> : <span style="color: #BA2121">&quot;OK&quot;</span>,
+<span style="color: #BA2121">&#39;MCO&#39;</span> : <span style="color: #BA2121">&quot;FL&quot;</span>,
+<span style="color: #BA2121">&#39;BNA&#39;</span> : <span style="color: #BA2121">&quot;TN&quot;</span>,
+<span style="color: #BA2121">&#39;MSP&#39;</span> : <span style="color: #BA2121">&quot;MN&quot;</span>,
+<span style="color: #BA2121">&#39;PHX&#39;</span> : <span style="color: #BA2121">&quot;AZ&quot;</span>,
+<span style="color: #BA2121">&#39;MIA&#39;</span> : <span style="color: #BA2121">&quot;FL&quot;</span>,
+<span style="color: #BA2121">&#39;PIT&#39;</span> : <span style="color: #BA2121">&quot;PA&quot;</span>,
+<span style="color: #BA2121">&#39;SLC&#39;</span> : <span style="color: #BA2121">&quot;UT&quot;</span>,
+<span style="color: #BA2121">&#39;SFO&#39;</span> : <span style="color: #BA2121">&quot;CA&quot;</span>,
+<span style="color: #BA2121">&#39;STL&#39;</span> : <span style="color: #BA2121">&quot;MO&quot;</span>,
+<span style="color: #BA2121">&#39;SEA&#39;</span> : <span style="color: #BA2121">&quot;WA&quot;</span>,
+<span style="color: #BA2121">&#39;TUL&#39;</span> : <span style="color: #BA2121">&quot;OK&quot;</span>,
+<span style="color: #BA2121">&#39;IAD&#39;</span> : <span style="color: #BA2121">&quot;VA&quot;</span>,
+<span style="color: #BA2121">&#39;ICT&#39;</span> : <span style="color: #BA2121">&quot;KS&quot;</span>,
+<span style="color: #BA2121">&#39;DAL&#39;</span> : <span style="color: #BA2121">&quot;TX&quot;</span>,
+<span style="color: #BA2121">&#39;DTW&#39;</span> : <span style="color: #BA2121">&quot;MI&quot;</span>,
+<span style="color: #BA2121">&#39;MDW&#39;</span> : <span style="color: #BA2121">&quot;IL&quot;</span>,
+<span style="color: #BA2121">&#39;CVG&#39;</span> : <span style="color: #BA2121">&quot;KY&quot;</span>,
+<span style="color: #BA2121">&#39;CLE&#39;</span> : <span style="color: #BA2121">&quot;OH&quot;</span>,
+<span style="color: #BA2121">&#39;DEN&#39;</span> : <span style="color: #BA2121">&quot;CO&quot;</span>
+}
+
+DestStateDict <span style="color: #666666">=</span> {
+<span style="color: #BA2121">&#39;OKC&#39;</span> : <span style="color: #BA2121">&quot;OK&quot;</span>,
+<span style="color: #BA2121">&#39;TUL&#39;</span> : <span style="color: #BA2121">&quot;OK&quot;</span>,
+<span style="color: #BA2121">&#39;ICT&#39;</span> : <span style="color: #BA2121">&quot;KS&quot;</span>,
+<span style="color: #BA2121">&#39;LAW&#39;</span> : <span style="color: #BA2121">&quot;OK&quot;</span>,    
+<span style="color: #BA2121">&#39;MHK&#39;</span> : <span style="color: #BA2121">&quot;KS&quot;</span>,  
+<span style="color: #BA2121">&#39;FOE&#39;</span> : <span style="color: #BA2121">&quot;KS&quot;</span>,  
+<span style="color: #BA2121">&#39;GCK&#39;</span> : <span style="color: #BA2121">&quot;KS&quot;</span>,      
+<span style="color: #BA2121">&#39;HYS&#39;</span> : <span style="color: #BA2121">&quot;KS&quot;</span>
+}
+</pre></div>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>df13 <span style="color: #666666">=</span> data[data[<span style="color: #BA2121">&#39;DESTSTATE&#39;</span>]<span style="color: #666666">.</span>isnull()]<span style="color: #666666">.</span>head()
+CreateTableHTML(<span style="color: #BA2121">&#39;./figures/&#39;</span>,df13,<span style="color: #BA2121">&#39;table13&#39;</span>)
+</pre></div>
+<p>
+<ol id="table13"></ol>
+<script>
+$( "#table13" ).load( "/img/figuresairline/table13.html" );
+</script>
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>data[<span style="color: #BA2121">&#39;DESTSTATE&#39;</span>] <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;DESTSTATE&#39;</span>]<span style="color: #666666">.</span>fillna(data[<span style="color: #BA2121">&#39;DESTAIRPORTCODE&#39;</span>]<span style="color: #666666">.</span>map(DestStateDict))
+</pre></div>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>df14 <span style="color: #666666">=</span> data[data[<span style="color: #BA2121">&#39;DESTSTATE&#39;</span>]<span style="color: #666666">.</span>isnull()]
+CreateTableHTML(<span style="color: #BA2121">&#39;./figures/&#39;</span>,df14,<span style="color: #BA2121">&#39;table14&#39;</span>)
+</pre></div>
+<p>
+<ol id="table14"></ol>
+<script>
+$( "#table14" ).load( "/img/figuresairline/table14.html" );
+</script>
+
+<h1 id="___sec12" class="anchor">Missing Data Re-check </h1>
+<div id="section:missingd"></div>
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic"># Get an idea of how much missing data there is</span>
+columns_afterclean <span style="color: #666666">=</span> data<span style="color: #666666">.</span>columns
+percentage_missing_afterclean <span style="color: #666666">=</span> data<span style="color: #666666">.</span>isnull()<span style="color: #666666">.</span>sum() <span style="color: #666666">*</span> <span style="color: #666666">100</span> <span style="color: #666666">/</span> <span style="color: #008000">len</span>(data)
+table_percentage_missing_afterclean <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>DataFrame({<span style="color: #BA2121">&#39;column_name&#39;</span>: columns_afterclean,
+                                 <span style="color: #BA2121">&#39;percentage_missing&#39;</span>: percentage_missing_afterclean})
+table_percentage_missing_afterclean
+
+CreateTableHTML(<span style="color: #BA2121">&#39;./figures/&#39;</span>,table_percentage_missing_afterclean,<span style="color: #BA2121">&#39;table15&#39;</span>)
+</pre></div>
+<p>
+<ol id="table15"></ol>
+<script>
+$( "#table15" ).load( "/img/figuresairline/table15.html" );
+</script>
+
+<p>
+Clearly lots of missing data remains. However, this is now more from the datetime columns. Given there is a cancelled column and it doesn't make sense for there to be a departure time if a plane is cancelled, lets check to see if the data shows this pattern.
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">#look at time stats for those flights that were cancelled</span>
+mydf_cancelled <span style="color: #666666">=</span> data[data[<span style="color: #BA2121">&#39;CANCELLED&#39;</span>] <span style="color: #666666">==</span> <span style="color: #BA2121">&quot;1&quot;</span>] 
+columns_cancelled <span style="color: #666666">=</span> mydf_cancelled<span style="color: #666666">.</span>columns
+number_missing_cancelled <span style="color: #666666">=</span> mydf_cancelled<span style="color: #666666">.</span>isnull()<span style="color: #666666">.</span>sum() <span style="color: #408080; font-style: italic">#* 100 / len(mydf_cancelled)</span>
+table_number_missing_cancelled <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>DataFrame({<span style="color: #BA2121">&#39;column_name&#39;</span>: columns_cancelled,
+                                 <span style="color: #BA2121">&#39;Number_missing&#39;</span>: number_missing_cancelled})
+table_number_missing_cancelled
+
+CreateTableHTML(<span style="color: #BA2121">&#39;./figures/&#39;</span>,table_number_missing_cancelled,<span style="color: #BA2121">&#39;table16&#39;</span>)
+</pre></div>
+<p>
+<ol id="table16"></ol>
+<script>
+$( "#table16" ).load( "/img/figuresairline/table16.html" );
+</script>
+
+<p>
+So out of 8160 cancelled flights a very high proportion of the missing values for DEPTIME, DEPDELAY, TAXIOUT, WHEELSOFF, WHEELSON, TAXIIN are also missing and all ARRTIME, ARRDELAY and ACTUALELAPSEDTIME variables are missing.
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>mydf_diverted <span style="color: #666666">=</span> data[data[<span style="color: #BA2121">&#39;DIVERTED&#39;</span>] <span style="color: #666666">==</span> <span style="color: #BA2121">&quot;1&quot;</span>] 
+columns_diverted <span style="color: #666666">=</span> mydf_diverted<span style="color: #666666">.</span>columns
+number_missing_diverted <span style="color: #666666">=</span> mydf_diverted<span style="color: #666666">.</span>isnull()<span style="color: #666666">.</span>sum() <span style="color: #408080; font-style: italic">#* 100 / len(mydf_cancelled)</span>
+table_number_missing_diverted <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>DataFrame({<span style="color: #BA2121">&#39;column_name&#39;</span>: columns_diverted,
+                                 <span style="color: #BA2121">&#39;Number_missing&#39;</span>: number_missing_diverted})
+table_number_missing_diverted
+
+CreateTableHTML(<span style="color: #BA2121">&#39;./figures/&#39;</span>,table_number_missing_diverted,<span style="color: #BA2121">&#39;table17&#39;</span>)
+</pre></div>
+<p>
+<ol id="table17"></ol>
+<script>
+$( "#table17" ).load( "/img/figuresairline/table17.html" );
+</script>
+
+<p>
+For the diverted flights (799 flights in total), all these entries have missing values for ARRDELAY and ACTUALELAPSEDTIME.
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>not_cancelled <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;CANCELLED&#39;</span>] <span style="color: #666666">==</span> <span style="color: #BA2121">&quot;0&quot;</span>
+not_diverted <span style="color: #666666">=</span> data[<span style="color: #BA2121">&#39;DIVERTED&#39;</span>] <span style="color: #666666">==</span> <span style="color: #BA2121">&quot;0&quot;</span>
+not_diverted_or_cancelled <span style="color: #666666">=</span> not_cancelled <span style="color: #666666">&amp;</span> not_diverted
+mydf_neither_departed_or_cancelled <span style="color: #666666">=</span> data[not_diverted_or_cancelled]
+
+columns_leftok <span style="color: #666666">=</span> mydf_neither_departed_or_cancelled<span style="color: #666666">.</span>columns
+number_missing_leftok <span style="color: #666666">=</span> mydf_neither_departed_or_cancelled<span style="color: #666666">.</span>isnull()<span style="color: #666666">.</span>sum() <span style="color: #408080; font-style: italic">#* 100 / len(mydf_cancelled)</span>
+table_number_missing_leftok <span style="color: #666666">=</span> pd<span style="color: #666666">.</span>DataFrame({<span style="color: #BA2121">&#39;column_name&#39;</span>: columns_leftok,
+                                 <span style="color: #BA2121">&#39;Number_missing&#39;</span>: number_missing_leftok})
+table_number_missing_leftok
+
+CreateTableHTML(<span style="color: #BA2121">&#39;./figures/&#39;</span>,table_number_missing_leftok,<span style="color: #BA2121">&#39;table18&#39;</span>)
+</pre></div>
+<p>
+<ol id="table18"></ol>
+<script>
+$( "#table18" ).load( "/img/figuresairline/table18.html" );
+</script>
+
+<p>
+It is likely that using a similar strategy as that used for names will be useful to reduce the amount of missing data in these columns.
+
+<h1 id="___sec13" class="anchor">Bibliography </h1>
+
+<p>
+<!-- begin bibliography -->
+
+<ol>
+ <li> <div id="flightdata"></div> <b>M. Metter</b>. 
+    Flight Data.,
+    <em>messy flight data</em>,
+    2018.</li>
+ <li> <div id="pandas"></div> <b>W. McKinney</b>. 
+    pandas.,
+    <em>Python</em>,
+    2008.</li>
+</ol>
+
+<!-- end bibliography -->
+
+<p>
+<p>
+<!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
+
+
+<center style="font-size:80%">
+<!-- copyright --> &copy; 2018, Clive Edwards
+</center>
+
+
+</body>
+</html>
+    
+
+
+                        </div>
+
+</html>

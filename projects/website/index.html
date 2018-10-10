@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+
+
+                        <div id="post-content">
+                          <!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="description" content="Creating a static website using Hugo and hosting it using GitHub Pages">
+
+<title>Creating a static website using Hugo and hosting it using GitHub Pages</title>
+
+<!-- Bootstrap style: bootswatch_cosmo -->
+<link href="https://netdna.bootstrapcdn.com/bootswatch/3.1.1/cosmo/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+
+<style type="text/css">
+/* Let inline verbatim have the same color as the surroundings */
+code { color: inherit; background-color: transparent; }
+/* Let pre tags for code blocks have the same color as the surroundings */
+pre { color: inherit; background-color: transparent; }
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootswatch_cosmo */
+  margin:-50px 0 0; /* negative fixed header height */
+}
+</style>
+
+
+</head>
+
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [('Introduction',
+               1,
+               'section:introduction',
+               'section:introduction'),
+              ('Setting up the design of the webpage',
+               1,
+               'section:design',
+               'section:design'),
+              ('Hugo Installation and structure',
+               2,
+               'section:design:install',
+               'section:design:install'),
+              ('Modifications',
+               2,
+               'section:design:modifications',
+               'section:design:modifications'),
+              ('Generating the website for publishing',
+               2,
+               'section:design:install:publishing',
+               'section:design:install:publishing'),
+              ('Blog/project posts using DocOnce',
+               1,
+               'section:posts',
+               'section:posts'),
+              ('DocOnce',
+               2,
+               'section:posts:doconce',
+               'section:posts:doconce'),
+              ('Basic usage',
+               2,
+               'section:posts:usage',
+               'section:posts:usage'),
+              ('Modifications',
+               2,
+               'section:posts:mods',
+               'section:posts:mods'),
+              ('Combining images into one',
+               3,
+               'section:posts:mods:multipleimages',
+               'section:posts:mods:multipleimages'),
+              ('Image output',
+               3,
+               'section:posts:mods:imageoutput',
+               'section:posts:mods:imageoutput'),
+              ('Hosting the webpage on GitHub Pages',
+               1,
+               'section:hosting',
+               'section:hosting'),
+              ('Bibliography', 1, None, '___sec12')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="http://www.cedwards.info">Home</a>
+  </div>
+
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="#section:introduction" style="font-size: 80%;"><b>Introduction</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:design" style="font-size: 80%;"><b>Setting up the design of the webpage</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:design:install" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Hugo Installation and structure</a></li>
+     <!-- navigation toc: --> <li><a href="#section:design:modifications" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Modifications</a></li>
+     <!-- navigation toc: --> <li><a href="#section:design:install:publishing" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Generating the website for publishing</a></li>
+     <!-- navigation toc: --> <li><a href="#section:posts" style="font-size: 80%;"><b>Blog/project posts using DocOnce</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:posts:doconce" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;DocOnce</a></li>
+     <!-- navigation toc: --> <li><a href="#section:posts:usage" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Basic usage</a></li>
+     <!-- navigation toc: --> <li><a href="#section:posts:mods" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Modifications</a></li>
+     <!-- navigation toc: --> <li><a href="#section:posts:mods:multipleimages" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Combining images into one</a></li>
+     <!-- navigation toc: --> <li><a href="#section:posts:mods:imageoutput" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Image output</a></li>
+     <!-- navigation toc: --> <li><a href="#section:hosting" style="font-size: 80%;"><b>Hosting the webpage on GitHub Pages</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec12" style="font-size: 80%;"><b>Bibliography</b></a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<div class="jumbotron">
+<center><h1>Creating a static website using Hugo and hosting it using GitHub Pages</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Clive Edwards -->
+
+<center>
+<b>Clive Edwards</b>  (<tt>mail at cedwards.info</tt>)
+</center>
+
+<p>
+<!-- institution(s) -->
+
+<br>
+
+<p>
+<b>Summary.</b> This report summarises the process of creating a static website using Hugo and then hosting it using GitHub Pages. The purpose of the webpage is to allow the user to i) give a brief summary of his/ her background and ii) provide a list of links showing projects they have been involved with. To this end, modifications are made to a default bootstrap template to allow the website to meet these requirements. DocOnce is used to create individual project reports. The website is then hosted through GitHub Pages.
+
+<p>
+Skills used:
+
+<ul>
+<li> <b>Web Development</b> (Hugo).</li>
+<li> <b>Document Preparation</b> (DocOnce, \( \LaTeX \), markdown).</li>
+<li> <b>Version Control/ Hosting</b> (GitHub Pages).</li>
+</ul>
+
+<p>
+
+
+</div> <!-- end jumbotron -->
+
+<h1 id="section:introduction" class="anchor">Introduction</h1>
+
+<p>
+The project is broken down into three main sections below:
+
+<ul>
+<li> Setting up the design of the webpages within Hugo.</li>
+<li> Using DocOnce to create the individual project reports.</li>
+<li> Hosting the webpage on GitHub Pages.</li>
+</ul>
+
+<h1 id="section:design" class="anchor">Setting up the design of the webpage</h1>
+
+<h2 id="section:design:install" class="anchor">Hugo Installation and structure</h2>
+
+<p>
+Hugo <a href="#hugo">[1]</a> is a fast static site generator written in Go. There are various methods to install it depending on operating system and choice. In this case, it was installed using the snap package
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>sudo apt<span style="color: #666666">-</span>get install hugo
+</pre></div>
+<p>
+The univeral theme was chosen and cloned using
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>git clone https:<span style="color: #666666">//</span>github<span style="color: #666666">.</span>com<span style="color: #666666">/</span>devcows<span style="color: #666666">/</span>hugo<span style="color: #666666">-</span>universal<span style="color: #666666">-</span>theme
+</pre></div>
+<p>
+into a directory named themes. For any given file, data entry etc, Hugo will first look in the current project folder and then in the folders listed in the current projects .toml configuration file in the variable 'themes'. This way modifcations can be made to the original template by copying and modifying files in the projects directory, then if anything is not found, the original provided by the theme is looked for in the appropriate place (by default the themes directory).
+
+<center> <!-- figure label: --> <div id="fig:./figures/overallfolderstructure"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 1:  Overall folder structure  <!-- caption label: fig:./figures/overallfolderstructure --> </p></center>
+<p><img src="/img/figureswebsite/overallfolderstructure.png" align="bottom" width=400></p>
+</center>
+
+<p>
+The overall structure of the folders is shown in Figure <a href="#fig:./figures/overallfolderstructure">1</a>. The main configuration file is the config.toml file. Individual projects or blog listings go in the content directory. Much of the html design of the layout of the webpage itself is defined in the layouts folder. Images for the wepage and individual projects/ blog posts are stored in the static folder. Text associated with the carousel entries is defined in individual .yaml files within the data folder.
+
+<h2 id="section:design:modifications" class="anchor">Modifications</h2>
+
+<p>
+Several changes were made to the original webpage design including:
+
+<ul>
+<li> the carousel entries images and text. These are stored and were changed in the locations described previously.</li>
+<li> the carousel background image. Stored in image folder described above.</li>
+<li> the universal logo at the top left of the home page (removed from /layout/partials/nav.html and added title in config.toml)</li>
+<li> removing features under carousel on main page (main config.toml settings)</li>
+<li> changing Contact to About and Blog to Projects (main config.toml settings)</li>
+<li> labelling projects with Skills as well as catgeories (main config.toml settings and added new variable skillsname to copied i8n from default).</li>
+<li> placing social media links at top of main page and others. Removing header with title on each sub page (reordering/ editing /layout/partials/ defined in /layout/single/index.html and /layout/default/list/single/html).</li>
+<li> changing the color of the carousel (main config.toml settings).</li>
+</ul>
+
+The difference between the original and existing main pages is shown in Figure <a href="#fig:./figures/front">2</a>.
+
+<center> <!-- figure label: --> <div id="fig:./figures/front"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 2:  Front page before (left) and after (right) modifications.  <!-- caption label: fig:./figures/front --> </p></center>
+<p><img src="/img/figureswebsite/front.png" align="bottom" width=1200></p>
+</center>
+
+<p>
+The blog/ projects page before and after is shown in Figure <a href="#fig:./figures/blog">3</a>.
+
+<center> <!-- figure label: --> <div id="fig:./figures/blog"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 3:  Blog/Projects page before (left) and after (right) modifications.  <!-- caption label: fig:./figures/blog --> </p></center>
+<p><img src="/img/figureswebsite/blog.png" align="bottom" width=1200></p>
+</center>
+
+<p>
+A convenient way to develop the webpage is using the command
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>snap run hugo server <span style="color: #666666">-</span>w
+</pre></div>
+<p>
+Using this Hugo runs a web server while at the same time looking out for changes within the following parts of the project
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #666666">/</span>static<span style="color: #666666">/*</span>
+    <span style="color: #666666">/</span>content<span style="color: #666666">/*</span>
+    <span style="color: #666666">/</span>data<span style="color: #666666">/*</span>
+    <span style="color: #666666">/</span>i18n<span style="color: #666666">/*</span>
+    <span style="color: #666666">/</span>layouts<span style="color: #666666">/*</span>
+    <span style="color: #666666">/</span>themes<span style="color: #666666">/&lt;</span>CURRENT<span style="color: #666666">-</span>THEME<span style="color: #666666">&gt;/*</span>
+    config
+</pre></div>
+<p>
+Each time a change is made, Hugo rebuilds the website and continues to serve it on the webserver.
+
+<h2 id="section:design:install:publishing" class="anchor">Generating the website for publishing</h2>
+
+<p>
+In order to publish the webpage on a webserver, it has to be built. By default, this is done into the /public directory using the command.
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>snap run hugo <span style="color: #666666">--</span>theme<span style="color: #666666">=</span>hugo<span style="color: #666666">-</span>universal<span style="color: #666666">-</span>theme
+</pre></div>
+
+<h1 id="section:posts" class="anchor">Blog/project posts using DocOnce</h1>
+
+<h2 id="section:posts:doconce" class="anchor">DocOnce</h2>
+
+<p>
+DocOnce <a href="#doconce">[2]</a> is described by its author as a 'modestly tagged (Markdown-like) markup language'. It offers lots of features including:
+
+<ul>
+<li> robust support for mathematics and code.</li>
+<li> inbuilt support for referencing using the Publish format.</li>
+<li> inbuilt referencing of equations, figures, tables and sections.</li>
+<li> support for creating multiple document types and formats (i.e. presentations or reports in pdf, html and others) from a single DocOnce source.</li>
+<li> inbuilt support for converting Jupyter notebooks to DocOnce, allowing for production of presentations and reports in all of the supported formats.</li>
+</ul>
+
+<h2 id="section:posts:usage" class="anchor">Basic usage</h2>
+The following command converts a Jupyter notebook Template.ipynb to DocOnce source.
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>doconce ipynb2doconce Template<span style="color: #666666">.</span>ipynb
+</pre></div>
+<p>
+From here the DocOnce source can be converted in multiple output formats. For conversion to html using the 'cosmo' Bootswatch style the following would be used.
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>style<span style="color: #666666">=</span>bootswatch_cosmo
+
+doconce format html Template <span style="color: #666666">--</span>html_style<span style="color: #666666">=</span>$style <span style="color: #666666">--</span>pygments_html_style<span style="color: #666666">=</span>default <span style="color: #666666">--</span>html_admon<span style="color: #666666">=</span>bootstrap_alert <span style="color: #666666">--</span>html_output<span style="color: #666666">=</span>report_${style} <span style="color: #666666">--</span>keep_pygments_html_bg <span style="color: #666666">--</span>html_code_style<span style="color: #666666">=</span>inherit <span style="color: #666666">--</span>html_pre_style<span style="color: #666666">=</span>inherit
+
+doconce split_html report_$style<span style="color: #666666">.</span>html
+</pre></div>
+
+<h2 id="section:posts:mods" class="anchor">Modifications</h2>
+
+<h3 id="section:posts:mods:multipleimages" class="anchor">Combining images into one</h3>
+
+It is easier to combine multiple images into one if figures with subfigures are required. To do this use montage
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>montage input_1<span style="color: #666666">.</span>png input_2<span style="color: #666666">.</span>png <span style="color: #666666">-</span>trim <span style="color: #666666">-</span>mode concatenate <span style="color: #666666">-</span>tile <span style="color: #666666">2</span>x1 output<span style="color: #666666">.</span>png
+</pre></div>
+
+<h3 id="section:posts:mods:imageoutput" class="anchor">Image output</h3>
+
+The following format is required in Jupyter notebook markdown cells for images to display correctly in the output html. This can be done using a function.
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #666666">&lt;</span>!<span style="color: #666666">--</span> dom:FIGURE: [<span style="color: #666666">./</span>figures<span style="color: #666666">/</span>FIG_NAME<span style="color: #666666">.</span>png, width<span style="color: #666666">=1200</span>] Caption Here<span style="color: #666666">.</span> <span style="color: #666666">&lt;</span>div <span style="color: #008000">id</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;fig:./figures/FIG_NAME&quot;</span><span style="color: #666666">&gt;&lt;/</span>div<span style="color: #666666">&gt;</span> <span style="color: #666666">--&gt;</span>
+        <span style="color: #666666">&lt;</span>!<span style="color: #666666">--</span> begin figure <span style="color: #666666">--&gt;</span>
+        <span style="color: #666666">&lt;</span>div <span style="color: #008000">id</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;fig:./figures/FIG_NAME&quot;</span><span style="color: #666666">&gt;&lt;/</span>div<span style="color: #666666">&gt;</span>
+        
+        <span style="color: #666666">&lt;</span>p<span style="color: #666666">&gt;</span>Caption Here<span style="color: #666666">.&lt;/</span>p<span style="color: #666666">&gt;</span>
+        
+        <span style="color: #666666">&lt;</span>img src<span style="color: #666666">=</span><span style="color: #BA2121">&quot;./figures/FIG_NAME.png&quot;</span> width<span style="color: #666666">=1200&gt;</span>
+        <span style="color: #666666">&lt;</span>!<span style="color: #666666">--</span> end figure <span style="color: #666666">--&gt;</span>
+</pre></div>
+
+<h1 id="section:hosting" class="anchor">Hosting the webpage on GitHub Pages</h1>
+
+<p>
+The main steps to hosting the Hugo website on Github Pages <a href="#pages">[3]</a> are:
+
+<ul>
+<li> Setup a new GitHub repository with name USERNAME.github.io.</li>
+<li> Prepare Hugo (or other) website locally and commit to this GitHub repository.</li>
+</ul>
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>snap run hugo
+
+cd public<span style="color: #666666">/</span>
+
+git init
+
+git add <span style="color: #666666">.</span>
+
+git commit <span style="color: #666666">-</span>m <span style="color: #BA2121">&quot;First commit&quot;</span>
+
+git remote add origin git<span style="color: #AA22FF">@github.com</span>:USERNAME<span style="color: #666666">/</span>USERNAME<span style="color: #666666">.</span>github<span style="color: #666666">.</span>io<span style="color: #666666">.</span>git
+
+git push <span style="color: #666666">-</span>u origin master
+</pre></div>
+<ul>
+<li> Add file named CNAME to repository for setup of custom domain. Add the website domain to this.</li>
+<li> Configure DNS for custom domain. The exact steps to follow here will depend on the DNS provider and type of domain. However, the basic procedure requires a record be created that points to the default pages domain (i.e. USERNAME.github.io).</li>
+</ul>
+
+<h1 id="___sec12" class="anchor">Bibliography </h1>
+
+<p>
+<!-- begin bibliography -->
+
+<ol>
+ <li> <div id="hugo"></div> <b>B. Pedersen and S. Francia</b>. 
+    Hugo: The worlds fastest framework for building websites.,
+    <em>hugo</em>,
+    2018.</li>
+ <li> <div id="doconce"></div> <b>H. P. Langtangen</b>. 
+    DocOnce: Lightweight markup language. Document once, include anywhere.,
+    <em>doconce</em>,
+    2018.</li>
+ <li> <div id="pages"></div> <b>C. Wanstrath and P. H. a. T. Preston-Werner</b>. 
+    Github Pages: Websites for you and your projects.,
+    <em>github</em>,
+    2018.</li>
+</ol>
+
+<!-- end bibliography -->
+
+<!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
+
+
+<center style="font-size:80%">
+<!-- copyright --> &copy; 2018, Clive Edwards
+</center>
+
+
+</body>
+</html>
+    
+
+
+                        </div>
+
+</html>

@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+
+
+                        <div id="post-content">
+                          <!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="description" content="Using Docker and Kubernetes to produce a scalable fraud detection API">
+
+<title>Using Docker and Kubernetes to produce a scalable fraud detection API</title>
+
+<!-- Bootstrap style: bootswatch_cosmo -->
+<link href="https://netdna.bootstrapcdn.com/bootswatch/3.1.1/cosmo/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+
+<style type="text/css">
+/* Let inline verbatim have the same color as the surroundings */
+code { color: inherit; background-color: transparent; }
+/* Let pre tags for code blocks have the same color as the surroundings */
+pre { color: inherit; background-color: transparent; }
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootswatch_cosmo */
+  margin:-50px 0 0; /* negative fixed header height */
+}
+</style>
+
+
+</head>
+
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [('Introduction',
+               1,
+               'section:introduction',
+               'section:introduction'),
+              ('Using Nginx web server to serve a React.js user interface',
+               1,
+               'section:frontend',
+               'section:frontend'),
+              ('Handling front-end requests using Spring',
+               1,
+               'section:webapp',
+               'section:webapp'),
+              ('Using sklearn to build a fraud detection model',
+               1,
+               'section:model',
+               'section:model'),
+              ('Containerizing the model with docker',
+               1,
+               'section:docker',
+               'section:docker'),
+              ('The front-end',
+               2,
+               'section:docker:frontend',
+               'section:docker:frontend'),
+              ('The web and Python applications',
+               2,
+               'section:docker:webapp',
+               'section:docker:webapp'),
+              ('Scaling the model with Kubernetes',
+               1,
+               'section:kubernetes',
+               'section:kubernetes'),
+              ('Pods: Basic commands',
+               2,
+               'section:kubernetes:commands',
+               'section:kubernetes:commands'),
+              ('The service resource',
+               2,
+               'section:kubernates:service',
+               'section:kubernates:service'),
+              ('The deployment resource',
+               2,
+               'section:kubernetes:deployment',
+               'section:kubernetes:deployment'),
+              ('Deploying the Fraud Detection API',
+               2,
+               'section:kubernetes:frauddeployment',
+               'section:kubernetes:frauddeployment'),
+              ('Bibliography', 1, None, '___sec12')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="http://www.cedwards.info">Home</a>
+  </div>
+
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="#section:introduction" style="font-size: 80%;"><b>Introduction</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:frontend" style="font-size: 80%;"><b>Using Nginx web server to serve a React.js user interface</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:webapp" style="font-size: 80%;"><b>Handling front-end requests using Spring</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:model" style="font-size: 80%;"><b>Using sklearn to build a fraud detection model</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:docker" style="font-size: 80%;"><b>Containerizing the model with docker</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:docker:frontend" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The front-end</a></li>
+     <!-- navigation toc: --> <li><a href="#section:docker:webapp" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The web and Python applications</a></li>
+     <!-- navigation toc: --> <li><a href="#section:kubernetes" style="font-size: 80%;"><b>Scaling the model with Kubernetes</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:kubernetes:commands" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Pods: Basic commands</a></li>
+     <!-- navigation toc: --> <li><a href="#section:kubernates:service" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The service resource</a></li>
+     <!-- navigation toc: --> <li><a href="#section:kubernetes:deployment" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The deployment resource</a></li>
+     <!-- navigation toc: --> <li><a href="#section:kubernetes:frauddeployment" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Deploying the Fraud Detection API</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec12" style="font-size: 80%;"><b>Bibliography</b></a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<div class="jumbotron">
+<center><h1>Using Docker and Kubernetes to produce a scalable fraud detection API</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Clive Edwards -->
+
+<center>
+<b>Clive Edwards</b>  (<tt>mail at cedwards.info</tt>)
+</center>
+
+<p>
+<!-- institution(s) -->
+
+<br>
+
+<p>
+<b>Summary.</b> In this report a simple logistic regression model is used to classify credit card transactions as fraudulent or not. A Recall of \( \approx \) 0.8 and Precision of \( \approx \) 0.7 is obtained for a false positive rate of \( \approx \) 5x10 \( ^{-4} \). However, for a model to be useful from a business perspective an understanding of how to deploy the model in the real world is important. Docker and Kubernetes are investigated for this purpose.
+
+<p>
+Skills used:
+
+<ul>
+<li> <b>Model development</b> (Python: NumPy, pandas and sklearn libraries).</li>
+<li> <b>Web server software</b> (Nginx, Flask)</li>
+<li> <b>User Interface development</b> (React.js, Node.js, Spring)</li>
+<li> <b>Containerization software</b> (Docker)</li>
+<li> <b>Container deployment</b> (Kubernetes)</li>
+</ul>
+
+<p>
+
+<p>
+</div> <!-- end jumbotron -->
+
+<h1 id="section:introduction" class="anchor">Introduction</h1>
+
+<p>
+This project is based on the work done by Rinor Maloku in his excellent blog <a href="#fraudtutorial">[1]</a>. He outlines the steps of running a Python application which takes input from a user typed into a browser, processing that and returning an output which is then presented to the user in their browser. He then goes on to consider how to scale the problem to many users using Docker and Kubernetes.
+
+<p>
+In essense the aim of this project is very similar, although the problem the Python application is tasked with, is deciding whether or not the supplied information was derived from a fraudulent credit card transaction. In this way the idea of a scalable method for identifying fraudulent credit card transactions is investigated.
+
+<p>
+The project is divided into the following sections:
+
+<ul>
+<li> <a href="#section:frontend">Using Nginx web server to serve a React.js user interface</a>.</li>
+<li> <a href="#section:webapp">Handling front-end requests using Spring</a>.</li>
+<li> <a href="#section:model">Using sklearn to build a fraud detection model</a>.</li>
+<li> <a href="#section:docker">Containerizing the model with docker</a>.</li>
+<li> <a href="#section:kubernetes">Scaling the model with Kubernetes</a>.</li>
+</ul>
+
+<h1 id="section:frontend" class="anchor">Using Nginx web server to serve a React.js user interface</h1>
+
+<p>
+With Node.js <a href="#node">[2]</a> and NPM <a href="#npm">[3]</a> installed, all the Java dependancies (defined in file package.json) required by the React.js <a href="#react">[4]</a> application (/src/app.js) are installed with 'npm install' which places them in the folder /node_modules. The application can be started with 'nvm start' which is then accessible at localhost:3000. At this point the App.js and index.html files were modified so that the web interface presented to the user be more suitable, as shown in Figure <a href="#fig:./figures/frontend">1</a>.
+
+<p>
+
+<p>
+<center> <!-- figure label: --> <div id="fig:./figures/frontend"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 1:  Modified API interface.  <!-- caption label: fig:./figures/frontend --> </p></center>
+<p><img src="/img/figuresfraud/frontend.png" align="bottom" width=400></p>
+</center>
+
+<p>
+To build the React.js application into static files, able to be served using a web server, the command 'npm run build' is used to generate the static files in the folder /build. After installing Nginx <a href="#nginx">[5]</a>, the contents of the build folder is placed in the correct /html folder such that the default index.html file Nginx serves is accesible (default on Ubuntu is /var/www/html). It should be available at localhost:80.
+
+<p>
+The React app performs the following steps:
+
+<ul>
+<li> sets the url at which a POST call is made - where an application should be listening to process the request.</li>
+<li> retrieves the input text that is sent to the Python application.</li>
+<li> if a suitable response is retrieved display this in the desired format.</li>
+</ul>
+
+<h1 id="section:webapp" class="anchor">Handling front-end requests using Spring</h1>
+
+<p>
+The Spring <a href="#spring">[6]</a> web application requires JDK8 <a href="#jdk">[7]</a> and Maven <a href="#maven">[8]</a> be installed. 'mvn install' will create a folder called /target inside which the web application is packaged as a .jar. This can be started from the target directory with
+'java -jar sentiment-analysis-web-0.0.1-SNAPSHOT.jar --sa.logic.api.url=http://localhost:5000' which also defines where to forward the information from the front-end.
+
+<h1 id="section:model" class="anchor">Using sklearn to build a fraud detection model</h1>
+
+<p>
+scikit-learn <a href="#sklearn">[9]</a> was used to develop a simple logistic regression model for the credit card data <a href="#frauddata">[10]</a>. The data consists of information about credit card transactions made in Sep 2013. It contains the original features time and amount. All of the other 28 features have been anonymised using Principle Component Analysis. A further feature, class, is the response variable (1 if fraud, 0 if not). Of over 280 thousand transactions listed only 492 are classed as fraudulent and as such the dataset is highly unbalanced.
+
+<p>
+There are several approaches to dealing with data in which data from the different classes is highly unbalanced.
+
+<ul>
+<li> Obtaining more data (impractical in this scenario).</li>
+<li> Oversampling the data (adding copies of the under represented class).</li>
+<li> Undersampling the data (reducing the amount of data for the over represented class to bring this in line with the number in the under represented class).</li>
+</ul>
+
+Undersampling was used to make the classes more balanced. All variables including time, amount and the other 28 variables were used as features. 70 % of data was used for training and the remaining for testing. The default Logistic Regression parameters were used apart from C which was tuned by hand to 0.01. After developing the model with the undersampled data, it was tested on the test set of the whole data. Figure <a href="#fig:./figures/recall">2</a> a) shows the resulting Recall-vs-Precision graph with the area under the curve = 0.8 and Figure <a href="#fig:./figures/recall">2</a> b) shows Precision and Recall as a function of threshold probability. The model suggests it is possible to get a Recall of approximately 0.8 and a Precision of 0.7, whilst yielding a Fallout of approximately 5x10 \( ^{-4} \). In this scenario Recall is the main metric of interest because false-positives are more acceptable than false-negatives.
+
+<p>
+
+<p>
+<center> <!-- figure label: --> <div id="fig:./figures/recall"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 2:  Plots showing a) precision vs recall and b) recall and precision as a function of threshold.  <!-- caption label: fig:./figures/recall --> </p></center>
+<p><img src="/img/figuresfraud/recall.png" align="bottom" width=900></p>
+</center>
+
+<p>
+The resulting confusion matrix showing total number of events in each category (i.e. not normalised so the unbalanced nature of the dataset is not accounted for) is shown in Figure <a href="#fig:./figures/confusion_matrix">3</a>.
+
+<p>
+<p>
+<center> <!-- figure label: --> <div id="fig:./figures/confusion_matrix"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 3:  Confusion matrix associated with recall and precision of approximately 0.8.  <!-- caption label: fig:./figures/confusion_matrix --> </p></center>
+<p><img src="/img/figuresfraud/confusion_matrix.png" align="bottom" width=400></p>
+</center>
+
+<p>
+As always there is a tradeoff to be made between Recall, Precision and Fallout, in particular, maintaining high Recall and Precision whilst minimizing Fallout. This could be set by the needs of the business. For example, in the case that the business has a high tolerance of the costs associated with assigning a non fraud as a fraud (false positive), then a higher Recall can be achieved.
+
+<p>
+The model was serealised using the Python pickle module, which is commonly used to enable models to be stored for later use. In this case the model is deserealised in the python application. The python application also does the following:
+
+<ul>
+<li> using Flask, listens for requests on 0.0.0.0:5000. Defines the path at which a POST request can be made.</li>
+<li> extracts the user input (json) and puts this into a Dataframe.</li>
+<li> Loads the model and applies it to the Dataframe.</li>
+<li> Returns the response.</li>
+</ul>
+
+<h1 id="section:docker" class="anchor">Containerizing the model with docker</h1>
+
+<p>
+Docker <a href="#docker">[11]</a> containers enable a piece of software to be run on any system or machine, regardless of environment etc. The main advantages of docker containers are that they:
+
+<ul>
+<li> are resource efficient (no virtual machines).</li>
+<li> are platform independent.</li>
+<li> simplify requirements using base images.</li>
+</ul>
+
+The .dockerfile is used to describe how to build the application. For the fraud detection model there are three separate components, each of which will be put into a separate container.
+
+<h2 id="section:docker:frontend" class="anchor">The front-end</h2>
+
+<p>
+The Nginx software is provided with a base image for Docker. This means that once the base image is defined, the only remaining step is to copy the contents of the build directory to the /usr/share/nginx/html directory in the image (as documented in the Nginx image documentation).
+
+<p>
+To build the docker container so its accessible in the local Docker image registry, the command is just
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>docker build <span style="color: #666666">-</span>t APP_NAME <span style="color: #666666">.</span>
+</pre></div>
+<p>
+Alternatively Docker Hub, a cloud container service, can be used. This requires a Docker account. The steps are:
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>docker login <span style="color: #666666">-</span>u<span style="color: #666666">=</span><span style="color: #BA2121">&quot;$DOCKER_USERNAME&quot;</span> <span style="color: #666666">-</span>p<span style="color: #666666">=</span><span style="color: #BA2121">&quot;$DOCKER_PASSWORD&quot;</span>
+
+docker build <span style="color: #666666">-</span>f Dockerfile <span style="color: #666666">-</span>t $DOCKER_USER_ID<span style="color: #666666">/</span>APP_NAME <span style="color: #666666">.</span>
+
+docker push $DOCKER_USER_ID<span style="color: #666666">/</span>APP_NAME
+
+docker pull $DOCKER_USER_ID<span style="color: #666666">/</span>APP_NAME
+</pre></div>
+<p>
+To run the container
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>docker run <span style="color: #666666">-</span>d <span style="color: #666666">-</span>p <span style="color: #666666">80</span>:<span style="color: #666666">80</span> $DOCKER_USER_ID<span style="color: #666666">/</span>APP_NAME
+
+docker run <span style="color: #666666">-</span>p <span style="color: #666666">80</span>:<span style="color: #666666">80</span> APP_NAME
+</pre></div>
+<p>
+80:80 is used to map the port on the host to the container port. A .dockerignore file can be included to speed up build time of containers, by specifying folders not to process.
+
+<h2 id="section:docker:webapp" class="anchor">The web and Python applications</h2>
+
+<p>
+In the web applications dockerfile two other variables must be defined
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>ENV SA_LOGIC_API_URL http:<span style="color: #666666">//</span>localhost:<span style="color: #666666">5000</span>
+EXPOSE <span style="color: #666666">8080</span>
+</pre></div>
+<p>
+The first defines an environment variable inside the container, allowing the url for the fraud detection API to be provided. The second reminds the user that 80:80 will be used subsequently. The dockerfile for the Python application is
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>FROM ubuntu:latest
+RUN apt<span style="color: #666666">-</span>get update <span style="color: #666666">-</span>y <span style="color: #666666">&amp;&amp;</span> \
+    apt<span style="color: #666666">-</span>get install <span style="color: #666666">-</span>y python3<span style="color: #666666">-</span>pip python<span style="color: #666666">-</span>dev build<span style="color: #666666">-</span>essential
+COPY sa <span style="color: #666666">/</span>app
+WORKDIR <span style="color: #666666">/</span>app
+RUN pip3 install <span style="color: #666666">-</span>r requirements<span style="color: #666666">.</span>txt
+EXPOSE <span style="color: #666666">5000</span>
+ENTRYPOINT [<span style="color: #BA2121">&quot;python3&quot;</span>]
+CMD [<span style="color: #BA2121">&quot;python_app.py&quot;</span>]
+</pre></div>
+<p>
+Following a similar procedure as before, the containers for the web and Python applications can be built. In order to run the full application from the docker images it is important that the ports are set up correctly when issuing docker run commands.
+
+<ul>
+<li> Python application container: 5050:5000</li>
+<li> Web application container: 8080:8080. Also need to change port in which Python application listens by overiding SA_LOGIC_API_URL</li>
+<li> Front-end: 80:80</li>
+</ul>
+
+<h1 id="section:kubernetes" class="anchor">Scaling the model with Kubernetes</h1>
+
+<p>
+Kubernetes <a href="#kubernetes">[12]</a> provides a way to scale an application. It also allows for zero down-time in transitioning to new/old models. Kubernetes provides an API to which users can send requests. In essense, these requests focus on defining the number of instances of a given container which need to be used. This is ideally all achieved without having to deal with hardware optimization and by Kubernetes delivering the requested number of containers of different images in an optimized way. The general structure of Kubernetes is:
+
+<ul>
+<li> API server: providing a way to interact with operating the applications.</li>
+<li> Pods: similar to containers. Each one has a unique IP in the Kubernetes cluster. Communication between pods is done using this. Although pods can have multiple containers, the containers must share the same port space, volume, IP address and execution environment.</li>
+<li> Kubelet: providing a way to monitor the containers.</li>
+</ul>
+
+For the purposes of this project, the minikube version of Kubernetes was used using the virtualbox driver. Kubectl was used to communicate with the Kubernetes API.
+
+<h2 id="section:kubernetes:commands" class="anchor">Pods: Basic commands</h2>
+Pods are specified in .yaml files. These typically define kind: type of Kubernetes resource, name: resources name, image: container image, name: name of container and containerPort: port at which the container is listening. After starting Kubernetes with 'minikube start' a pod can be created using
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>kubectl create <span style="color: #666666">-</span>f RESOURCE_NAME_pod<span style="color: #666666">.</span>yaml
+</pre></div>
+<p>
+To verify running pods
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>kubectl get pods
+</pre></div>
+<p>
+To access the application for de-bugging purposes we can use
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>kubectl port<span style="color: #666666">-</span>forward RESOURCE_NAME <span style="color: #666666">88</span>:<span style="color: #666666">80</span>
+</pre></div>
+
+<h2 id="section:kubernates:service" class="anchor">The service resource</h2>
+
+<p>
+The service resource acts as a way to control a set of pods that provide the same functional service. However, there will typically be pods that provide different functional services. The interaction of these is controlled using Labels. Labels are assigned to all pods that a particular service is intended to target. A selector is defined in the service, detailing which labelled pods to target. Services are also defined in .yaml files. To create a service
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>kubectl create <span style="color: #666666">-</span>f service<span style="color: #666666">-</span>SERVICE_NAME<span style="color: #666666">.</span>yaml
+</pre></div>
+<p>
+To check the state of services
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>kubectl get svc
+</pre></div>
+<p>
+For de-bugging use
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>minikube service SERVICE_NAME
+</pre></div>
+<p>
+which opens a browser pointing to the services IP. After receiving the request, the service forwards the call to a pod. The service acts as a entry point to communicate with multiple pods simultaneously using labels. The LoadBalancer service allows for automatic balancing of the load between pods. In this way the application can be scaled (using more labelled pods) and the computer systems resources used in an optimized way.
+
+<h2 id="section:kubernetes:deployment" class="anchor">The deployment resource</h2>
+
+<p>
+The deployment resource allows for zero down-time, by automating the process of moving between application versions. They are again defined in .yaml files. Several important use cases exist:
+
+<ul>
+<li> A change has been made to the application and needs to be implemented at scale. In order to do this the following steps would be taken:</li>
+
+<ul>
+    <li> Create a new deployment .yaml file in which the new container image is specified. Also specify the number of instances required (replicas).</li>
+    <li> Execute 'kubectl apply -f DEPLOYMENTFILE_NEWNAME.yaml --record</li>
+    <li> Check status with 'kubectl rollout status deployment POD_NAME'</li>
+    <li> Check in browser with 'minikube service SERVICE_NAME'</li>
+</ul>
+
+<li> Changing back to a previous version.</li>
+
+<ul>
+    <li> Check previous versions with 'kubectl rollout history deployment POD_NAME'</li>
+    <li> Specify version to use with 'kubectl rollout undo deployment POD_NAME --to-revision=1</li>
+</ul>
+
+</ul>
+
+<h2 id="section:kubernetes:frauddeployment" class="anchor">Deploying the Fraud Detection API</h2>
+
+<p>
+In order to deploy the Fraud Detection API using Kubernetes several elements must be set up:
+
+<ul>
+<li> Deployment .yaml for the front-end.</li>
+<li> LoadBalancer Service for the front-end to enable an entry point to the front-end pods and balance the load between them.</li>
+<li> Deployment .yaml for the Python application.</li>
+<li> Service for the Python application, again to allow there to be an entry point for these Python application pods.</li>
+<li> Deployment .yaml for the web application.</li>
+<li> LoadBalancer Service for the web application to expose the web application pods externally.</li>
+</ul>
+
+In each case it is important that the pods are labelled and that the service selectors are set appropriately using these labels. Each service acts as an entry point for the associated pods (of different functionality) and therefore provides a means by which the different types of pod interact with each other. In this way the fraud application can
+process a new request and yield an answer.
+
+<h1 id="___sec12" class="anchor">Bibliography </h1>
+
+<p>
+<!-- begin bibliography -->
+
+<ol>
+ <li> <div id="fraudtutorial"></div> <b>R. Maloku</b>. 
+    Learn Kubernetes in Under 3 Hours: A Detailed Guide to Orchestrating Containers,
+    <em>freeCodeCamp</em>,
+    2018.</li>
+ <li> <div id="node"></div> <b>R. Dahl</b>. 
+    Node: JavaScript run time environment that executes JavaScript code outside of a browser.,
+    <em>Node</em>,
+    2009.</li>
+ <li> <div id="npm"></div> <b>I. Schlueter</b>. 
+    npm: package manager for the JavaScript programming language.,
+    <em>npm</em>,
+    2010.</li>
+ <li> <div id="react"></div> <b>J. Walke</b>. 
+    React: A JavaScript library for building user interfaces,
+    <em>React</em>,
+    2013.</li>
+ <li> <div id="nginx"></div> <b>I. Sysoev</b>. 
+    Nginx: High Performance Load Balancer, Web Server &amp; Reverse Proxy,
+    <em>nginx</em>,
+    2004.</li>
+ <li> <div id="spring"></div> <b>Pivotal</b>. 
+    Spring.,
+    <em>spring</em>,
+    2002.</li>
+ <li> <div id="jdk"></div> <b>Oracle</b>. 
+    JDK8: Java SE Development Kit 8.,
+    <em>java</em>,
+    2007.</li>
+ <li> <div id="maven"></div> <b>Apache</b>. 
+    Apache Maven.,
+    <em>maven</em>,
+    2004.</li>
+ <li> <div id="sklearn"></div> <b>D. Cournapeau</b>. 
+    scikit-learn: Machine Learning in Python,
+    <em>Journal of Machine Learning Research</em>,
+    2007.</li>
+<li> <div id="frauddata"></div> <b>M. L. G. -. ULB</b>. 
+    Credit Card Fraud Detection: Anonymized credit card transactions labeled as fraudulent or genuine,
+    <em>Journal of Machine Learning Research</em>,
+    2018.</li>
+<li> <div id="docker"></div> <b>S. Hykes</b>. 
+    Docker.,
+    <em>Docker Inc.</em>,
+    2013.</li>
+<li> <div id="kubernetes"></div> <b>J. Beda, B. Burns, C. McLuckie, B. Grant and T. Hockin</b>. 
+    Kubernetes.,
+    <em>Cloud Native Computing Foundation</em>,
+    2014.</li>
+</ol>
+
+<!-- end bibliography -->
+
+<!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
+
+
+<center style="font-size:80%">
+<!-- copyright --> &copy; 2018, Clive Edwards
+</center>
+
+
+</body>
+</html>
+    
+
+
+                        </div>
+
+</html>

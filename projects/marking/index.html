@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+
+                        <div id="post-content">
+                          <!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="description" content="Making steps towards an efficient and effective marking system">
+
+<title>Making steps towards an efficient and effective marking system</title>
+
+<!-- Bootstrap style: bootswatch_cosmo -->
+<link href="https://netdna.bootstrapcdn.com/bootswatch/3.1.1/cosmo/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+
+<style type="text/css">
+/* Let inline verbatim have the same color as the surroundings */
+code { color: inherit; background-color: transparent; }
+/* Let pre tags for code blocks have the same color as the surroundings */
+pre { color: inherit; background-color: transparent; }
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootswatch_cosmo */
+  margin:-50px 0 0; /* negative fixed header height */
+}
+</style>
+
+
+</head>
+
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [('Motivation', 1, 'section:motivation', 'section:motivation'),
+              ('Methodology',
+               1,
+               'section:methodology',
+               'section:methodology'),
+              ('Usage', 1, 'section:usage', 'section:usage'),
+              ('Bibliography', 1, None, '___sec3')]}
+end of tocinfo -->
+
+<body>
+
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+
+
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="http://www.cedwards.info">Home</a>
+  </div>
+
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="#section:motivation" style="font-size: 80%;">Motivation</a></li>
+     <!-- navigation toc: --> <li><a href="#section:methodology" style="font-size: 80%;">Methodology</a></li>
+     <!-- navigation toc: --> <li><a href="#section:usage" style="font-size: 80%;">Usage</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec3" style="font-size: 80%;">Bibliography</a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<div class="jumbotron">
+<center><h1>Making steps towards an efficient and effective marking system</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Clive Edwards -->
+
+<center>
+<b>Clive Edwards</b>  (<tt>mail at cedwards.info</tt>)
+</center>
+
+<p>
+<!-- institution(s) -->
+
+<br>
+
+<p>
+<b>Summary.</b> This report summarises the development of a marking system aimed at reducing the time taken to mark exercise books of student work whilst at the same time ensuring this process remains effective and is in line with a typical school marking policy. The system uses the RAG 123 marking criteria to assess student understanding of a particular learning objective and then uses this to automatically assign each student individual tailored feedback, including comment, example and next steps/ challenge question. The methodology was used by the author in his teaching duties who recognised an immediate improvement in the quality and consistency of his feedback to students. Using the system also reduced his marking time by over 50%. The feedback it delivered was praised by a headteacher and his department during book scutinies.
+
+<p>
+Skills used:
+
+<ul>
+<li> <b>Programming</b> (Microsoft Visual Basic for Applications).</li>
+</ul>
+
+<p>
+
+</div> <!-- end jumbotron -->
+
+<h1 id="section:motivation" class="anchor">Motivation</h1>
+
+<p>
+As a secondary school teacher in the UK, among my other responsibilities I was tasked with teaching five classes. Marking of students work, mainly collated in exercise books, as per the school marking policy was part of that responsibility. The marking policy made the following requirements:
+
+<ul>
+<li> a developmental target referencing a key skill in the subject should be set.</li>
+<li> there should be a comment on the progress made against a target.</li>
+<li> there should be a positive comment if at all appropriate.</li>
+<li> spelling, capitalisation, gramatical, punctuation and verb errors should be identified and corrected.</li>
+<li> where work is marked and targets are given, time in subsequent lessons should be given so that the student can read their feedback and write a sentence in response.</li>
+<li> further feedback on students responses should be provided where appropriate.</li>
+</ul>
+
+With an average of 25 students per class and teaching five classes on average per day, this amounted to well over 100 exercise books to keep marked up to date. Finding an effective and efficient method to deal with this responsibility became a very important and pressing issue, something I think many if not all teachers would agree with.
+
+<h1 id="section:methodology" class="anchor">Methodology</h1>
+Mathematics as a secondary school subject can be considered as a collection of inter-dependent subjects. This lends itself to being taught in a particular order, even if this is not always possible because of the requirement to follow prescribed schemes of work. Even so, each topic itself can be uniquely constrained by the learning objectives for a lesson/ series of lessons and how well each student meets those objectives, taking into account their individual starting point, can form the basis of their target(s) for that topic/ section of work.
+
+<p>
+There are many ways to rank a students achievement of a learning objective. One particular method is the RAG 123 system, which I learnt about from my subject mentor during my PGCE and through <a href="#mrbenney">[1]</a>, <a href="#kevs">[2]</a>. The key with this method is that it provides quick and concise feedback that is easy to understand. It was this which was adapted for providing tailored feedback to students. Essentially once a student completes a section of work, their understanding/ progress is graded using RAG whereby
+
+<ul>
+<li> R - red - means the student has not understood.</li>
+<li> A - amber - the student kind of gets it, but there are some gaps in their understanding.</li>
+<li> G - green - the student understands fully.</li>
+</ul>
+
+The 123 element also allows the students attitude to their learning to be graded, 1 being worst, 3 being excellent. Organising lessons according to learning objectives/ targets for each topic and using the RAG 123 system to catagorise a students understanding and attitude, allowed for automation of much of the marking process and allowed for the different aspects of the marking policy to be met. An example of the output of the system, a student feedback sheet, is shown in Figure <a href="#fig:./figures/ExampleFeedbackZoomedFinalM">1</a>. An individualised one of these would be automatically produced per student per learning objective.
+
+
+<center> <!-- figure label: --> <div id="fig:./figures/ExampleFeedbackZoomedFinalM"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 1:  Screenshot showing example student feedback sheet.  <!-- caption label: fig:./figures/ExampleFeedbackZoomedFinalM --> </p></center>
+<p><img src="/img/figuresmarking/ExampleFeedbackZoomedFinalM.png" align="bottom" width=1000></p>
+</center>
+
+<p>
+The strucuture of the feedback sheet ensures the criteria of the marking policy are met. In particular:
+
+<ul>
+<li> a developmental target referencing a key skill in the subject should be set. Met by challenge question on right hand side (see Figure <a href="#fig:./figures/ExamplesQuestionsFinal">2</a> for examples and questions provided for a particular learning objective).</li>
+<li> there should be a comment on the progress made against a target. Met by individualised comment written in text box at top of feedback sheet.</li>
+<li> there should be a positive comment if at all appropriate. Met as above.</li>
+</ul>
+
+
+<center> <!-- figure label: --> <div id="fig:./figures/ExamplesQuestionsFinal"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 2:  Screenshot showing input examples and challenge questions for topic being considered.  <!-- caption label: fig:./figures/ExamplesQuestionsFinal --> </p></center>
+<p><img src="/img/figuresmarking/ExamplesQuestionsFinal.png" align="bottom" width=1000></p>
+</center>
+
+<p>
+For the last three requirements the following strategy was used:
+
+<ul>
+<li> spelling, capitalisation, gramatical, punctuation and verb errors should be identified and corrected. These were identified in students work and students were asked to write spelling mistakes on their feedback sheet three times (particularly important for Maths as it involves lots of key words and terminology).</li>
+<li> where work is marked and targets are given, time in subsequent lessons should be given so that the student can read their feedback and write a sentence in response. Space provided on sheet at bottom (guidelines given to students on what to write depending how they got on/ feel about their work).</li>
+<li> further feedback on students responses should be provided where appropriate. Usually done with a quick check of students responses to challenge questions.</li>
+</ul>
+
+<h1 id="section:usage" class="anchor">Usage</h1>
+The layout of the main window is shown in Figure <a href="#fig:./figures/MainWindowFinalM">3</a>.
+
+
+<center> <!-- figure label: --> <div id="fig:./figures/MainWindowFinalM"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 3:  Screenshot showing main window where student data is input.  <!-- caption label: fig:./figures/MainWindowFinalM --> </p></center>
+<p><img src="/img/figuresmarking/MainWindowFinalM.png" align="bottom" width=1000></p>
+</center>
+
+<p>
+Much of the system is automated, requiring only the following key information is input by the teacher:
+
+<ul>
+<li> student names if this is the first time used.</li>
+<li> learning objective, i.e. solve linear equations.</li>
+<li> each students RAG 123 ranking for the learning objective written.</li>
+<li> images of the examples and challenge questions for the different R, A and G alternatives (see Figure <a href="#fig:./figures/ExamplesQuestionsFinal">2</a>).</li>
+</ul>
+
+Once this information is input and the appropriate button pressed, the input data is processed such as to give each student their individualised feedback sheet including example, challenge question and written feedback. By selecting the apppropriate printer and print range from the dialog that is subsequently shown, feedback sheets are printed with two feedback sheets per A4 page. The system also keeps a record of all students RAG 123 marks globally accross all learning objectives (see Figure <a href="#fig:./figures/OverallStatisticsFinal">4</a>)
+
+
+<center> <!-- figure label: --> <div id="fig:./figures/OverallStatisticsFinal"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 4:  Screenshot showing record of overall statistics.  <!-- caption label: fig:./figures/OverallStatisticsFinal --> </p></center>
+<p><img src="/img/figuresmarking/OverallStatisticsFinal.png" align="bottom" width=1000></p>
+</center>
+
+<p>
+and per learning objective (see Figure <a href="#fig:./figures/IndividualLearningObjectiveFinalM">5</a>), where in the latter, further basic statistics are provided such as proportions of students getting each RAG rating. Its as simple as that and I've used the system to great effect with my classes.
+
+<center> <!-- figure label: --> <div id="fig:./figures/IndividualLearningObjectiveFinalM"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 5:  Screenshot of record of feedback for individual learning objective.  <!-- caption label: fig:./figures/IndividualLearningObjectiveFinalM --> </p></center>
+<p><img src="/img/figuresmarking/IndividualLearningObjectiveFinalM.png" align="bottom" width=1000></p>
+</center>
+
+<h1 id="___sec3" class="anchor">Bibliography </h1>
+
+<p>
+<!-- begin bibliography -->
+
+<ol>
+ <li> <div id="mrbenney"></div> <b>mrbenney.wordpress</b>. 
+    mrbenney.wordpress,
+    <a href="https://mrbenney.wordpress.com/2014/01/16/my-rag123-marking-experiment" target="_self"><tt>https://mrbenney.wordpress.com/2014/01/16/my-rag123-marking-experiment</tt></a>.</li>
+ <li> <div id="kevs"></div> <b>kevs-variability-thoughts.blogspot</b>. 
+    kevs -variability-thoughts-blogspot,
+    <a href="http://kevs-variability-thoughts.blogspot.com/2013/11/rag-to-clean-up-marking.html" target="_self"><tt>http://kevs-variability-thoughts.blogspot.com/2013/11/rag-to-clean-up-marking.html</tt></a>.</li>
+</ol>
+
+<!-- end bibliography -->
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>
+</pre></div>
+<p>
+
+<!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
+
+
+<center style="font-size:80%">
+<!-- copyright --> &copy; 2018, Clive Edwards
+</center>
+
+
+</body>
+</html>
+    
+
+
+                        </div>
+
+</html>

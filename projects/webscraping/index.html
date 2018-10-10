@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+
+                        <div id="post-content">
+                          <!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="description" content="Web Scraping text data with Scrapy and Beautiful Soup">
+
+<title>Web Scraping text data with Scrapy and Beautiful Soup</title>
+
+<!-- Bootstrap style: bootswatch_cosmo -->
+<link href="https://netdna.bootstrapcdn.com/bootswatch/3.1.1/cosmo/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+
+<style type="text/css">
+/* Let inline verbatim have the same color as the surroundings */
+code { color: inherit; background-color: transparent; }
+/* Let pre tags for code blocks have the same color as the surroundings */
+pre { color: inherit; background-color: transparent; }
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootswatch_cosmo */
+  margin:-50px 0 0; /* negative fixed header height */
+}
+</style>
+
+
+</head>
+
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [('Introduction/ Data Used',
+               1,
+               'section:introduction',
+               'section:introduction'),
+              ('Extracting information for a single member',
+               1,
+               'section:singlemember',
+               'section:singlemember'),
+              ('Getting access to the html', 2, None, '___sec2'),
+              ('Python library used: Beautiful Soup',
+               2,
+               'section:singlemember:beautifulsoup',
+               'section:singlemember:beautifulsoup'),
+              ('Extracting information for multiple members',
+               1,
+               'section:multiplemembers',
+               'section:multiplemembers'),
+              ('Python library used: Scrapy',
+               2,
+               'section:singlemember:scrapy',
+               'section:singlemember:scrapy'),
+              ('Output', 1, 'section:output', 'section:output'),
+              ('Further modifications',
+               1,
+               'section:NextSteps',
+               'section:NextSteps'),
+              ('Bibliography', 1, None, '___sec8')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="http://www.cedwards.info">Home</a>
+  </div>
+
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="#section:introduction" style="font-size: 80%;"><b>Introduction/ Data Used</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:singlemember" style="font-size: 80%;"><b>Extracting information for a single member</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Getting access to the html</a></li>
+     <!-- navigation toc: --> <li><a href="#section:singlemember:beautifulsoup" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Python library used: Beautiful Soup</a></li>
+     <!-- navigation toc: --> <li><a href="#section:multiplemembers" style="font-size: 80%;"><b>Extracting information for multiple members</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:singlemember:scrapy" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Python library used: Scrapy</a></li>
+     <!-- navigation toc: --> <li><a href="#section:output" style="font-size: 80%;"><b>Output</b></a></li>
+     <!-- navigation toc: --> <li><a href="#section:NextSteps" style="font-size: 80%;"><b>Further modifications</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec8" style="font-size: 80%;"><b>Bibliography</b></a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<div class="jumbotron">
+<center><h1>Web Scraping text data with Scrapy and Beautiful Soup</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Clive Edwards -->
+
+<center>
+<b>Clive Edwards</b>  (<tt>mail at cedwards.info</tt>)
+</center>
+
+<p>
+<!-- institution(s) -->
+
+<br>
+
+<p>
+<b>Summary.</b> There is a wealth of information available on the internet. Web scraping is the process which enables people to collate and start to organise this data into a more structured format for further analysis. This project investigates this process using data provided by the UK Parliment, in particular the financial interests of members of the House of Commons. Attributes of the html data motivate the use of two Python libraries, Beautiful Soup and Scrapy, for this work.
+
+<p>
+Skills used:
+
+<ul>
+<li> <b>Programming</b> (Python: Requests, Beautiful Soup and Scrapy libraries).</li>
+<li> <b>Dichipering html mark-up</b> (firefox 'Inspect Element' feature).</li>
+</ul>
+
+<p>
+
+<p>
+</div> <!-- end jumbotron -->
+
+<h1 id="section:introduction" class="anchor">Introduction/ Data Used</h1>
+The contents page for the data set chosen for this project is located on the UK Parliment publications webpage <a href="#UKParlimentData">[1]</a> and was motivated for use as a data cleaning project on Rachael Tatman's blog <a href="#TatmanBlog">[2]</a>. The data essentially lists the financial interests of all the members of the House of Commons. This data set was chosen for several reasons:
+
+<ul>
+<li> The data for each member is provided on a separate web page using different text formats.</li>
+<li> The data provided for each member is not uniform in format and different data is provided under different data fields.</li>
+</ul>
+
+Both of these reasons make it non trivial to extract the data into a structured format, hence why it was chosen for study.
+
+<h1 id="section:singlemember" class="anchor">Extracting information for a single member</h1>
+
+<p>
+In order to get a better understanding of the data the firefox browsers Inspect Element tool was used to inspect the HTML mark-up. A number of examples of different members individual pages were first inspected using this method. The first thing that became apparent is that there is some consistency in the data accross all members records. In particular, all of the members data is always contained within a \( < \) div \( > \) tag with an id of 'mainTextBlock'. In addition, all the members data is contained within paragraph (\( < \) p \( > \)) tags. The name and contituency information is contained within the first \( < \) strong \( > \) tag  within the \( < \) div \( > \) tag as described earlier. The data is also grouped according to a numbered category, i.e. 1. Employment and Earnings, which are found in the subsequent \( < \) strong \( > \) tags inside a \( < \) p \( > \) tag. An example of this is shown in Figure <a href="#fig:./figures/TypeIndent1Indent2">1</a>, which shows an example of one of the members pages and its html from the Inspect element tool (note - names have been removed to respect the members privacy).
+
+
+<center> <!-- figure label: --> <div id="fig:./figures/TypeIndent1Indent2"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 1:  Example of one of the members html pages involving two identations of class Indent1 and Indent2.  <!-- caption label: fig:./figures/TypeIndent1Indent2 --> </p></center>
+<p><img src="/img/figureswebscraping/TypeIndent1Indent2.png" align="bottom" width=1200></p>
+</center>
+
+<p>
+It illustrates one example of the format of the data contained for members between the category information. In this instance, a first piece of detail is provided in a \( < \) p \( > \) tag of class indent. Within this exists a second set of independant/ listed statements, related to or coming under the previous \( < \) p \( > \) indent tag. These are within a \( < \) p \( > \) tag of class indent2 as shown. The data continues in another category, 8. Miscellaneous , being listed in the first level of detail \( < \) p \( > \) tag of class indent, which again stores independent elements but which come under that category.
+
+<p>
+A second example of how a members data is organised is shown in Figure <a href="#fig:./figures/TypeDetail">2</a>. In this case \( < \) p \( > \) tags with a class indent are again used inside category information (as detailed previously), listing separate information points under that category. However, the format of information inside the \( < \) p \( > \) indent tag is different, consisting of separate text statements with a subject identifiable before the : (i.e. Name of Donor) and a description after, separated by \( < \) br \( > \) statements.
+
+
+<center> <!-- figure label: --> <div id="fig:./figures/TypeDetail"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 2:  Example of one of the members html pages involving statements separated by  <linebreak> expressions inside an indentation of class indent  <!-- caption label: fig:./figures/TypeDetail --> </p></center>
+<p><img src="/img/figureswebscraping/TypeDetail.png" align="bottom" width=1200></p>
+</center>
+
+<p>
+On further inspection of other members records it became clear that combinations of the layouts described above exist, making it important that whatever method was used to extract the information, that it be able to loop through the elements one by one, and depending on what the sequence is, process the data accordingly.
+
+<h2 id="___sec2" class="anchor">Getting access to the html </h2>
+The Requests library <a href="#Requests">[3]</a> was used to send HTTP requests to the website page discussed previously.
+
+<h2 id="section:singlemember:beautifulsoup" class="anchor">Python library used: Beautiful Soup</h2>
+
+<p>
+The Beautiful Soup <a href="#BSoup">[4]</a> library was used to come up with a procedure to extract data from individual pages once the structure had been identified, as explained previously.
+
+<p>
+
+
+<h1 id="section:multiplemembers" class="anchor">Extracting information for multiple members</h1>
+
+<h2 id="section:singlemember:scrapy" class="anchor">Python library used: Scrapy</h2>
+
+<p>
+The library Scrapy <a href="#Scrapy">[5]</a> was used to automate retrival of the information accross multiple webpages. In essense the code created for use with individual pages with Beautiful Soup was pasted in the parse method within the Scrapy project created for this analysis and the response text used for further analysis of the html. Different Scrapy Field objects were created to store relevant data elements found using Beautiful Soup and these then processed with the yield method. Output was directed to csv with the delimiter set to a character unused in the text (#), following the instructions provided by <a href="#delimiter">[6]</a>.
+
+<h1 id="section:output" class="anchor">Output</h1>
+A screenshot showing the retreived data in csv format is shown in Figure <a href="#fig:./figures/output">3</a>. Data has been successfully scraped from the webpage intended, accross multiple web pages for different members with widely varying formats and with data captured into various columns. Name and category data are self explanatory. The detail column contains data from within the  \( < \) p \( > \)  tags of class indent, each a separate item under a specific category so in a unique row. Data within the \( < \) p \( > \) tags of class type indent 2 is shown in the DetailTwo column. Again if a list of items exists, because these
+refer to separate items, they are displayed on a separate row.
+
+
+<center> <!-- figure label: --> <div id="fig:./figures/output"></div> <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 3:  Example output of csv format.  <!-- caption label: fig:./figures/output --> </p></center>
+<p><img src="/img/figureswebscraping/output.png" align="bottom" width=1200></p>
+</center>
+
+<p>
+Data contained within specifically named elements in a list, with the name before the :, are separated into separate columns, named according to the information before the :.
+
+<h1 id="section:NextSteps" class="anchor">Further modifications</h1>
+
+<p>
+Clearly the data as shown in its csv format would need further processing before any serious analysis could be done. For example, there is some level of duplication of data which would need to be removed. In particular in its current state when data is contained in a list in \( < \) p \( > \) tags between \( < \) br \( > \) tags, this information although separated into columns, is also shown in the detail column. The most crucial next step in processing this data however, would be trying to find a way in which to further evaluate and group the data in the detail column, as it currently contains a series of strings. This would most obviously be done using key word identification to group related data into further columns.
+
+<h1 id="___sec8" class="anchor">Bibliography </h1>
+
+<p>
+<!-- begin bibliography -->
+
+<ol>
+ <li> <div id="UKParlimentData"></div> <b>UKParliament</b>. 
+    The Register of Members' Financial Interests As at 13 August 2018,
+    <em>House of Commons Publications</em>,
+    2018.</li>
+ <li> <div id="TatmanBlog"></div> <b>R. Tatman</b>. 
+    Making Noise and Hearing Things,
+    <em>Blog</em>,
+    2018.</li>
+ <li> <div id="Requests"></div> <b>K. Reitz</b>. 
+    Requests: HTTP for Humans,
+    <em>Requests</em>,
+    2018-06-14.</li>
+ <li> <div id="BSoup"></div> <b>L. Richardson</b>. 
+    Beautiful Soup 4.,
+    <em>Beautiful Soup</em>,
+    2017-05-07.</li>
+ <li> <div id="Scrapy"></div> <b>Scrapinghub</b>. 
+    Scrapy: An open source and collaborative framework for extracting the data you need from websites. In a fast, simple, yet extensible way.,
+    <em>Scrapinghub Ltd</em>,
+    2018-07-12.</li>
+ <li> <div id="delimiter"></div> <b>jbinfo</b>. 
+    jbinfo @ github,
+    <em>github</em>,
+    2014.</li>
+</ol>
+
+<!-- end bibliography -->
+
+<!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
+
+
+<center style="font-size:80%">
+<!-- copyright --> &copy; 2018, Clive Edwards
+</center>
+
+
+</body>
+</html>
+    
+
+
+                        </div>
+
+</html>

@@ -1,0 +1,496 @@
+
+Theory
+
+branching ratio
+\begin{figure}[!htbp]
+  \begin{center}
+    \leavevmode
+    \ifpdf
+      \includegraphics[width=0.55\linewidth]{BRHSM.eps}
+    \else
+     \includegraphics[bb = 92 86 545 742, width=0.55\linewidth]{BRHSM.eps}
+    \fi
+    \caption{Branching ratios for the SM Higgs boson as a function of its mass \citep{Djouadi}.}
+    \label{fig_SMHiggsBR}
+  \end{center}
+  \end{figure}
+
+
+higgs production
+\begin{figure}[!htbp]
+  \begin{center}
+    \leavevmode
+    \ifpdf
+      \includegraphics[width=0.75\linewidth]{SMProductionModesNew.eps}
+    \else
+      \includegraphics[bb = 92 86 545 742, width=0.55\linewidth]{SMProductionModesNew.eps}
+    \fi    
+%\begin{lpic}{SMProductionModesNew(0.36)}
+%\lbl[t]{50,120;(a)}
+%\end{lpic}       
+   %\lbl[t]{183,131;\colourbox{White}{\begin{myfontsizeAriel}GF\end{myfontsizeAriel}}}     
+    \caption{Production cross-sections for the SM Higgs boson as a function of Higgs boson mass for a LHC centre of mass energy $\sqrt{s}$ = 7 $\TeV$ \citep{SMHiggsProductionDiagram}.}
+    \label{fig_SMHiggsProductionDiagram}
+  \end{center}
+\end{figure}
+% or \citep{LHCHiggsCrossSectionWorkingGroup2011}.
+
+---------------------------------
+
+
+Detector
+
+ \begin{figure}[!htbp]
+  \begin{center}
+    \leavevmode
+    \ifpdf
+      \includegraphics[width=0.75\linewidth]{AtlasDetector.jpeg}
+    \else
+      \includegraphics[width=0.75\linewidth]{AtlasDetector.jpeg}
+    \fi
+    \caption{Schematic layout of the ATLAS detector showing the major sub-detectors \citep{Collaboration2008d}.}
+    \label{fig_AtlasDetector}
+  \end{center}
+\end{figure}
+ 
+
+
+\begin{figure}[!htbp]
+  \begin{center}
+    \leavevmode
+    \ifpdf
+ \includegraphics[width=0.75\linewidth]{triggerOverview.jpeg}
+    \else
+    \includegraphics[width=0.75\linewidth]{triggerOverview.jpeg}
+    \fi
+    \caption{Overview of ATLAS Triggering system \citep{A.Gesualdi-Mello2002}.}
+    \label{fig_triggerSystem}
+  \end{center}
+\end{figure}
+
+
+------------------------------------------
+
+Signal and background 
+
+\begin{figure}[!htbp]
+  \begin{center}
+    \leavevmode
+    \ifpdf
+      \includegraphics[width=0.55\linewidth]{f_shg_event.pdf}
+    \else
+     \includegraphics[bb = 92 86 545 742, width=0.55\linewidth]{f_shg_event.pdf}
+    \fi
+    \caption{Phenomenological model of the interaction of a proton-proton collision at high energy scale.  \citep{Eventsimul}}
+    \label{fig_Simulation}
+  \end{center}
+  \end{figure}
+
+
+Electron eta and et
+
+\begin{figure}[!htbp]
+  \centering
+\subfigure{\label{fig:gg2}%
+\begin{lpic}{MOTIVATIONPLOTS_ELECTRONCheckDataComparison_pT_Zee_NoneInCrack_WithCorrections_BaselineMe_LowMass_Corrected_mh200(0.36)}
+\lbl[t]{70,130;(a)}
+\lbl[t]{15,11;\begin{rotate}{90}\colorbox{White}
+{\begin{myfontsize}Data/MC\end{myfontsize}}\end{rotate}}
+\end{lpic}         
+}    
+\subfigure{\label{fig:gg2}%
+\begin{lpic}{MOTIVATIONPLOTS_ELECTRONCheckDataComparison_pT_Zee_OneInCrack_WithCorrections_BaselineMe_LowMass_Corrected_mh200(0.36)}
+\lbl[t]{70,130;(b)}
+\lbl[t]{15,11;\begin{rotate}{90}\colorbox{White}
+{\begin{myfontsize}Data/MC\end{myfontsize}}\end{rotate}}
+\end{lpic}         
+}   
+\\*
+\subfigure{\label{fig:gg2}%
+\begin{lpic}{MOTIVATIONPLOTS_ELECTRONCheckDataComparison_eta_ele_WithCorrectionsNotInCrack_BaselineMe_LowMass_Corrected_mh200(0.36)}
+\lbl[t]{40,130;(c)}
+\lbl[t]{15,11;\begin{rotate}{90}\colorbox{White}
+{\begin{myfontsize}Data/MC\end{myfontsize}}\end{rotate}}
+\end{lpic}         
+}  
+\subfigure{\label{fig:gg2}%
+\begin{lpic}{MOTIVATIONPLOTS_ELECTRONCheckDataComparison_eta_ele_WithCorrectionsInCrack_BaselineMe_LowMass_Corrected_mh200(0.36)}
+\lbl[t]{40,130;(d)}
+\lbl[t]{15,11;\begin{rotate}{90}\colorbox{White}
+{\begin{myfontsize}Data/MC\end{myfontsize}}\end{rotate}}
+\end{lpic}         
+}   
+  \caption{Comparison of data and Monte Carlo $\et$ and $\eta$ distributions for electrons used in this analysis. The leftmost plots (not in crack) corresponds to events with none of the selected electrons in the crack. The rightmost (in crack) plots correspond to events with at least one selected electron lying in the crack region.}
+  \label{fig:plot_Electrons_DATAMCComparison}
+\end{figure}	
+
+
+muons
+
+
+\begin{figure}[!htbp]
+  \centering
+  \subfigure{\label{fig:VBF3}%
+\begin{lpic}{MOTIVATIONPLOTS_MUONCheckDataComparison_pT_muo_aftercorrection_BaselineMe_LowMass_Corrected_mh200(0.36)}
+\lbl[t]{80,130;(a)}
+\lbl[t]{15,11;\begin{rotate}{90}\colorbox{White}
+{\begin{myfontsize}Data/MC\end{myfontsize}}\end{rotate}}
+\end{lpic} 
+}
+  \subfigure{\label{fig:VBF3}%
+\begin{lpic}
+{MOTIVATIONPLOTS_MUONCheckDataComparison_eta_muo_aftercorrection_BaselineMe_LowMass_Corrected_mh200(0.36)}
+\lbl[t]{50,130;(b)}
+\lbl[t]{15,11;\begin{rotate}{90}\colorbox{White}
+{\begin{myfontsize}Data/MC\end{myfontsize}}\end{rotate}}
+\end{lpic} 
+}
+  \caption{Distributions of muon (a) $\pt$ and (b) $|\eta|$ for muons used in this analysis as detailed in Section \ref{MuonSelection}. }
+  \label{fig:plot_Muons_DATAMCComparison}
+\end{figure}			
+
+
+\begin{figure}[!htbp]
+  \centering
+\subfigure{\label{fig:gg2}%   
+\begin{lpic}{OBJECT_AFTERSELECTION_Updated_muo_eff_pT_afterselection_Sample_comparison(0.36)}
+\lbl[t]{50,40;(a)}
+\lbl[t]{100,84;\colorbox{White}
+{\begin{myfontsize}\begin{tabular}{l}VBF \\ GF \\ $\toptop$\end{tabular}\end{myfontsize}}}
+\end{lpic} 
+}             
+\subfigure{\label{fig:VBF2}%
+\begin{lpic}{OBJECT_AFTERSELECTION_Updated_muo_eff_eta_afterselection_Sample_comparison(0.36)}
+\lbl[t]{50,40;(c)}
+\end{lpic} 
+}
+\\*
+\subfigure{\label{fig:OBJECT_AFTERSELECTION_Updated_muo_fr_pT}%        
+\begin{lpic}{OBJECT_AFTERSELECTION_Updated_muo_fr_pT_afterselection_Sample_comparison(0.36)}
+\lbl[t]{50,40;(b)}
+\end{lpic} 
+}        
+\subfigure{\label{fig:OBJECT_AFTERSELECTION_Updated_muo_fr_eta}%
+\begin{lpic}{OBJECT_AFTERSELECTION_Updated_muo_fr_eta_afterselection_Sample_comparison(0.36)}
+\lbl[t]{50,40;(d)}
+\end{lpic} 
+}
+\caption[Muon reconstruction efficiency and mis-identification rate for signal and Backgrounds.]{Muon reconstruction efficiency (upper plots) and mis-identification rate (lower plots) as a function of (a,b) $\pt$ and (c,d) $|\eta|$ for VBF signal (filled circles), GF signal (open circles),$\toptop$ (filled squares) and \ztomm$\;$(filled triangles) after the pre-selection of muons described in Section \ref{MuonSelection}. Signal components correspond to the $\mH$ = 200\,$\Gcs$ sample.}
+  \label{fig:muonEfficAfter}
+\end{figure}
+
+
+Jet
+
+\begin{figure}[!htbp]
+  \centering
+\subfigure{\label{fig:gg2}%
+\begin{lpic}{OBJECT_AFTERSELECTION_Updated_jet_eff_pT_afterselection_Sample_comparison(0.36)}
+\lbl[t]{55,40;(a)}
+\lbl[t]{152,78;\colorbox{White}
+{\begin{myfontsize}\begin{tabular}{l}VBF \\  \\ $\toptop$ \\ \\ Z$\mu\mu$+jets\end{tabular}\end{myfontsize}}}
+\end{lpic} 
+}              
+\subfigure{\label{fig:VBF2}%
+\begin{lpic}{OBJECT_AFTERSELECTION_Updated_jet_eff_eta_afterselection_Sample_comparison(0.36)}
+\lbl[t]{55,40;(b)}
+\end{lpic} 
+}
+\caption[Jet reconstruction efficiency for signal and backgrounds]{Jet reconstruction efficiency as a function of (a) $\pt$  and (b) $|\eta|$ for VBF component of signal (filled circles), $\toptop$ (filled squares) and \ztomm +jets (filled triangles) after the preselection of jets described in Section \ref{JetSelection}. The signal sample corresponds to $\mH$ = 200\,$\Gcs$.}
+\label{fig:jetRecoEfficAfterselection}
+\end{figure}
+
+-------------------------------- 
+
+
+Selection
+
+\begin{figure}[!htbp]
+  \centering
+%\subfigure[]{\label{fig:VBF3}\includegraphics[width=0.5\textwidth]{}}
+\subfigure{\label{fig:gg3}%\includegraphics[width=0.5\textwidth]{MOTIVATIONPLOTS_nelec_ee_BaselineMe_LowMass_mh200.pdf}} 
+\begin{lpic}{MOTIVATIONPLOTS_DataComparison_nelec_ee_BaselineMe_LowMass_Corrected_mh200(0.36)}
+\lbl[t]{60,130;(a)}
+\lbl[t]{15,11;\begin{rotate}{90}\colorbox{White}{\begin{myfontsize}Data/MC\end{myfontsize}}\end{rotate}}
+%\lbl[t]{155,124;\mbox{\begin{myfontsizeTINYTINY}GF(x1)\end{myfontsizeTINYTINY}}}
+%\lbl[t]{155,124;\mbox{\begin{myfontsizeTINYTINY}GF\end{myfontsizeTINYTINY}}}
+\end{lpic}
+%\colorbox{White}{
+}
+\subfigure{\label{fig:VB4}
+\begin{lpic}{MOTIVATIONPLOTS_DataComparison_nmuo_ee_BaselineMe_LowMass_Corrected_mh200(0.36)}
+\lbl[t]{70,130;(b)}
+\lbl[t]{15,11;\begin{rotate}{90}\colorbox{White}{\begin{myfontsize}Data/MC\end{myfontsize}}\end{rotate}}
+\end{lpic}
+}
+\\*
+\subfigure{\label{fig:gg3}%\includegraphics[width=0.5\textwidth]{MOTIVATIONPLOTS_nelec_ee_BaselineMe_LowMass_mh200.pdf}} 
+\begin{lpic}{MOTIVATIONPLOTS_DataComparison_nelec_mm_BaselineMe_LowMass_Corrected_mh200(0.36)}
+\lbl[t]{70,130;(c)}
+\lbl[t]{15,11;\begin{rotate}{90}\colorbox{White}{\begin{myfontsize}Data/MC\end{myfontsize}}\end{rotate}}
+\end{lpic}
+}
+\subfigure{\label{fig:VB4}%\includegraphics[width=0.5\textwidth]{MOTIVATIONPLOTS_nelec_ee_BaselineMe_LowMass_mh200.pdf}} 
+\begin{lpic}{MOTIVATIONPLOTS_DataComparison_nmuo_mm_BaselineMe_LowMass_Corrected_mh200(0.36)}
+\lbl[t]{60,130;(d)}
+\lbl[t]{15,11;\begin{rotate}{90}\colorbox{White}{\begin{myfontsize}Data/MC\end{myfontsize}}\end{rotate}}
+\end{lpic}
+}
+\caption{Distribution of electron and muon multiplicity in events with two electrons or two muons. Signal corresponds to the $\mH$ = 200\,$\Gcs$ sample and the contribution from each background (stacked) is shown.}
+\label{fig:plot_3lepVeto}
+\end{figure}
+
+
+Distribution of electron multiplicity in events with two electrons or two muons. Signal corresponds to the $\mH$ = 200\,$\Gcs$ sample and the contribution from each background (stacked) is shown.
+
+
+
+\begin{figure}[!htbp]
+  \centering
+\subfigure{\label{fig:gg3}%\includegraphics[width=0.5\textwidth]{MOTIVATIONPLOTS_nelec_ee_BaselineMe_LowMass_mh200.pdf}} 
+\begin{lpic}{MOTIVATIONPLOTS_DataComparison_charge_productSelectedLeptons_ee_BaselineMe_LowMass_Corrected_mh200(0.36)}
+\lbl[t]{50,130;(a)}
+\lbl[t]{15,11;\begin{rotate}{90}\colorbox{White}{\begin{myfontsize}Data/MC\end{myfontsize}}\end{rotate}}
+\lbl[t]{187,14;\colorbox{White}{\begin{myfontsizeMedium}[e]\end{myfontsizeMedium}}}
+\end{lpic} 
+}
+\subfigure{\label{fig:VB4}%\includegraphics[width=0.5\textwidth]{MOTIVATIONPLOTS_nelec_ee_BaselineMe_LowMass_mh200.pdf}} 
+\begin{lpic}{MOTIVATIONPLOTS_DataComparison_charge_productSelectedLeptons_mm_BaselineMe_LowMass_Corrected_mh200(0.36)}
+\lbl[t]{50,130;(b)}
+\lbl[t]{15,11;\begin{rotate}{90}\colorbox{White}
+{\begin{myfontsize}Data/MC\end{myfontsize}}\end{rotate}}
+\lbl[t]{187,14;\colorbox{White}{\begin{myfontsizeMedium}[e]\end{myfontsizeMedium}}}
+\end{lpic} 
+}
+\caption{Distribution of products of lepton charges for (a) \ztoee$\;$and (b) \ztomm$\;$channels for the $\mH$ = 200\,$\Gcs$ sample and backgrounds (stacked).}
+\label{fig:plot_OppCharge}
+\end{figure}
+
+
+
+\begin{figure}[!htbp]
+  \centering
+\subfigure{\label{fig:etmiss_1}%
+\begin{lpic}{OBJECT_SignalEtmissComparison(0.36)}
+\lbl[t]{60,130;(a)}
+\end{lpic}  
+}
+\subfigure{\label{fig:etmiss_2}%
+\begin{lpic}{MOTIVATIONPLOTS_DataComparison_etmissMETLocHadTopo_Comparison_BaselineMe_LowMass_Corrected_mh200(0.36)}
+\lbl[t]{60,130;(b)}
+\lbl[t]{15,11;\begin{rotate}{90}\colorbox{White}
+{\begin{myfontsize}Data/MC\end{myfontsize}}\end{rotate}}
+\lbl[t]{136,127;\colorbox{White}{\begin{myfontsizeTINY}GF(x1)\end{myfontsizeTINY}}}
+\end{lpic}  
+}
+\\*
+  \subfigure{\label{fig:etmiss_3}%  
+\begin{lpic}{PILEUP_Updated_Comparison_bkgdPILEUP_BaselineMe_LowMass_Corrected_PILEUP_s_VBF_etmiss_Comparison(0.36)}
+\lbl[t]{60,130;(c)}
+\end{lpic} 
+}  
+  \subfigure{\label{fig:etmiss_4}%
+\begin{lpic}{PILEUP_Updated_Comparison_signalPILEUP_BaselineMe_LowMass_Corrected_PILEUP_s_VBF_etmiss_Comparison(0.36)}
+\lbl[t]{60,130;(d)}
+\end{lpic} 
+}  
+\caption{Distribution of $\etmiss$ mass for (a) $\mH$ = 200-600\,$\Gcs$ signal samples in 100\,$\Gcs$ steps, (b)  the $\mH$ = 200\,$\Gcs$ sample and backgrounds (stacked). The effect of pile-up on the distribution is shown in (c) for the total background and in (d) for the $\mH$ = 200,300\,$\Gcs$ signals.}
+\label{fig:plot_etmiss_bothchannels}
+\end{figure}
+
+
+Distribution of $\etmiss$ for (a) $\mH$ = 200-600\,$\Gcs$ signal samples in 100\,$\Gcs$ steps, (b)  the $\mH$ = 200\,$\Gcs$ sample and backgrounds (stacked). The effect of pile-up on the distribution is shown in (c) for the total background.
+
+
+
+\begin{figure}[!htbp]
+\centering              
+\subfigure{\label{fig:VBF3}% 
+\begin{lpic}{MOTIVATIONPLOTS_DataComparison_mass_Z_Comparison_BaselineMe_LowMass_Corrected_mh200(0.36)}
+\lbl[t]{60,130;(a)}
+\lbl[t]{15,11;\begin{rotate}{90}\colorbox{White}
+{\begin{myfontsize}Data/MC\end{myfontsize}}\end{rotate}}
+\lbl[t]{136,127;\colorbox{White}{\begin{myfontsizeTINY}GF(x1)\end{myfontsizeTINY}}}
+\end{lpic}  
+}
+
+
+}  
+\caption{Distribution of di-lepton mass for (a) the $\mH$ = 200\,$\Gcs$ sample and backgrounds (stacked) and showing comparison of effect of pile-up reweighted Monte Carlo on (b) $\mH$ = 200\,$\Gcs$ signal and (c) total background.}
+\label{fig:plot_Zmass_bothchannels}
+\end{figure}
+
+
+
+
+
+\begin{figure}[!htbp]
+  \centering
+\subfigure{\label{fig:dphi_1}%
+\begin{lpic}{OBJECT_SignaldphiComparison(0.36)}
+\lbl[t]{160,40;(a)}
+\end{lpic}  
+}
+\subfigure{\label{fig:dphi_2}%
+\begin{lpic}{MOTIVATIONPLOTS_DataComparison_dphi_Zleptons_Comparison_BaselineMe_LowMass_Corrected_mh200(0.36)}
+\lbl[t]{160,60;(b)}
+\lbl[t]{15,11;\begin{rotate}{90}\colorbox{White}
+{\begin{myfontsize}Data/MC\end{myfontsize}}\end{rotate}}
+\lbl[t]{136,127;\colorbox{White}{\begin{myfontsizeTINY}GF(x1)\end{myfontsizeTINY}}}
+\end{lpic}  
+}
+\\*
+  \subfigure{\label{fig:dphi_3}%
+\begin{lpic}{PILEUP_Updated_Comparison_signalPILEUP_BaselineMe_LowMass_Corrected_PILEUP_s_VBF_dphi_Zeeleptons_Comparison(0.36)}
+\lbl[t]{45,130;(c)}
+\end{lpic} 
+}  
+  \subfigure{\label{fig:dphi_4}%
+\begin{lpic}{PILEUP_Updated_Comparison_bkgdPILEUP_BaselineMe_LowMass_Corrected_PILEUP_s_VBF_dphi_Zeeleptons_Comparison(0.36)}
+\lbl[t]{45,130;(d)}
+\end{lpic} 
+}  
+\caption{Distribution of $\Delta\phi$ between selected reconstructed leptons for (a) each signal sample with $\mH$ = 200-600\,$\Gcs$ in steps of 100\,$\Gcs$, (b) all backgrounds stacked with data and $\mH$ = 200\,$\Gcs$ signal sample overlaid. A comparison of pile-up reweighted and non pile-up Monte Carlo is shown in (c) for the $\mH$ = 200,300\,$\Gcs$ signal and (d) the total background.}
+  \label{fig:fig:plot_dphileptons_bothchannels}
+\end{figure}
+
+Distribution of $\Delta\phi$ between selected reconstructed leptons for (a) each signal sample with $\mH$ = 200-600\,$\Gcs$ in steps of 100\,$\Gcs$, (b) all backgrounds stacked with data and $\mH$ = 200\,$\Gcs$ signal sample overlaid. A comparison of pile-up reweighted and non pile-up Monte Carlo is shown in (c) for the total background.
+
+
+
+\begin{figure}[!htbp]
+  \centering
+\subfigure{\label{fig:mt_1}%
+\begin{lpic}{OBJECT_SignalmtComparison(0.36)}
+\lbl[t]{45,130;(a)}
+\end{lpic}  
+}
+\subfigure{\label{fig:mt_2}%
+\begin{lpic}{MOTIVATIONPLOTS_DataComparison_mt_METLocHadTopo_Comparison_BaselineMe_LowMass_Corrected_mh200(0.36)}
+\lbl[t]{45,130;(b)}
+\lbl[t]{15,11;\begin{rotate}{90}\colorbox{White}
+{\begin{myfontsize}Data/MC\end{myfontsize}}\end{rotate}}
+\lbl[t]{136,127;\colorbox{White}{\begin{myfontsizeTINY}GF(x1)\end{myfontsizeTINY}}}
+\end{lpic}  
+}
+\\*
+  \subfigure{\label{fig:mt_3}%
+\begin{lpic}{PILEUP_Updated_Comparison_signalPILEUP_BaselineMe_LowMass_Corrected_PILEUP_s_VBF_mT_Comparison(0.36)}
+\lbl[t]{45,130;(c)}
+\end{lpic} 
+}  
+  \subfigure{\label{fig:mt_4}%
+\begin{lpic}{PILEUP_Updated_Comparison_bkgdPILEUP_BaselineMe_LowMass_Corrected_PILEUP_s_VBF_mT_Comparison(0.36)}
+\lbl[t]{45,130;(d)}
+\end{lpic} 
+}  
+\caption{Distribution of $\mT$ for (a) $\mH$ = 200-600\,$\Gcs$ signal samples in 100\,$\Gcs$ steps, (b)  the $\mH$ = 200\,$\Gcs$ sample and backgrounds (stacked). The effect of pile-up on the distribution is shown in (c) for the $\mH$ = 200,300\,$\Gcs$ signals and in (d) for the total background.}
+  \label{fig:fig:plot_mtleptons_bothchannels}
+\end{figure}
+
+Distribution of $\mT$ for (a) $\mH$ = 200-600\,$\Gcs$ signal samples in 100\,$\Gcs$ steps and (b)  the $\mH$ = 200\,$\Gcs$ sample and backgrounds (stacked).
+
+
+relating to tag jets
+
+\begin{figure}[!htbp]
+  \centering
+\subfigure{\label{fig:VBF_leadpt}%
+\begin{lpic}{MOTIVATIONPLOTS_DataComparison_pt_leadTagJet_beforeCut_beforeOptimizedllnunuCuts_highestpT_BaselineMe_LowMass_Corrected_mh200(0.36)}
+\lbl[t]{45,130;(a)}
+\lbl[t]{15,11;\begin{rotate}{90}\colorbox{White}
+{\begin{myfontsize}Data/MC\end{myfontsize}}\end{rotate}}
+\lbl[t]{136,127;\colorbox{White}{\begin{myfontsizeTINY}GF(x1)\end{myfontsizeTINY}}}
+\end{lpic} 
+}
+\subfigure{\label{fig:VBF_etaeta}%
+\begin{lpic}{MOTIVATIONPLOTS_DataComparison_etaTimeseta_tagJets_beforeCut_beforeOptimizedllnunuCuts_highestpT_BaselineMe_LowMass_Corrected_mh200(0.36)}
+\lbl[t]{45,130;(b)}
+\lbl[t]{15,11;\begin{rotate}{90}\colorbox{White}
+{\begin{myfontsize}Data/MC\end{myfontsize}}\end{rotate}}
+\end{lpic} 
+}
+\\*
+\subfigure{\label{fig:VBF_deta}%
+\begin{lpic}{MOTIVATIONPLOTS_DataComparison_fabsdeta_tagjets_beforeCut_beforeOptimizedllnunuCuts_highestpT_BaselineMe_LowMass_Corrected_mh200(0.36)}
+\lbl[t]{45,130;(c)}
+\lbl[t]{15,11;\begin{rotate}{90}\colorbox{White}
+{\begin{myfontsize}Data/MC\end{myfontsize}}\end{rotate}}
+\end{lpic} 
+}
+\subfigure{\label{fig:VBF_mass}%
+\begin{lpic}{MOTIVATIONPLOTS_DataComparison_m_tagJets_beforeCut_beforeOptimizedllnunuCuts_highestpT_BaselineMe_LowMass_Corrected_mh200(0.36)}
+\lbl[t]{60,130;(d)}
+\lbl[t]{15,11;\begin{rotate}{90}\colorbox{White}
+{\begin{myfontsize}Data/MC\end{myfontsize}}\end{rotate}}
+\end{lpic} 
+}
+\caption{Distributions related to the kinematics of the tag-jets, (a) $\pt$ of leading tag-jet, (b) $\eta\times\eta$ of tag-jets, (c) $\Delta\eta$ between tag-jets and (d) mass of tag-jets. Each background contribution is shown stacked. VBF and GF components for the $\mH$ = 200\,$\Gcs$ are included.}
+\label{fig:plot_taggingkinematics_bothchannels}
+\end{figure}
+
+------------------------------------------------
+
+Six - optimzation
+
+\begin{figure}[!htbp]
+  \centering
+\subfigure{\label{fig::VBF}%
+\begin{lpic}{PerMassPlotsFinalSIGNIF_baselineOptimizedComparison(0.36)}
+\lbl[t]{35,125;$(a)$}
+\end{lpic} 
+}
+\subfigure{\label{fig:InitalCuts_SoverrootbFnMass}%
+\begin{lpic}{PerMassPlotsFinalNORM_baselineOptimizedComparison(0.36)}
+\lbl[t]{35,125;$(b)$}
+\end{lpic} 
+}
+\subfigure{\label{fig:VBF}%
+\begin{lpic}{PerMassPlotsFinalEFFIC_baselineOptimizedComparison(0.36)}
+\lbl[t]{35,125;$(c)$}
+\end{lpic} 
+}
+\caption{Comparison of results after applying baseline and optimized selections as a function of Higgs mass shown in terms of (a) significance (Z=Z$\mathrm{_{1}}$),(b) expected number of signal (n$\mathrm{_{s}}$) and background (n$\mathrm{_{b}}$) events for an integrated luminosity of 33.4\,pb$^{-1}$ and (c) signal ($\epsilon\mathrm{_{s}}$) and background ($\epsilon\mathrm{_{b}}$) efficiencies.} 
+\label{fig:Optimizedresults_FnMass}
+\end{figure}
+
+---------------------- 
+
+seve - systematics and limits
+
+\begin{figure}[!htbp]
+  \centering
+\begin{lpic}{LIMITSPLOTS_Signif_optimized_withSyst_NomfbLum_final(0.36)}
+%\lbl[t]{90,130;(a)}
+\end{lpic}  
+%}
+%\begin{lpic}{LIMITSPLOTS_Limits_optimized_withSyst_NomfbLum_final(0.36)}
+%\lbl[t]{90,130;(b)}
+%\end{lpic}  
+\caption{Effect of systematics on signal significance as a function of Higgs mass [GeV].}
+\label{fig:SystEffect}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+\begin{lpic}{LIMITSPLOTS_Signif_optimized_withpileup_NomfbLum_final(0.36)}
+%\lbl[t]{90,130;(a)}
+\end{lpic}  
+%}
+\caption{Estimated effect of pile-up on signal significance as a function of Higgs mass [GeV].}
+\label{fig:PileupEffect}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+%\begin{lpic}{LIMITSPLOTS_Signif_optimized_withpileup_NomfbLum_final(0.36)}
+%\lbl[t]{90,130;(a)}
+%\end{lpic}  
+%}
+\begin{lpic}{LIMITSPLOTS_Limits_Optimized_withpileup_NomfbLum_final(0.36)}
+%\lbl[t]{90,130;(b)}
+\end{lpic}  
+\caption{Expected and observed VBF signal cross section exclusion limits relative to the predicted SM cross section as a function of Higgs boson mass [GeV] taking into account the optimized selection with the effect of pile-up (systematic uncertainties quoted in Section \ref{TotalUncertainty} also taken into account). Integrated luminosity corresponds to 33.4\,$\pb$ of data collected in 2010. The dashed line shows the expected exclusion while the green and yellow bands show the associated $\pm1\sigma$ and $\pm2\sigma$ statistical errors. The solid line represents the observed limits.}
+\label{fig:Limits}
+\end{figure}
+
